@@ -1,13 +1,17 @@
-# Title #
-
-## Sub Title ##
+---
+layout: page
+title: Blogging Like a Hacker
+---
 
 A little **brown** fox.
 
 * An item
-    * A subitem
+    * Sub item
+
 
 ```
-def python_code():
-    print "hello"
+    def python_code():
+        print "hello"
 ```
+
+
