@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Blogging Like a Hacker</title>
+    <title>Testing</title>
     
     <meta name="author" content="">
 
@@ -15,7 +15,7 @@
     <!-- Le styles -->
     <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
-
+    <link href="/stylesheets/pygment_trac.css" rel="stylesheet" type="text/css">
     <!-- Le fav and touch icons -->
   <!-- Update these with your own images
     <link rel="shortcut icon" href="images/favicon.ico">
@@ -30,7 +30,7 @@
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="/"></a>
+          <a class="brand" href="/">LLVM-PY Documentation</a>
           <ul class="nav">
             
             
@@ -39,6 +39,18 @@
 
   
     
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
       
     
   
@@ -55,7 +67,7 @@
       <div class="content">
         
 <div class="page-header">
-  <h1>Blogging Like a Hacker </h1>
+  <h1>Testing </h1>
 </div>
 
 <div class="row">
@@ -63,13 +75,24 @@
     <p>A little <strong>brown</strong> fox.</p>
 
 <ul>
-<li>An item * Sub item</li>
+<li>An item in a bulleted (unordered) list * A subitem, indented with 4 spaces (does not work)</li>
+
+<li>Another item in a bulleted list</li>
 </ul>
 
-<p><code>
-    def python_code():
-        print &quot;hello&quot;
-</code></p>
+<ol>
+<li>one</li>
+
+<li>two</li>
+</ol>
+<div class='highlight'><pre><code class='ruby'><span class='nb'>require</span> <span class='s1'>&#39;redcarpet&#39;</span>
+<span class='n'>markdown</span> <span class='o'>=</span> <span class='no'>Redcarpet</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='s2'>&quot;Hello World!&quot;</span><span class='p'>)</span>
+<span class='nb'>puts</span> <span class='n'>markdown</span><span class='o'>.</span><span class='n'>to_html</span>
+</code></pre>
+</div><div class='highlight'><pre><code class='python'><span class='k'>def</span> <span class='nf'>python_code</span><span class='p'>():</span>
+    <span class='k'>print</span> <span class='s'>&quot;hello&quot;</span>
+</code></pre>
+</div>
   </div>
 </div>
 
@@ -77,7 +100,7 @@
       </div>
 
       <footer>
-        <p>&copy;  2012 
+        <p>&copy;  2012
           with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
           and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
         </p>

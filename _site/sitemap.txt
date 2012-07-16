@@ -1,0 +1,4 @@
+
+http://numba.github.com/llvm-py/doc/test.html
+http://numba.github.com/llvm-py/sitemap.txt
+http://numba.github.com/llvm-py/pages.html
