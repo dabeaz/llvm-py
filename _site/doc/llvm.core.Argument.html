@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Argument (llvm.core)</title>
+    
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/stylesheets/pygment_trac.css" rel="stylesheet" type="text/css">
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">llvm-py Documentation</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        
+<div class="page-header">
+  <h1>Argument (llvm.core) </h1>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <p>The <code>args</code> property of <code>llvm.core.Function</code> objects yields <code>llvm.core.Argument</code> objects. This allows for setting attributes for functions arguments. <code>Argument</code> objects cannot be constructed from user code, the only way to get a reference to these are from <code>Function</code> objects.</p>
+
+<p>The method <code>add_attribute</code> and <code>remove_attribute</code> can be used to add or remove the following attributes:</p>
+<table><thead><tr><th>Value</th><th>Equivalent LLVM Assembly Keyword</th></tr></thead><tbody><tr><td style='text-align: left;'><code>ATTR_ZEXT</code></td><td style='text-align: left;'><code>zeroext</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_SEXT</code></td><td style='text-align: left;'><code>signext</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_IN_REG</code></td><td style='text-align: left;'><code>inreg</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_BY_VAL</code></td><td style='text-align: left;'><code>byval</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_STRUCT_RET</code></td><td style='text-align: left;'><code>sret</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_NO_ALIAS</code></td><td style='text-align: left;'><code>noalias</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_NO_CAPTURE</code></td><td style='text-align: left;'><code>nocapture</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_NEST</code></td><td style='text-align: left;'><code>nest</code></td>
+</tr></tbody></table>
+<p>These method work exactly like the <a href='#fnattr'>corresponding methods</a> of the <code>Function</code> class above. Refer <a href='http://www.llvm.org/docs/LangRef.html#paramattrs'>LLVM docs</a> for information on what each attribute means.</p>
+
+<p>The alignment of any argument can be set via the <code>alignment</code> property, to any power of 2.</p>
+
+<h1 id='llvmcoreargument'>llvm.core.Argument</h1>
+
+<h2 id='base_class'>Base Class</h2>
+
+<ul>
+<li><a href='llvm.core.Value.html'>llvm.core.Value</a></li>
+</ul>
+
+<h2 id='properties'>Properties</h2>
+
+<h3 id='id301'><code>alignment</code></h3>
+
+<p>The alignment of the argument. Must be a power of 2.</p>
+
+<h2 id='methods'>Methods</h2>
+
+<h3 id='id302'><code>add_attribute(attr)</code></h3>
+
+<p>Add an attribute <code>attr</code> to the argument, from the set listed above.</p>
+
+<h3 id='id303'><code>remove_attribute(attr)</code></h3>
+
+<p>Remove the attribute <code>attr</code> of the argument.</p>
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy;  2012
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+

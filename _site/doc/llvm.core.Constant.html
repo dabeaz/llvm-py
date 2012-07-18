@@ -1,0 +1,441 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Constant (llvm.core)</title>
+    
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/stylesheets/pygment_trac.css" rel="stylesheet" type="text/css">
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">llvm-py Documentation</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        
+<div class="page-header">
+  <h1>Constant (llvm.core) </h1>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <p><code>Constant</code>-s represents constants that appear within the code. The values of such objects are known at creation time. Constants can be created from Python constants. A constant expression is also a constant &#8211; given a <code>Constant</code> object, an operation (like addition, subtraction etc) can be specified, to yield a new <code>Constant</code> object. Let&#8217;s see some examples:</p>
+<div class='highlight'><pre><code class='python'><span class='c'>#!/usr/bin/env python</span>
+
+<span class='n'>ti</span> <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>()</span>                         <span class='c'># a 32-bit int type</span>
+
+<span class='n'>k1</span> <span class='o'>=</span> <span class='n'>Constant</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(</span><span class='n'>ti</span><span class='p'>,</span> <span class='mi'>42</span><span class='p'>)</span>               <span class='c'># &quot;int k1 = 42;&quot;</span>
+<span class='n'>k2</span> <span class='o'>=</span> <span class='n'>k1</span><span class='o'>.</span><span class='n'>add</span><span class='p'>(</span> <span class='n'>Constant</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(</span> <span class='n'>ti</span><span class='p'>,</span> <span class='mi'>10</span> <span class='p'>)</span> <span class='p'>)</span>   <span class='c'># &quot;int k2 = k1 + 10;&quot;</span>
+
+<span class='n'>tr</span> <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>float</span><span class='p'>()</span>
+
+<span class='n'>r1</span> <span class='o'>=</span> <span class='n'>Constant</span><span class='o'>.</span><span class='n'>real</span><span class='p'>(</span><span class='n'>tr</span><span class='p'>,</span> <span class='s'>&quot;3.141592&quot;</span><span class='p'>)</span>      <span class='c'># create from a string</span>
+<span class='n'>r2</span> <span class='o'>=</span> <span class='n'>Constant</span><span class='o'>.</span><span class='n'>real</span><span class='p'>(</span><span class='n'>tr</span><span class='p'>,</span> <span class='mf'>1.61803399</span><span class='p'>)</span>      <span class='c'># create from a Python float</span>
+</code></pre>
+</div>
+<h1 id='llvmcoreconstant'>llvm.core.Constant</h1>
+<div class='maruku_toc'><ul style='list-style: none;'><li><a href='#llvmcoreconstant'>llvm.core.Constant</a><ul style='list-style: none;'><li><a href='#static_factory_methods'>Static factory methods</a><ul style='list-style: none;'><li><a href='#id372'><code>null(ty)</code></a></li><li><a href='#id373'><code>all_ones(ty)</code></a></li><li><a href='#id374'><code>undef(ty)</code></a></li><li><a href='#id375'><code>int(ty, value)</code></a></li><li><a href='#id376'><code>int_signextend(ty, value)</code></a></li><li><a href='#id377'><code>real(ty, value)</code></a></li><li><a href='#id378'><code>stringz(value)</code></a></li><li><a href='#id379'><code>string(value)</code></a></li><li><a href='#id380'><code>array(ty, consts)</code></a></li><li><a href='#id381'><code>struct(ty, consts)</code></a></li><li><a href='#id382'><code>packed_struct(ty, consts)</code></a></li><li><a href='#id383'><code>vector(consts)</code></a></li><li><a href='#id384'><code>sizeof(ty)</code></a></li></ul></li><li><a href='#methods'>Methods</a><ul style='list-style: none;'><li><a href='#id385'><code>k.neg()</code></a></li><li><a href='#id386'><code>k.not_()</code></a></li><li><a href='#id387'><code>k.add(k2)</code></a></li><li><a href='#id388'><code>k.fadd(k2)</code></a></li><li><a href='#id389'><code>k.sub(k2)</code></a></li><li><a href='#id390'><code>k.fsub(k2)</code></a></li><li><a href='#id391'><code>k.mul(k2)</code></a></li><li><a href='#id392'><code>k.fmul(k2)</code></a></li><li><a href='#id393'><code>k.udiv(k2)</code></a></li><li><a href='#id394'><code>k.sdiv(k2)</code></a></li><li><a href='#id395'><code>k.fdiv(k2)</code></a></li><li><a href='#id396'><code>k.urem(k2)</code></a></li><li><a href='#id397'><code>k.srem(k2)</code></a></li><li><a href='#id398'><code>k.frem(k2)</code></a></li><li><a href='#id399'><code>k.and_(k2)</code></a></li><li><a href='#id400'><code>k.or_(k2)</code></a></li><li><a href='#id401'><code>k.xor(k2)</code></a></li><li><a href='#id402'><code>k.icmp(icmp, k2)</code></a></li><li><a href='#id403'><code>k.fcmp(fcmp, k2)</code></a></li><li><a href='#id404'><code>k.shl(k2)</code></a></li><li><a href='#id405'><code>k.lshr(k2)</code></a></li><li><a href='#id406'><code>k.ashr(k2)</code></a></li><li><a href='#id407'><code>k.gep(indices)</code></a></li><li><a href='#id408'><code>k.trunc(ty)</code></a></li><li><a href='#id409'><code>k.sext(ty)</code></a></li><li><a href='#id410'><code>k.zext(ty)</code></a></li><li><a href='#id411'><code>k.fptrunc(ty)</code></a></li><li><a href='#id412'><code>k.fpext(ty)</code></a></li><li><a href='#id413'><code>k.uitofp(ty)</code></a></li><li><a href='#id414'><code>k.sitofp(ty)</code></a></li><li><a href='#id415'><code>k.fptoui(ty)</code></a></li><li><a href='#id416'><code>k.fptosi(ty)</code></a></li><li><a href='#id417'><code>k.ptrtoint(ty)</code></a></li><li><a href='#id418'><code>k.inttoptr(ty)</code></a></li><li><a href='#id419'><code>k.bitcast(ty)</code></a></li><li><a href='#id420'><code>k.select(cond,k2,k3)</code></a></li><li><a href='#id421'><code>k.extract_element(idx)</code></a></li><li><a href='#id422'><code>k.insert_element(k2,idx)</code></a></li><li><a href='#id423'><code>k.shuffle_vector(k2,mask)</code></a></li></ul></li></ul></li><li><a href='#other_constant_classes_llvmcore'>Other Constant Classes (llvm.core)</a></li></ul></div>
+<h2 id='static_factory_methods'>Static factory methods</h2>
+
+<h3 id='id372'><code>null(ty)</code></h3>
+
+<p>A null value (all zeros) of type <code>ty</code></p>
+
+<h3 id='id373'><code>all_ones(ty)</code></h3>
+
+<p>All 1&#8217;s value of type <code>ty</code></p>
+
+<h3 id='id374'><code>undef(ty)</code></h3>
+
+<p>An undefined value of type <code>ty</code></p>
+
+<h3 id='id375'><code>int(ty, value)</code></h3>
+
+<p>Integer of type <code>ty</code>, with value <code>value</code> (a Python int or long)</p>
+
+<h3 id='id376'><code>int_signextend(ty, value)</code></h3>
+
+<p>Integer of signed type <code>ty</code> (use for signed types)</p>
+
+<h3 id='id377'><code>real(ty, value)</code></h3>
+
+<p>Floating point value of type <code>ty</code>, with value <code>value</code> (a Python float)</p>
+
+<h3 id='id378'><code>stringz(value)</code></h3>
+
+<p>A null-terminated string. <code>value</code> is a Python string</p>
+
+<h3 id='id379'><code>string(value)</code></h3>
+
+<p>As <code>string(ty)</code>, but not null terminated</p>
+
+<h3 id='id380'><code>array(ty, consts)</code></h3>
+
+<p>Array of type <code>ty</code>, initialized with <code>consts</code> (an iterable yielding <code>Constant</code> objects of the appropriate type)</p>
+
+<h3 id='id381'><code>struct(ty, consts)</code></h3>
+
+<p>Struct (unpacked) of type <code>ty</code>, initialized with <code>consts</code> (an iterable yielding <code>Constant</code> objects of the appropriate type)</p>
+
+<h3 id='id382'><code>packed_struct(ty, consts)</code></h3>
+
+<p>As <code>struct(ty, consts)</code> but packed</p>
+
+<h3 id='id383'><code>vector(consts)</code></h3>
+
+<p>Vector, initialized with <code>consts</code> (an iterable yielding <code>Constant</code> objects of the appropriate type)</p>
+
+<h3 id='id384'><code>sizeof(ty)</code></h3>
+
+<p>Constant value representing the sizeof the type <code>ty</code></p>
+
+<h2 id='methods'>Methods</h2>
+
+<p>The following operations on constants are supported. For more details on any operation, consult the <a href='http://www.llvm.org/docs/LangRef.html#constantexprs'>Constant Expressions</a> section of the LLVM Language Reference.</p>
+
+<h3 id='id385'><code>k.neg()</code></h3>
+
+<p>negation, same as <code>0 - k</code></p>
+
+<h3 id='id386'><code>k.not_()</code></h3>
+
+<p>1&#8217;s complement of <code>k</code>. Note trailing underscore.</p>
+
+<h3 id='id387'><code>k.add(k2)</code></h3>
+
+<p><code>k + k2</code>, where <code>k</code> and <code>k2</code> are integers.</p>
+
+<h3 id='id388'><code>k.fadd(k2)</code></h3>
+
+<p><code>k + k2</code>, where <code>k</code> and <code>k2</code> are floating-point.</p>
+
+<h3 id='id389'><code>k.sub(k2)</code></h3>
+
+<p><code>k - k2</code>, where <code>k</code> and <code>k2</code> are integers.</p>
+
+<h3 id='id390'><code>k.fsub(k2)</code></h3>
+
+<p><code>k - k2</code>, where <code>k</code> and <code>k2</code> are floating-point.</p>
+
+<h3 id='id391'><code>k.mul(k2)</code></h3>
+
+<p><code>k * k2</code>, where <code>k</code> and <code>k2</code> are integers.</p>
+
+<h3 id='id392'><code>k.fmul(k2)</code></h3>
+
+<p><code>k * k2</code>, where <code>k</code> and <code>k2</code> are floating-point.</p>
+
+<h3 id='id393'><code>k.udiv(k2)</code></h3>
+
+<p>Quotient of unsigned division of <code>k</code> with <code>k2</code></p>
+
+<h3 id='id394'><code>k.sdiv(k2)</code></h3>
+
+<p>Quotient of signed division of <code>k</code> with <code>k2</code></p>
+
+<h3 id='id395'><code>k.fdiv(k2)</code></h3>
+
+<p>Quotient of floating point division of <code>k</code> with <code>k2</code></p>
+
+<h3 id='id396'><code>k.urem(k2)</code></h3>
+
+<p>Reminder of unsigned division of <code>k</code> with <code>k2</code></p>
+
+<h3 id='id397'><code>k.srem(k2)</code></h3>
+
+<p>Reminder of signed division of <code>k</code> with <code>k2</code></p>
+
+<h3 id='id398'><code>k.frem(k2)</code></h3>
+
+<p>Reminder of floating point division of <code>k</code> with <code>k2</code></p>
+
+<h3 id='id399'><code>k.and_(k2)</code></h3>
+
+<p>Bitwise and of <code>k</code> and <code>k2</code>. Note trailing underscore.</p>
+
+<h3 id='id400'><code>k.or_(k2)</code></h3>
+
+<p>Bitwise or of <code>k</code> and <code>k2</code>. Note trailing underscore.</p>
+
+<h3 id='id401'><code>k.xor(k2)</code></h3>
+
+<p>Bitwise exclusive-or of <code>k</code> and <code>k2</code>.</p>
+
+<h3 id='id402'><code>k.icmp(icmp, k2)</code></h3>
+
+<p>Compare <code>k</code> with <code>k2</code> using the predicate <code>icmp</code>. See <a href='values.html#icmp'>here</a> for list of predicates for integer operands.</p>
+
+<h3 id='id403'><code>k.fcmp(fcmp, k2)</code></h3>
+
+<p>Compare <code>k</code> with <code>k2</code> using the predicate <code>fcmp</code>. See <a href='values.html#fcmp'>here</a> for list of predicates for real operands.</p>
+
+<h3 id='id404'><code>k.shl(k2)</code></h3>
+
+<p>Shift <code>k</code> left by <code>k2</code> bits.</p>
+
+<h3 id='id405'><code>k.lshr(k2)</code></h3>
+
+<p>Shift <code>k</code> logically right by <code>k2</code> bits (new bits are 0s).</p>
+
+<h3 id='id406'><code>k.ashr(k2)</code></h3>
+
+<p>Shift <code>k</code> arithmetically right by <code>k2</code> bits (new bits are same as previous sign bit).</p>
+
+<h3 id='id407'><code>k.gep(indices)</code></h3>
+
+<p>GEP, see <a href='http://www.llvm.org/docs/GetElementPtr.html'>LLVM docs</a>.</p>
+
+<h3 id='id408'><code>k.trunc(ty)</code></h3>
+
+<p>Truncate <code>k</code> to a type <code>ty</code> of lower bitwidth.</p>
+
+<h3 id='id409'><code>k.sext(ty)</code></h3>
+
+<p>Sign extend <code>k</code> to a type <code>ty</code> of higher bitwidth, while extending the sign bit.</p>
+
+<h3 id='id410'><code>k.zext(ty)</code></h3>
+
+<p>Sign extend <code>k</code> to a type <code>ty</code> of higher bitwidth, all new bits are 0s.</p>
+
+<h3 id='id411'><code>k.fptrunc(ty)</code></h3>
+
+<p>Truncate floating point constant <code>k</code> to floating point type <code>ty</code> of lower size than k&#8217;s.</p>
+
+<h3 id='id412'><code>k.fpext(ty)</code></h3>
+
+<p>Extend floating point constant <code>k</code> to floating point type <code>ty</code> of higher size than k&#8217;s.</p>
+
+<h3 id='id413'><code>k.uitofp(ty)</code></h3>
+
+<p>Convert an unsigned integer constant <code>k</code> to floating point constant of type <code>ty</code>.</p>
+
+<h3 id='id414'><code>k.sitofp(ty)</code></h3>
+
+<p>Convert a signed integer constant <code>k</code> to floating point constant of type <code>ty</code>.</p>
+
+<h3 id='id415'><code>k.fptoui(ty)</code></h3>
+
+<p>Convert a floating point constant <code>k</code> to an unsigned integer constant of type <code>ty</code>.</p>
+
+<h3 id='id416'><code>k.fptosi(ty)</code></h3>
+
+<p>Convert a floating point constant <code>k</code> to a signed integer constant of type <code>ty</code>.</p>
+
+<h3 id='id417'><code>k.ptrtoint(ty)</code></h3>
+
+<p>Convert a pointer constant <code>k</code> to an integer constant of type <code>ty</code>.</p>
+
+<h3 id='id418'><code>k.inttoptr(ty)</code></h3>
+
+<p>Convert an integer constant <code>k</code> to a pointer constant of type <code>ty</code>.</p>
+
+<h3 id='id419'><code>k.bitcast(ty)</code></h3>
+
+<p>Convert <code>k</code> to a (equal-width) constant of type <code>ty</code>.</p>
+
+<h3 id='id420'><code>k.select(cond,k2,k3)</code></h3>
+
+<p>Replace value with <code>k2</code> if the 1-bit integer constant <code>cond</code> is 1, else with <code>k3</code>.</p>
+
+<h3 id='id421'><code>k.extract_element(idx)</code></h3>
+
+<p>Extract value at <code>idx</code> (integer constant) from a vector constant <code>k</code>.</p>
+
+<h3 id='id422'><code>k.insert_element(k2,idx)</code></h3>
+
+<p>Insert value <code>k2</code> (scalar constant) at index <code>idx</code> (integer constant) of vector constant <code>k</code>.</p>
+
+<h3 id='id423'><code>k.shuffle_vector(k2,mask)</code></h3>
+
+<p>Shuffle vector constant <code>k</code> based on vector constants <code>k2</code> and <code>mask</code>.</p>
+<hr />
+<h1 id='other_constant_classes_llvmcore'>Other Constant Classes (llvm.core)</h1>
+
+<p>The following subclasses of <code>Constant</code> do not provide additional methods, <strong>they serve only to provide richer type information.</strong></p>
+<table><thead><tr><th>Subclass</th><th>LLVM C++ Class</th><th>Remarks</th></tr></thead><tbody><tr><td style='text-align: left;'><code>ConstantExpr</code></td><td style='text-align: left;'><code>llvmConstantExpr</code></td><td style='text-align: left;'>A constant expression</td>
+</tr><tr><td style='text-align: left;'><code>ConstantAggregateZero</code></td><td style='text-align: left;'><code>llvmConstantAggregateZero</code></td><td style='text-align: left;'>All-zero constant</td>
+</tr><tr><td style='text-align: left;'><code>ConstantInt</code></td><td style='text-align: left;'><code>llvmConstantInt</code></td><td style='text-align: left;'>An integer constant</td>
+</tr><tr><td style='text-align: left;'><code>ConstantFP</code></td><td style='text-align: left;'><code>llvmConstantFP</code></td><td style='text-align: left;'>A floating-point constant</td>
+</tr><tr><td style='text-align: left;'><code>ConstantArray</code></td><td style='text-align: left;'><code>llvmConstantArray</code></td><td style='text-align: left;'>An array constant</td>
+</tr><tr><td style='text-align: left;'><code>ConstantStruct</code></td><td style='text-align: left;'><code>llvmConstantStruct</code></td><td style='text-align: left;'>A structure constant</td>
+</tr><tr><td style='text-align: left;'><code>ConstantVector</code></td><td style='text-align: left;'><code>llvmConstantVector</code></td><td style='text-align: left;'>A vector constant</td>
+</tr><tr><td style='text-align: left;'><code>ConstantPointerNull</code></td><td style='text-align: left;'><code>llvmConstantPointerNull</code></td><td style='text-align: left;'>All-zero pointer constant</td>
+</tr><tr><td style='text-align: left;'><code>UndefValue</code></td><td style='text-align: left;'><code>llvmUndefValue</code></td><td style='text-align: left;'>corresponds to <code>undef</code> of LLVM IR</td>
+</tr></tbody></table>
+<p>These types are helpful in <code>isinstance</code> checks, like so:</p>
+<div class='highlight'><pre><code class='python'><span class='n'>ti</span> <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(</span><span class='mi'>32</span><span class='p'>)</span>
+<span class='n'>k1</span> <span class='o'>=</span> <span class='n'>Constant</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(</span><span class='n'>ti</span><span class='p'>,</span> <span class='mi'>42</span><span class='p'>)</span>           <span class='c'># int32_t k1 = 42;</span>
+<span class='n'>k2</span> <span class='o'>=</span> <span class='n'>Constant</span><span class='o'>.</span><span class='n'>array</span><span class='p'>(</span><span class='n'>ti</span><span class='p'>,</span> <span class='p'>[</span><span class='n'>k1</span><span class='p'>,</span> <span class='n'>k1</span><span class='p'>])</span>   <span class='c'># int32_t k2[] = { k1, k1 };</span>
+
+<span class='k'>assert</span> <span class='nb'>isinstance</span><span class='p'>(</span><span class='n'>k1</span><span class='p'>,</span> <span class='n'>ConstantInt</span><span class='p'>)</span>
+<span class='k'>assert</span> <span class='nb'>isinstance</span><span class='p'>(</span><span class='n'>k2</span><span class='p'>,</span> <span class='n'>ConstantArray</span><span class='p'>)</span>
+</code></pre>
+</div>
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy;  2012
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+

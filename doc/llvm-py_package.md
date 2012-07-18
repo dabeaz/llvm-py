@@ -33,18 +33,10 @@ Here is a quick overview of the contents of each package:
 - LLVMException -- exception class (currently the only one)
 
 ## llvm.core
-- [Module](./llvm.core.Module.html) -- represents an LLVM Module
-- [Type](./llvm.core.Type.html) -- represents an LLVM Type
-- [IntegerType](./llvm.core.Type.html), [FunctionType](./llvm.core.Type.html),
-  [StructType](./llvm.core.Type.html), [ArrayType](./llvm.core.Type.html),
-  [PointerType](./llvm.core.Type.html),
-  [VectorType](./llvm.core.Type.html)  -- derived classes of Type
-- [TypeHandle](./llvm.core.Type.html) -- used for constructing recursive (self-referencing) types
-  (e.g. linked list nodes)
-- [Value](./llvm.core.Value.html) -- represents an LLVM Value
-- Constant, GlobalValue, GlobalVariable, Argument, Function,
-  Instruction, CallOrInvokeInstruction, PHINode, SwitchInstruction --
-  various derived classes of Value
+- [Module](llvm.core.Module.html) -- represents an LLVM Module
+- [Type](types.html) -- represents an LLVM Type
+- [Value](values.html) -- represents an LLVM Value, including:
+  globals, constants, variables, arguments, functions, instructions, etc..
 - BasicBlock -- another derived of Value, represents an LLVM basic block
 - Builder -- used for creating instructions, wraps LLVM IRBuilder helper
   class

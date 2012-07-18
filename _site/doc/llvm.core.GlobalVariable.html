@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>GlobalVariable (llvm.core)</title>
+    
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/stylesheets/pygment_trac.css" rel="stylesheet" type="text/css">
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">llvm-py Documentation</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        
+<div class="page-header">
+  <h1>GlobalVariable (llvm.core) </h1>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <p>Global variables (<code>llvm.core.GlobalVariable</code>) are subclasses of <code>llvm.core.GlobalValue</code> and represent module-level variables. These can have optional initializers and can be marked as constants. Global variables can be created either by using the <code>add_global_variable</code> method of the <code>Module</code> class (see above), or by using the static method <code>GlobalVariable.new</code>.</p>
+<div class='highlight'><pre><code class='python'><span class='c'># create a global variable using add_global_variable method</span>
+<span class='n'>gv1</span> <span class='o'>=</span> <span class='n'>module_obj</span><span class='o'>.</span><span class='n'>add_global_variable</span><span class='p'>(</span><span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(),</span> <span class='s'>&quot;gv1&quot;</span><span class='p'>)</span>
+
+<span class='c'># or equivalently, using a static constructor method</span>
+<span class='n'>gv2</span> <span class='o'>=</span> <span class='n'>GlobalVariable</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='n'>module_obj</span><span class='p'>,</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(),</span> <span class='s'>&quot;gv2&quot;</span><span class='p'>)</span>
+</code></pre>
+</div>
+<p>Existing global variables of a module can be accessed by name using <code>module_obj.get_global_variable_named(name)</code> or <code>GlobalVariable.get</code>. All existing global variables can be enumerated via iterating over the property <code>module_obj.global_variables</code>.</p>
+<div class='highlight'><pre><code class='python'><span class='c'># retrieve a reference to the global variable gv1,</span>
+<span class='c'># using the get_global_variable_named method</span>
+<span class='n'>gv1</span> <span class='o'>=</span> <span class='n'>module_obj</span><span class='o'>.</span><span class='n'>get_global_variable_named</span><span class='p'>(</span><span class='s'>&quot;gv1&quot;</span><span class='p'>)</span>
+
+<span class='c'># or equivalently, using the static `get` method:</span>
+<span class='n'>gv2</span> <span class='o'>=</span> <span class='n'>GlobalVariable</span><span class='o'>.</span><span class='n'>get</span><span class='p'>(</span><span class='n'>module_obj</span><span class='p'>,</span> <span class='s'>&quot;gv2&quot;</span><span class='p'>)</span>
+
+<span class='c'># list all global variables in a module</span>
+<span class='k'>for</span> <span class='n'>gv</span> <span class='ow'>in</span> <span class='n'>module_obj</span><span class='o'>.</span><span class='n'>global_variables</span><span class='p'>:</span>
+    <span class='k'>print</span> <span class='n'>gv</span><span class='o'>.</span><span class='n'>name</span><span class='p'>,</span> <span class='s'>&quot;of type&quot;</span><span class='p'>,</span> <span class='n'>gv</span><span class='o'>.</span><span class='n'>type</span>
+</code></pre>
+</div>
+<p>The initializer for a global variable can be set by assigning to the <code>initializer</code> property of the object. The <code>is_global_constant</code> property can be used to indicate that the variable is a global constant.</p>
+
+<p>Global variables can be delete using the <code>delete</code> method. Do not use the object after calling <code>delete</code> on it.</p>
+<div class='highlight'><pre><code class='python'><span class='c'># add an initializer 10 (32-bit integer)</span>
+<span class='n'>gv</span><span class='o'>.</span><span class='n'>initializer</span> <span class='o'>=</span> <span class='n'>Constant</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(),</span> <span class='mi'>10</span> <span class='p'>)</span>
+
+<span class='c'># delete the global</span>
+<span class='n'>gv</span><span class='o'>.</span><span class='n'>delete</span><span class='p'>()</span>
+<span class='c'># DO NOT dereference `gv&#39; beyond this point!</span>
+<span class='n'>gv</span> <span class='o'>=</span> <span class='bp'>None</span>
+</code></pre>
+</div>
+<h1 id='llvmcoreglobalvariable'>llvm.core.GlobalVariable</h1>
+
+<h2 id='base_class'>Base Class</h2>
+
+<ul>
+<li><a href='llvm.core.GlobalValue.html'>llvm.core.GlobalValue</a></li>
+</ul>
+
+<h2 id='static_constructors'>Static Constructors</h2>
+
+<h3 id='id429'><code>new(module_obj, ty, name)</code></h3>
+
+<p>Create a global variable named <code>name</code> of type <code>ty</code> in the module <code>module_obj</code> and return a <code>GlobalVariable</code> object that represents it.</p>
+
+<h3 id='id430'><code>get(module_obj, name)</code></h3>
+
+<p>Return a <code>GlobalVariable</code> object to represent the global variable named <code>name</code> in the module <code>module_obj</code> or raise <code>LLVMException</code> if such a variable does not exist.</p>
+
+<h2 id='properties'>Properties</h2>
+
+<h3 id='id431'><code>initializer</code></h3>
+
+<p>The intializer of the variable. Set to <code>llvm.core.Constant</code> (or derived). Gets the initializer constant, or <code>None</code> if none exists. <code>global_constant</code> <code>True</code> if the variable is a global constant, <code>False</code> otherwise.</p>
+
+<h2 id='methods'>Methods</h2>
+
+<h3 id='id432'><code>delete()</code></h3>
+
+<p>Deletes the global variable from it&#8217;s module. <em>Do not hold any references to this object after calling <code>delete</code> on it.</em></p>
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy;  2012
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+
