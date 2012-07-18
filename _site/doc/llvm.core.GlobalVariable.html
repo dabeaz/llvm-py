@@ -211,23 +211,23 @@
 
 <h2 id='static_constructors'>Static Constructors</h2>
 
-<h3 id='id429'><code>new(module_obj, ty, name)</code></h3>
+<h3 id='id129'><code>new(module_obj, ty, name)</code></h3>
 
 <p>Create a global variable named <code>name</code> of type <code>ty</code> in the module <code>module_obj</code> and return a <code>GlobalVariable</code> object that represents it.</p>
 
-<h3 id='id430'><code>get(module_obj, name)</code></h3>
+<h3 id='id130'><code>get(module_obj, name)</code></h3>
 
 <p>Return a <code>GlobalVariable</code> object to represent the global variable named <code>name</code> in the module <code>module_obj</code> or raise <code>LLVMException</code> if such a variable does not exist.</p>
 
 <h2 id='properties'>Properties</h2>
 
-<h3 id='id431'><code>initializer</code></h3>
+<h3 id='id131'><code>initializer</code></h3>
 
 <p>The intializer of the variable. Set to <code>llvm.core.Constant</code> (or derived). Gets the initializer constant, or <code>None</code> if none exists. <code>global_constant</code> <code>True</code> if the variable is a global constant, <code>False</code> otherwise.</p>
 
 <h2 id='methods'>Methods</h2>
 
-<h3 id='id432'><code>delete()</code></h3>
+<h3 id='id132'><code>delete()</code></h3>
 
 <p>Deletes the global variable from it&#8217;s module. <em>Do not hold any references to this object after calling <code>delete</code> on it.</em></p>
   </div>

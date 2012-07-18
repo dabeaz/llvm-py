@@ -84,11 +84,11 @@ The visibility type, takes one of the constants listed above (VISIBILITY_\*).
 
 A power-of-2 integer indicating the boundary to align to.
 
-### `is_declaration` \[read-only]
+### `is_declaration` \[read-only\]
 
 `True` if the global is a declaration, `False` otherwise.
 
-### `module` \[read-only]
+### `module` \[read-only\]
 
     The module object to which this global belongs to.
 

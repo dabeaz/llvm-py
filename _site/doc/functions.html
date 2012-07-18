@@ -240,7 +240,7 @@
 
 <span class='c'># get the first one</span>
 <span class='n'>b2</span> <span class='o'>=</span> <span class='n'>fn</span><span class='o'>.</span><span class='n'>get_entry_basic_block</span><span class='p'>()</span>
-<span class='n'>b2</span> <span class='o'>=</span> <span class='n'>fn</span><span class='o'>.</span><span class='n'>basic_blocks</span><span class='p'>[</span><span class='mi'>0</span><span class='p'>]</span>  <span class='c'># slower than previous method</span>
+<span class='n'>b2</span> <span class='o'>=</span> <span class='n'>fn</span><span class='o'>.</span><span class='n'>basic_mdblocks</span><span class='p'>[</span><span class='mi'>0</span><span class='p'>]</span>  <span class='c'># slower than previous method</span>
 
 <span class='c'># print names of all basic blocks</span>
 <span class='k'>for</span> <span class='n'>b</span> <span class='ow'>in</span> <span class='n'>fn</span><span class='o'>.</span><span class='n'>basic_blocks</span><span class='p'>:</span>

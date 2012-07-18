@@ -12,12 +12,12 @@ title: StructType (llvm.core)
 ## Properties
 
 
-### `packed` \[read-only]
+### `packed` \[read-only\]
 
 `True` if the structure is packed (no padding between elements).
 
 
-### `elements` \[read-only]
+### `elements` \[read-only\]
 
 Returns an iterable object that yields `Type` objects that
 represent, in order, the types of the elements of the structure.
@@ -32,7 +32,7 @@ assert struct_type.element_count == len(struct_type.elements)
 {% endhighlight %}
 
 
-### `element_count` \[read-only]
+### `element_count` \[read-only\]
 
 The number of elements. Same as `len(obj.elements)`, but faster.
 

@@ -89,7 +89,7 @@ Opaque type, used for creating self-referencing types.
 ## Properties
 
 
-### `kind` \[read-only]
+### `kind` \[read-only\]
 
 A value (enum) representing the "type" of the object. It will be
 one of the following constants defined in `llvm.core`:

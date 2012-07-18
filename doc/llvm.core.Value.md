@@ -13,20 +13,20 @@ title: Value (llvm.core)
 
 The name of the value.
 
-### `type` \[read-only]
+### `type` \[read-only\]
 
 An `llvm.core.Type` object representing the type of the value.
 
-### `uses` \[read-only]
+### `uses` \[read-only\]
 
 The list of values (`llvm.core.Value`) that use this value.
 
-### `use_count` \[read-only]
+### `use_count` \[read-only\]
 
 The number of values that use (refer) this value. Same as `len(val.uses)`
 but faster if you just want the count.
 
-### `value_id` \[read-only]
+### `value_id` \[read-only\]
 
 Returns `llvmValuegetValueID()`. Refer LLVM documentation
 for more info.

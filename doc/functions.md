@@ -77,7 +77,7 @@ can be retrieved from a function object with the read-only property
 > automatically. This is necessary when compiling llvm-py with a different
 > version of LLVM.
 
-# Calling Convention ## {#callconv}
+# Calling Convention # {#callconv}
 The function's calling convention can be set using the
 `calling_convention` property. The following (integer) constants defined
 in `llvm.core` can be used as values:
@@ -127,7 +127,7 @@ b1 = fn.append_basic_block("entry")
 
 # get the first one
 b2 = fn.get_entry_basic_block()
-b2 = fn.basic_blocks[0]  # slower than previous method
+b2 = fn.basic_mdblocks[0]  # slower than previous method
 
 # print names of all basic blocks
 for b in fn.basic_blocks:

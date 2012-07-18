@@ -47,42 +47,42 @@ the full list.
 
 ## Properties
 
-### `basic_block` \[read-only]
+### `basic_block` \[read-only\]
 The basic block to which this instruction belongs to.
 
-### `is_terminator` \[read-only]
+### `is_terminator` \[read-only\]
 True if the instruction is a terminator instruction.
 
-### `is_binary_op` \[read-only]
+### `is_binary_op` \[read-only\]
 True if the instruction is a binary operator.
 
-### `is_shift` \[read-only]
+### `is_shift` \[read-only\]
 True if the instruction is a shift instruction.
 
-### `is_cast` \[read-only]
+### `is_cast` \[read-only\]
 True if the instruction is a cast instruction.
 
-### `is_logical_shift` \[read-only]
+### `is_logical_shift` \[read-only\]
 True if the instruction is a logical shift instruction.
 
-### `is_arithmetic_shift` \[read-only]
+### `is_arithmetic_shift` \[read-only\]
 True if the instruction is an arithmetic shift instruction.
 
-### `is_associative` \[read-only]
+### `is_associative` \[read-only\]
 True if the instruction is associative.
 
-### `is_commutative` \[read-only]
+### `is_commutative` \[read-only\]
 True if the instruction is commutative.
 
-### `is_volatile` \[read-only]
+### `is_volatile` \[read-only\]
 True if the instruction is a volatile load or store.
 
-### `opcode` \[read-only]
+### `opcode` \[read-only\]
 The numeric opcode value of the instruction. Do not rely
 on the absolute value of this number, it may change with
 LLVM version.
 
-### `opcode_name` \[read-only]
+### `opcode_name` \[read-only\]
 The name of the instruction, like `add`, `sub` etc.
 
 * * *
@@ -100,7 +100,7 @@ The `llvm.core.CallOrInvokeInstruction` is a subclass of
 ## Properties
 
 `calling_convention`
-    Get or set the calling convention. See the link:#callconv[list above]
+    Get or set the calling convention. See [here](functions.html#callconv)
     for possible values.
 
 ## Methods
@@ -139,7 +139,7 @@ will take on if control branches in from that block.
 - `llvm.core.Instruction`
 
 ## Properties
-`incoming_count` [read-only]
+`incoming_count` \[read-only\]
     The number of incoming arcs for this phi node.
 
 ## Methods
@@ -186,7 +186,7 @@ being evaluated equals `const`, then control branches to
 
 ## Properties
 
-###`predicate` [read-only]
+###`predicate` \[read-only\]
 
 The predicate of the compare instruction, one of the `ICMP_*` or
 `FCMP_*` constants.

@@ -13,12 +13,12 @@ title: PointerType (llvm.core)
 ## Properties
 
 
-### `address_space` \[read-only]
+### `address_space` \[read-only\]
 
 The address space of the pointer.
 
 
-### `pointee` \[read-only]
+### `pointee` \[read-only\]
 
 A `Type` object representing the type of the value pointed to.
 

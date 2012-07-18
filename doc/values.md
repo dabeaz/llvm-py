@@ -74,7 +74,7 @@ and a name (read-write).
 [llvm.core.BasicBlock][]
 
 
-
+[llvm.core.Type]: types.html
 [functions]: functions.html
 [comparision]: comparision.html
 [llvm.core.Value]: llvm.core.Value.html
@@ -86,5 +86,3 @@ and a name (read-write).
 [llvm.core.Instruction]: llvm.core.Instruction.html
 [llvm.core.Builder]: llvm.core.Builder.html
 [llvm.core.BasicBlock]: llvm.core.BasicBlock.html
-
-

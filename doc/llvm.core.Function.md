@@ -53,28 +53,28 @@ Setting to True sets the `ATTR_NO_UNWIND` attribute, False
 removes it. Shortcut to using `f.add_attribute(ATTR_NO_UNWIND)`
 and `f.remove_attribute(ATTR_NO_UNWIND)`.
 
-### `args` \[read-only]
+### `args` \[read-only\]
 
 List of `llvm.core.Argument` objects representing the formal
 arguments of the function.
 
-### `basic_block_count` \[read-only]
+### `basic_block_count` \[read-only\]
 
 Number of basic blocks belonging to this function. Same as
 `len(f.basic_blocks)` but faster if you just want the count.
 
-### `entry_basic_block` \[read-only]
+### `entry_basic_block` \[read-only\]
 
 The `llvm.core.BasicBlock` object representing the entry
 basic block for this function, or `None` if there are no
 basic blocks.
 
-### `basic_blocks` \[read-only]
+### `basic_blocks` \[read-only\]
 
 List of `llvm.core.BasicBlock` objects representing the
 basic blocks belonging to this function.
 
-### `intrinsic_id` \[read-only]
+### `intrinsic_id` \[read-only\]
 
 Returns the ID of the intrinsic if this object represents an
 intrinsic instruction. Otherwise 0.
@@ -83,7 +83,7 @@ intrinsic instruction. Otherwise 0.
 
 ### `delete()`
 
-Deletes the function from it's module. _Do not hold any
+Deletes the function from it's module. Do not hold any
 references to this object after calling `delete` on it.
 
 ### `append_basic_block(name)`
