@@ -9,8 +9,8 @@ pygments: true
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : LLVM-PY Documentation
-tagline: LLVM-PY Documentation
+title : llvm-py Documentation
+tagline: llvm-py Documentation
 #author : Numba
 #  name : Name Lastname
 #  email : blah@email.test

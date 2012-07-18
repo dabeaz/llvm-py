@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>The llvm-py Package</title>
+    
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/stylesheets/pygment_trac.css" rel="stylesheet" type="text/css">
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">llvm-py Documentation</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        
+<div class="page-header">
+  <h1>The llvm-py Package </h1>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <p>The llvm-py is a Python package, consisting of 6 modules, that wrap over enough LLVM APIs to allow the implementation of your own compiler/VM backend in pure Python. If you&#8217;re come this far, you probably know why this is a good idea.</p>
+
+<p>Out of the 6 modules, one is an &#8220;extension&#8221; module (i.e., it is written in C), and another one is a small private utility module, which leaves 4 public modules. These are:</p>
+
+<ul>
+<li><em>llvm</em> &#8211; top-level package, common classes (like exceptions)</li>
+
+<li><em>llvm.core</em> &#8211; IR-related APIs</li>
+
+<li><em>llvm.ee</em> &#8211; execution engine related APIs</li>
+
+<li><em>llvm.passes</em> &#8211; pass manager and passes related APIs</li>
+</ul>
+
+<p>The modules contain only classes and (integer) constants. Mostly simple Python constructs are used (deliberately) &#8211; <a href='http://docs.python.org/lib/built-in-funcs.html'>property()</a> and <a href='http://wiki.python.org/moin/PythonDecoratorLibrary'>property decorators</a> are probably the most exotic animals around. All classes are &#8220;new style&#8221; classes. The APIs are designed to be navigable (and guessable!) once you know a few conventions. These conventions are highlighted in the sections below.</p>
+
+<p>Here is a quick overview of the contents of each package:</p>
+
+<h2 id='llvm'>llvm</h2>
+
+<ul>
+<li>LLVMException &#8211; exception class (currently the only one)</li>
+</ul>
+
+<h2 id='llvmcore'>llvm.core</h2>
+
+<ul>
+<li><a href='./llvm.core.Module.html'>Module</a> &#8211; represents an LLVM Module</li>
+
+<li><a href='./llvm.core.Type.html'>Type</a> &#8211; represents an LLVM Type</li>
+
+<li><a href='./llvm.core.Type.html'>IntegerType</a>, <a href='./llvm.core.Type.html'>FunctionType</a>, <a href='./llvm.core.Type.html'>StructType</a>, <a href='./llvm.core.Type.html'>ArrayType</a>, <a href='./llvm.core.Type.html'>PointerType</a>, <a href='./llvm.core.Type.html'>VectorType</a> &#8211; derived classes of Type</li>
+
+<li><a href='./llvm.core.Type.html'>TypeHandle</a> &#8211; used for constructing recursive (self-referencing) types (e.g. linked list nodes)</li>
+
+<li><a href='./llvm.core.Value.html'>Value</a> &#8211; represents an LLVM Value</li>
+
+<li>Constant, GlobalValue, GlobalVariable, Argument, Function, Instruction, CallOrInvokeInstruction, PHINode, SwitchInstruction &#8211; various derived classes of Value</li>
+
+<li>BasicBlock &#8211; another derived of Value, represents an LLVM basic block</li>
+
+<li>Builder &#8211; used for creating instructions, wraps LLVM IRBuilder helper class</li>
+
+<li>ModuleProvider &#8211; required to use modules in execution engine and pass manager</li>
+
+<li>constants <em>TYPE_*</em> that represents various types</li>
+
+<li>constants <em>CC_*</em> that represent calling conventions</li>
+
+<li>constants <em>ICMP_*</em> and <em>FCMP_*</em> that represent integer and real comparison predicates (like less than, greater than etc.)</li>
+
+<li>constants <em>LINKAGE_*</em> that represent linkage of symbols (external, internal etc.)</li>
+
+<li>constants <em>VISIBILITY_*</em> that represents visibility of symbols (default, hidden, protected)</li>
+
+<li>constants <em>ATTR_*</em> that represent function parameter attributes</li>
+</ul>
+
+<h2 id='llvmee'>llvm.ee</h2>
+
+<ul>
+<li>ExecutionEngine &#8211; represents an execution engine (which can be an either an interpreter or a JIT)</li>
+
+<li>TargetData &#8211; represents the ABI of the target platform (details like sizes and alignment of primitive types, endinanness etc)</li>
+</ul>
+
+<h2 id='llvmpasses'>llvm.passes</h2>
+
+<ul>
+<li>PassManager &#8211; represents an LLVM pass manager</li>
+
+<li>FunctionPassManager &#8211; represents an LLVM function pass manager</li>
+
+<li>constants <em>PASS_*</em> that represent various passes</li>
+</ul>
+
+<h2 id='a_note_on_the_importing_of_these_modules'>A note on the importing of these modules</h2>
+
+<p>Pythonically, modules are imported with the statement <code>import
+llvm.core</code>. However, you might find it more convenient to import llvm-py modules thus:</p>
+<div class='highlight'><pre><code class='python'><span class='kn'>from</span> <span class='nn'>llvm</span> <span class='kn'>import</span> <span class='o'>*</span>
+<span class='kn'>from</span> <span class='nn'>llvm.core</span> <span class='kn'>import</span> <span class='o'>*</span>
+<span class='kn'>from</span> <span class='nn'>llvm.ee</span> <span class='kn'>import</span> <span class='o'>*</span>
+<span class='kn'>from</span> <span class='nn'>llvm.passes</span> <span class='kn'>import</span> <span class='o'>*</span>
+</code></pre>
+</div>
+<p>This avoids quite some typing. Both conventions work, however.</p>
+
+<blockquote>
+<p><strong>Tip</strong></p>
+
+<p>Python-style documentation strings (<code>__doc__</code>) are present in llvm-py. You can use the <code>help()</code> of the interactive Python interpreter or the <code>object?</code> of <a href='http://ipython.scipy.org/moin/'>IPython</a> to get online help. (Note: not complete yet!)</p>
+</blockquote>
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy;  2012
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+

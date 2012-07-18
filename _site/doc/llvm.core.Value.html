@@ -1,0 +1,1148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Value (llvm.core)</title>
+    
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/stylesheets/pygment_trac.css" rel="stylesheet" type="text/css">
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">llvm-py Documentation</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        
+<div class="page-header">
+  <h1>Value (llvm.core) </h1>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <p><code>llvm.core.Value</code> is the base class of all values computed by a program that may be used as operands to other values. A value has a type associated with it (an object of <code>llvm.core.Type</code>).</p>
+
+<p>The class hierarchy is:</p>
+
+<pre><code>Value
+  User
+    Constant
+      ConstantExpr
+      ConstantAggregateZero
+      ConstantInt
+      ConstantFP
+      ConstantArray
+      ConstantStruct
+      ConstantVector
+      ConstantPointerNull
+      UndefValue
+      GlobalValue
+        GlobalVariable
+        Function
+    Instruction
+      CallOrInvokeInstruction
+      PHINode
+      SwitchInstruction
+      CompareInstruction
+  Argument
+  BasicBlock</code></pre>
+
+<p>The <code>Value</code> class is abstract, it&#8217;s not meant to be instantiated. <code>User</code> is a <code>Value</code> that in turn uses (i.e., can refer to) other values (for e.g., a constant expression 1+2 refers to two constant values 1 and 2).</p>
+
+<p><code>Constant</code>-s represent constants that appear within code or as initializers of globals. They are constructed using static methods of <code>Constant</code>. Various types of constants are represented by various subclasses of <code>Constant</code>. However, most of them are empty and do not provide any additional attributes or methods over <code>Constant</code>.</p>
+
+<p>The <code>Function</code> object represents an instance of a function type. Such objects contain <code>Argument</code> objects, which represent the actual, local-variable-like arguments of the function (not to be confused with the arguments returned by a function <em>type</em> object &#8211; these represent the <em>type</em> of the arguments).</p>
+
+<p>The various <code>Instruction</code>-s are created by the <code>Builder</code> class. Most instructions are represented by <code>Instruction</code> itself, but there are a few subclasses that represent interesting instructions.</p>
+
+<p><code>Value</code> objects have a type (read-only), and a name (read-write).</p>
+<hr />
+<p><strong>Index</strong></p>
+<div class='maruku_toc'><ul style='list-style: none;'><li><a href='#llvmcorevalue'>llvm.core.Value</a><ul style='list-style: none;'><li><a href='#properties'>Properties</a><ul style='list-style: none;'><li><a href='#id2479'><code>name</code></a></li><li><a href='#_readonly'><code>type</code> [read-only]</a></li><li><a href='#_readonly'><code>uses</code> [read-only]</a></li><li><a href='#_readonly'><code>use_count</code> [read-only]</a></li><li><a href='#_readonly'><code>value_id</code> [read-only]</a></li></ul></li><li><a href='#special_methods'>Special Methods</a><ul style='list-style: none;'><li><a href='#id2480'><code>__str__</code></a></li><li><a href='#id2481'><code>__eq__</code></a></li></ul></li></ul></li><li><a href='#user_llvmcore'>User (llvm.core)</a></li><li><a href='#user'>llvm.core.User</a><ul style='list-style: none;'><li><a href='#base_class'>Base Class</a></li><li><a href='#properties'>Properties</a><ul style='list-style: none;'><li><a href='#_readonly'><code>operands</code> [read-only]</a></li><li><a href='#_readonly'><code>operand_count</code> [read-only]</a></li></ul></li></ul></li><li><a href='#constants_llvmcore'>Constants (llvm.core)</a></li><li><a href='#llvmcoreconstant'>llvm.core.Constant</a><ul style='list-style: none;'><li><a href='#static_factory_methods'>Static factory methods</a><ul style='list-style: none;'><li><a href='#id2482'><code>null(ty)</code></a></li><li><a href='#id2483'><code>all_ones(ty)</code></a></li><li><a href='#id2484'><code>undef(ty)</code></a></li><li><a href='#id2485'><code>int(ty, value)</code></a></li><li><a href='#id2486'><code>int_signextend(ty, value)</code></a></li><li><a href='#id2487'><code>real(ty, value)</code></a></li><li><a href='#id2488'><code>stringz(value)</code></a></li><li><a href='#id2489'><code>string(value)</code></a></li><li><a href='#id2490'><code>array(ty, consts)</code></a></li><li><a href='#id2491'><code>struct(ty, consts)</code></a></li><li><a href='#id2492'><code>packed_struct(ty, consts)</code></a></li><li><a href='#id2493'><code>vector(consts)</code></a></li><li><a href='#id2494'><code>sizeof(ty)</code></a></li></ul></li><li><a href='#methods'>Methods</a><ul style='list-style: none;'><li><a href='#id2495'><code>k.neg()</code></a></li><li><a href='#id2496'><code>k.not_()</code></a></li><li><a href='#id2497'><code>k.add(k2)</code></a></li><li><a href='#id2498'><code>k.fadd(k2)</code></a></li><li><a href='#id2499'><code>k.sub(k2)</code></a></li><li><a href='#id2500'><code>k.fsub(k2)</code></a></li><li><a href='#id2501'><code>k.mul(k2)</code></a></li><li><a href='#id2502'><code>k.fmul(k2)</code></a></li><li><a href='#id2503'><code>k.udiv(k2)</code></a></li><li><a href='#id2504'><code>k.sdiv(k2)</code></a></li><li><a href='#id2505'><code>k.fdiv(k2)</code></a></li><li><a href='#id2506'><code>k.urem(k2)</code></a></li><li><a href='#id2507'><code>k.srem(k2)</code></a></li><li><a href='#id2508'><code>k.frem(k2)</code></a></li><li><a href='#id2509'><code>k.and_(k2)</code></a></li><li><a href='#id2510'><code>k.or_(k2)</code></a></li><li><a href='#id2511'><code>k.xor(k2)</code></a></li><li><a href='#id2512'><code>k.icmp(icmp, k2)</code></a></li><li><a href='#id2513'><code>k.fcmp(fcmp, k2)</code></a></li><li><a href='#id2514'><code>k.shl(k2)</code></a></li><li><a href='#id2515'><code>k.lshr(k2)</code></a></li><li><a href='#id2516'><code>k.ashr(k2)</code></a></li><li><a href='#id2517'><code>k.gep(indices)</code></a></li><li><a href='#id2518'><code>k.trunc(ty)</code></a></li><li><a href='#id2519'><code>k.sext(ty)</code></a></li><li><a href='#id2520'><code>k.zext(ty)</code></a></li><li><a href='#id2521'><code>k.fptrunc(ty)</code></a></li><li><a href='#id2522'><code>k.fpext(ty)</code></a></li><li><a href='#id2523'><code>k.uitofp(ty)</code></a></li><li><a href='#id2524'><code>k.sitofp(ty)</code></a></li><li><a href='#id2525'><code>k.fptoui(ty)</code></a></li><li><a href='#id2526'><code>k.fptosi(ty)</code></a></li><li><a href='#id2527'><code>k.ptrtoint(ty)</code></a></li><li><a href='#id2528'><code>k.inttoptr(ty)</code></a></li><li><a href='#id2529'><code>k.bitcast(ty)</code></a></li><li><a href='#id2530'><code>k.select(cond,k2,k3)</code></a></li><li><a href='#id2531'><code>k.extract_element(idx)</code></a></li><li><a href='#id2532'><code>k.insert_element(k2,idx)</code></a></li><li><a href='#id2533'><code>k.shuffle_vector(k2,mask)</code></a></li></ul></li></ul></li><li><a href='#comparison_operations'>Comparison Operations</a><ul style='list-style: none;'><li><a href='#icmp'>Integer Comparision</a><ul style='list-style: none;'><li><a href='#id2534'><code>ICMP_EQ</code></a></li><li><a href='#id2535'><code>ICMP_NE</code></a></li><li><a href='#id2536'><code>ICMP_UGT</code></a></li><li><a href='#id2537'><code>ICMP_UGE</code></a></li><li><a href='#id2538'><code>ICMP_ULT</code></a></li><li><a href='#id2539'><code>ICMP_ULE</code></a></li><li><a href='#id2540'><code>ICMP_SGT</code></a></li><li><a href='#id2541'><code>ICMP_SGE</code></a></li><li><a href='#id2542'><code>ICMP_SLT</code></a></li><li><a href='#id2543'><code>ICMP_SLE</code></a></li></ul></li><li><a href='#fcmp'>Float Comparision</a><ul style='list-style: none;'><li><a href='#id2544'><code>FCMP_FALSE</code></a></li><li><a href='#id2545'><code>FCMP_OEQ</code></a></li><li><a href='#id2546'><code>FCMP_OGT</code></a></li><li><a href='#id2547'><code>FCMP_OGE</code></a></li><li><a href='#id2548'><code>FCMP_OLT</code></a></li><li><a href='#id2549'><code>FCMP_OLE</code></a></li><li><a href='#id2550'><code>FCMP_ONE</code></a></li><li><a href='#id2551'><code>FCMP_ORD</code></a></li><li><a href='#id2552'><code>FCMP_UNO</code></a></li><li><a href='#id2553'><code>FCMP_UEQ</code></a></li><li><a href='#id2554'><code>FCMP_UGT</code></a></li><li><a href='#id2555'><code>FCMP_UGE</code></a></li><li><a href='#id2556'><code>FCMP_ULT</code></a></li><li><a href='#id2557'><code>FCMP_ULE</code></a></li><li><a href='#id2558'><code>FCMP_UNE</code></a></li><li><a href='#id2559'><code>FCMP_TRUE</code></a></li></ul></li></ul></li><li><a href='#other_constant_classes_llvmcore'>Other Constant Classes (llvm.core)</a></li><li><a href='#global_value_llvmcore'>Global Value (llvm.core)</a></li><li><a href='#llvmcoreglobalvalue'>llvm.core.GlobalValue</a><ul style='list-style: none;'><li><a href='#base_class'>Base Class</a></li><li><a href='#properties'>Properties</a><ul style='list-style: none;'><li><a href='#id2560'><code>linkage</code></a></li><li><a href='#id2561'><code>section</code></a></li><li><a href='#id2562'><code>visibility</code></a></li><li><a href='#id2563'><code>alignment</code></a></li><li><a href='#_readonly'><code>is_declaration</code> [read-only]</a></li><li><a href='#_readonly'><code>module</code> [read-only]</a></li></ul></li></ul></li><li><a href='#global_variable_llvmcore'>Global Variable (llvm.core)</a></li><li><a href='#llvmcoreglobalvariable'>llvm.core.GlobalVariable</a><ul style='list-style: none;'><li><a href='#base_class'>Base Class</a></li><li><a href='#static_constructors'>Static Constructors</a><ul style='list-style: none;'><li><a href='#id2564'><code>new(module_obj, ty, name)</code></a></li><li><a href='#id2565'><code>get(module_obj, name)</code></a></li></ul></li><li><a href='#properties'>Properties</a><ul style='list-style: none;'><li><a href='#id2566'><code>initializer</code></a></li></ul></li><li><a href='#methods'>Methods</a><ul style='list-style: none;'><li><a href='#id2567'><code>delete()</code></a></li></ul></li></ul></li><li><a href='#function_llvmcore'>Function (llvm.core)</a><ul style='list-style: none;'><li><a href='#intrinsic'>Intrinsic</a></li><li><a href='#callconv'>Calling Convention</a></li><li><a href='#fnattr'>Function Attributes</a></li></ul></li><li><a href='#llvmcorefunction'>llvm.core.Function</a><ul style='list-style: none;'><li><a href='#base_class'>Base Class</a></li><li><a href='#static_constructors'>Static Constructors</a><ul style='list-style: none;'><li><a href='#id2568'><code>new(module_obj, func_ty, name)</code></a></li><li><a href='#id2569'><code>get(module_obj, name)</code></a></li><li><a href='#id2570'><code>get_or_insert(module_obj, func_ty, name)</code></a></li><li><a href='#id2571'><code>intrinsic(module_obj, intrinsic_id, types)</code></a></li></ul></li><li><a href='#properties'>Properties</a><ul style='list-style: none;'><li><a href='#id2572'><code>calling_convention</code></a></li><li><a href='#id2573'><code>collector</code></a></li><li><a href='#id2574'><code>does_not_throw</code></a></li><li><a href='#_readonly'><code>args</code> [read-only]</a></li><li><a href='#_readonly'><code>basic_block_count</code> [read-only]</a></li><li><a href='#_readonly'><code>entry_basic_block</code> [read-only]</a></li><li><a href='#_readonly'><code>basic_blocks</code> [read-only]</a></li><li><a href='#_readonly'><code>intrinsic_id</code> [read-only]</a></li></ul></li><li><a href='#methods'>Methods</a><ul style='list-style: none;'><li><a href='#id2575'><code>delete()</code></a></li><li><a href='#id2576'><code>append_basic_block(name)</code></a></li><li><a href='#id2577'><code>add_attribute(attr)</code></a></li><li><a href='#id2578'><code>remove_attribute(attr)</code></a></li><li><a href='#id2579'><code>viewCFG()</code></a></li><li><a href='#id2580'><code>viewCFGOnly()</code></a></li><li><a href='#id2581'><code>verify()</code></a></li></ul></li></ul></li><li><a href='#argattrs'>Argument (llvm.core)</a></li><li><a href='#llvmcoreargument'>llvm.core.Argument</a><ul style='list-style: none;'><li><a href='#base_class'>Base Class</a></li><li><a href='#properties'>Properties</a><ul style='list-style: none;'><li><a href='#id2582'><code>alignment</code></a></li></ul></li><li><a href='#methods'>Methods</a><ul style='list-style: none;'><li><a href='#id2583'><code>add_attribute(attr)</code></a></li><li><a href='#id2584'><code>remove_attribute(attr)</code></a></li></ul></li></ul></li><li><a href='#instructions_llvmcore'>Instructions (llvm.core)</a></li><li><a href='#llvmcoreinstruction'>llvm.core.Instruction</a><ul style='list-style: none;'><li><a href='#base_class'>Base Class</a></li><li><a href='#properties'>Properties</a><ul style='list-style: none;'><li><a href='#_readonly'><code>basic_block</code> [read-only]</a></li><li><a href='#_readonly'><code>is_terminator</code> [read-only]</a></li><li><a href='#_readonly'><code>is_binary_op</code> [read-only]</a></li><li><a href='#_readonly'><code>is_shift</code> [read-only]</a></li><li><a href='#_readonly'><code>is_cast</code> [read-only]</a></li><li><a href='#_readonly'><code>is_logical_shift</code> [read-only]</a></li><li><a href='#_readonly'><code>is_arithmetic_shift</code> [read-only]</a></li><li><a href='#_readonly'><code>is_associative</code> [read-only]</a></li><li><a href='#_readonly'><code>is_commutative</code> [read-only]</a></li><li><a href='#_readonly'><code>is_volatile</code> [read-only]</a></li><li><a href='#_readonly'><code>opcode</code> [read-only]</a></li><li><a href='#_readonly'><code>opcode_name</code> [read-only]</a></li></ul></li></ul></li><li><a href='#callorinvokeinstruction_llvmcore'>CallOrInvokeInstruction (llvm.core)</a></li><li><a href='#llvmcorecallorinvokeinstruction'>llvm.core.CallOrInvokeInstruction</a><ul style='list-style: none;'><li><a href='#base_class'>Base Class</a></li><li><a href='#properties'>Properties</a></li><li><a href='#methods'>Methods</a><ul style='list-style: none;'><li><a href='#id2585'><code>add_parameter_attribute(idx, attr)</code></a></li><li><a href='#id2586'><code>remove_parameter_attribute(idx, attr)</code></a></li><li><a href='#id2587'><code>set_parameter_alignment(idx, align)</code></a></li></ul></li></ul></li><li><a href='#phinode_llvmcore'>PHINode (llvm.core)</a></li><li><a href='#llvmcorephinode'>llvm.core.PHINode</a><ul style='list-style: none;'><li><a href='#base_class'>Base Class</a></li><li><a href='#properties'>Properties</a></li><li><a href='#methods'>Methods</a><ul style='list-style: none;'><li><a href='#id2588'><code>add_incoming(value, block)</code></a></li><li><a href='#id2589'><code>get_incoming_value(idx)</code></a></li><li><a href='#id2590'><code>get_incoming_block(idx)</code></a></li></ul></li></ul></li><li><a href='#switchinstruction_llvmcore'>SwitchInstruction (llvm.core)</a></li><li><a href='#llvmcoreswitchinstruction'>llvm.core.SwitchInstruction</a><ul style='list-style: none;'><li><a href='#base_class'>Base Class</a></li><li><a href='#methods'>Methods</a><ul style='list-style: none;'><li><a href='#id2591'><code>add_case(const, block)</code></a></li></ul></li></ul></li><li><a href='#compareinstruction_llvmcore'>CompareInstruction (llvm.core)</a></li><li><a href='#llvmcorecompareinstruction'>llvm.core.CompareInstruction</a><ul style='list-style: none;'><li><a href='#base_class'>Base Class</a></li><li><a href='#properties'>Properties</a><ul style='list-style: none;'><li><a href='#_readonly'><code>predicate</code> <span>read-only</span></a></li></ul></li></ul></li><li><a href='#basic_block_llvmcore'>Basic Block (llvm.core)</a></li><li><a href='#builder_llvmcore'>Builder (llvm.core)</a></li><li><a href='#target_data_llvmee'>Target Data (llvm.ee)</a></li><li><a href='#execution_engine_llvmee'>Execution Engine (llvm.ee)</a></li><li><a href='#pass_manager_and_passes_llvmpasses'>Pass Manager and Passes (llvm.passes)</a></li></ul></div><hr />
+<h1 id='llvmcorevalue'>llvm.core.Value</h1>
+
+<h2 id='properties'>Properties</h2>
+
+<h3 id='id2479'><code>name</code></h3>
+
+<p>The name of the value.</p>
+
+<h3 id='_readonly'><code>type</code> [read-only]</h3>
+
+<p>An <code>llvm.core.Type</code> object representing the type of the value.</p>
+
+<h3 id='_readonly'><code>uses</code> [read-only]</h3>
+
+<p>The list of values (<code>llvm.core.Value</code>) that use this value.</p>
+
+<h3 id='_readonly'><code>use_count</code> [read-only]</h3>
+
+<p>The number of values that use (refer) this value. Same as <code>len(val.uses)</code> but faster if you just want the count.</p>
+
+<h3 id='_readonly'><code>value_id</code> [read-only]</h3>
+
+<p>Returns <code>llvmValuegetValueID()</code>. Refer LLVM documentation for more info.</p>
+
+<h2 id='special_methods'>Special Methods</h2>
+
+<h3 id='id2480'><code>__str__</code></h3>
+
+<p><code>Value</code> objects can be stringified into it&#8217;s LLVM assembly language representation.</p>
+
+<h3 id='id2481'><code>__eq__</code></h3>
+
+<p><code>Value</code> objects can be compared for equality. Internally, this converts both arguments into their LLVM assembly representations and compares the resultant strings.</p>
+<hr />
+<h1 id='user_llvmcore'>User (llvm.core)</h1>
+
+<p><code>User</code>-s are values that refer to other values. The values so refered can be retrived by the properties of <code>User</code>. This is the reverse of the <code>Value.uses</code>. Together these can be used to traverse the use-def chains of the SSA.</p>
+<hr />
+<h1 id='user'>llvm.core.User</h1>
+
+<h2 id='base_class'>Base Class</h2>
+
+<ul>
+<li><code>llvm.core.Value</code></li>
+</ul>
+
+<h2 id='properties'>Properties</h2>
+
+<h3 id='_readonly'><code>operands</code> [read-only]</h3>
+
+<p>The list of operands (values, of type <code>llvm.core.Value</code>) that this value refers to.</p>
+
+<h3 id='_readonly'><code>operand_count</code> [read-only]</h3>
+
+<p>The number of operands that this value referes to. Same as <code>len(uses.operands)</code> but faster if you just want the count.</p>
+<hr />
+<h1 id='constants_llvmcore'>Constants (llvm.core)</h1>
+
+<p><code>Constant</code>-s represents constants that appear within the code. The values of such objects are known at creation time. Constants can be created from Python constants. A constant expression is also a constant &#8211; given a <code>Constant</code> object, an operation (like addition, subtraction etc) can be specified, to yield a new <code>Constant</code> object. Let&#8217;s see some examples:</p>
+<div class='highlight'><pre><code class='python'><span class='c'>#!/usr/bin/env python</span>
+
+<span class='n'>ti</span> <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>()</span>                         <span class='c'># a 32-bit int type</span>
+
+<span class='n'>k1</span> <span class='o'>=</span> <span class='n'>Constant</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(</span><span class='n'>ti</span><span class='p'>,</span> <span class='mi'>42</span><span class='p'>)</span>               <span class='c'># &quot;int k1 = 42;&quot;</span>
+<span class='n'>k2</span> <span class='o'>=</span> <span class='n'>k1</span><span class='o'>.</span><span class='n'>add</span><span class='p'>(</span> <span class='n'>Constant</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(</span> <span class='n'>ti</span><span class='p'>,</span> <span class='mi'>10</span> <span class='p'>)</span> <span class='p'>)</span>   <span class='c'># &quot;int k2 = k1 + 10;&quot;</span>
+
+<span class='n'>tr</span> <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>float</span><span class='p'>()</span>
+
+<span class='n'>r1</span> <span class='o'>=</span> <span class='n'>Constant</span><span class='o'>.</span><span class='n'>real</span><span class='p'>(</span><span class='n'>tr</span><span class='p'>,</span> <span class='s'>&quot;3.141592&quot;</span><span class='p'>)</span>      <span class='c'># create from a string</span>
+<span class='n'>r2</span> <span class='o'>=</span> <span class='n'>Constant</span><span class='o'>.</span><span class='n'>real</span><span class='p'>(</span><span class='n'>tr</span><span class='p'>,</span> <span class='mf'>1.61803399</span><span class='p'>)</span>      <span class='c'># create from a Python float</span>
+</code></pre>
+</div>
+<h1 id='llvmcoreconstant'>llvm.core.Constant</h1>
+
+<h2 id='static_factory_methods'>Static factory methods</h2>
+
+<h3 id='id2482'><code>null(ty)</code></h3>
+
+<p>A null value (all zeros) of type <code>ty</code></p>
+
+<h3 id='id2483'><code>all_ones(ty)</code></h3>
+
+<p>All 1&#8217;s value of type <code>ty</code></p>
+
+<h3 id='id2484'><code>undef(ty)</code></h3>
+
+<p>An undefined value of type <code>ty</code></p>
+
+<h3 id='id2485'><code>int(ty, value)</code></h3>
+
+<p>Integer of type <code>ty</code>, with value <code>value</code> (a Python int or long)</p>
+
+<h3 id='id2486'><code>int_signextend(ty, value)</code></h3>
+
+<p>Integer of signed type <code>ty</code> (use for signed types)</p>
+
+<h3 id='id2487'><code>real(ty, value)</code></h3>
+
+<p>Floating point value of type <code>ty</code>, with value <code>value</code> (a Python float)</p>
+
+<h3 id='id2488'><code>stringz(value)</code></h3>
+
+<p>A null-terminated string. <code>value</code> is a Python string</p>
+
+<h3 id='id2489'><code>string(value)</code></h3>
+
+<p>As <code>string(ty)</code>, but not null terminated</p>
+
+<h3 id='id2490'><code>array(ty, consts)</code></h3>
+
+<p>Array of type <code>ty</code>, initialized with <code>consts</code> (an iterable yielding <code>Constant</code> objects of the appropriate type)</p>
+
+<h3 id='id2491'><code>struct(ty, consts)</code></h3>
+
+<p>Struct (unpacked) of type <code>ty</code>, initialized with <code>consts</code> (an iterable yielding <code>Constant</code> objects of the appropriate type)</p>
+
+<h3 id='id2492'><code>packed_struct(ty, consts)</code></h3>
+
+<p>As <code>struct(ty, consts)</code> but packed</p>
+
+<h3 id='id2493'><code>vector(consts)</code></h3>
+
+<p>Vector, initialized with <code>consts</code> (an iterable yielding <code>Constant</code> objects of the appropriate type)</p>
+
+<h3 id='id2494'><code>sizeof(ty)</code></h3>
+
+<p>Constant value representing the sizeof the type <code>ty</code></p>
+
+<h2 id='methods'>Methods</h2>
+
+<p>The following operations on constants are supported. For more details on any operation, consult the <a href='http://www.llvm.org/docs/LangRef.html#constantexprs'>Constant Expressions</a> section of the LLVM Language Reference.</p>
+
+<h3 id='id2495'><code>k.neg()</code></h3>
+
+<p>negation, same as <code>0 - k</code></p>
+
+<h3 id='id2496'><code>k.not_()</code></h3>
+
+<p>1&#8217;s complement of <code>k</code>. Note trailing underscore.</p>
+
+<h3 id='id2497'><code>k.add(k2)</code></h3>
+
+<p><code>k + k2</code>, where <code>k</code> and <code>k2</code> are integers.</p>
+
+<h3 id='id2498'><code>k.fadd(k2)</code></h3>
+
+<p><code>k + k2</code>, where <code>k</code> and <code>k2</code> are floating-point.</p>
+
+<h3 id='id2499'><code>k.sub(k2)</code></h3>
+
+<p><code>k - k2</code>, where <code>k</code> and <code>k2</code> are integers.</p>
+
+<h3 id='id2500'><code>k.fsub(k2)</code></h3>
+
+<p><code>k - k2</code>, where <code>k</code> and <code>k2</code> are floating-point.</p>
+
+<h3 id='id2501'><code>k.mul(k2)</code></h3>
+
+<p><code>k * k2</code>, where <code>k</code> and <code>k2</code> are integers.</p>
+
+<h3 id='id2502'><code>k.fmul(k2)</code></h3>
+
+<p><code>k * k2</code>, where <code>k</code> and <code>k2</code> are floating-point.</p>
+
+<h3 id='id2503'><code>k.udiv(k2)</code></h3>
+
+<p>Quotient of unsigned division of <code>k</code> with <code>k2</code></p>
+
+<h3 id='id2504'><code>k.sdiv(k2)</code></h3>
+
+<p>Quotient of signed division of <code>k</code> with <code>k2</code></p>
+
+<h3 id='id2505'><code>k.fdiv(k2)</code></h3>
+
+<p>Quotient of floating point division of <code>k</code> with <code>k2</code></p>
+
+<h3 id='id2506'><code>k.urem(k2)</code></h3>
+
+<p>Reminder of unsigned division of <code>k</code> with <code>k2</code></p>
+
+<h3 id='id2507'><code>k.srem(k2)</code></h3>
+
+<p>Reminder of signed division of <code>k</code> with <code>k2</code></p>
+
+<h3 id='id2508'><code>k.frem(k2)</code></h3>
+
+<p>Reminder of floating point division of <code>k</code> with <code>k2</code></p>
+
+<h3 id='id2509'><code>k.and_(k2)</code></h3>
+
+<p>Bitwise and of <code>k</code> and <code>k2</code>. Note trailing underscore.</p>
+
+<h3 id='id2510'><code>k.or_(k2)</code></h3>
+
+<p>Bitwise or of <code>k</code> and <code>k2</code>. Note trailing underscore.</p>
+
+<h3 id='id2511'><code>k.xor(k2)</code></h3>
+
+<p>Bitwise exclusive-or of <code>k</code> and <code>k2</code>.</p>
+
+<h3 id='id2512'><code>k.icmp(icmp, k2)</code></h3>
+
+<p>Compare <code>k</code> with <code>k2</code> using the predicate <code>icmp</code>. See <a href='#icmp'>below</a> for list of predicates for integer operands.</p>
+
+<h3 id='id2513'><code>k.fcmp(fcmp, k2)</code></h3>
+
+<p>Compare <code>k</code> with <code>k2</code> using the predicate <code>fcmp</code>. See <a href='#fcmp'>below</a> for list of predicates for real operands.</p>
+
+<h3 id='id2514'><code>k.shl(k2)</code></h3>
+
+<p>Shift <code>k</code> left by <code>k2</code> bits.</p>
+
+<h3 id='id2515'><code>k.lshr(k2)</code></h3>
+
+<p>Shift <code>k</code> logically right by <code>k2</code> bits (new bits are 0s).</p>
+
+<h3 id='id2516'><code>k.ashr(k2)</code></h3>
+
+<p>Shift <code>k</code> arithmetically right by <code>k2</code> bits (new bits are same as previous sign bit).</p>
+
+<h3 id='id2517'><code>k.gep(indices)</code></h3>
+
+<p>GEP, see <a href='http://www.llvm.org/docs/GetElementPtr.html'>LLVM docs</a>.</p>
+
+<h3 id='id2518'><code>k.trunc(ty)</code></h3>
+
+<p>Truncate <code>k</code> to a type <code>ty</code> of lower bitwidth.</p>
+
+<h3 id='id2519'><code>k.sext(ty)</code></h3>
+
+<p>Sign extend <code>k</code> to a type <code>ty</code> of higher bitwidth, while extending the sign bit.</p>
+
+<h3 id='id2520'><code>k.zext(ty)</code></h3>
+
+<p>Sign extend <code>k</code> to a type <code>ty</code> of higher bitwidth, all new bits are 0s.</p>
+
+<h3 id='id2521'><code>k.fptrunc(ty)</code></h3>
+
+<p>Truncate floating point constant <code>k</code> to floating point type <code>ty</code> of lower size than k&#8217;s.</p>
+
+<h3 id='id2522'><code>k.fpext(ty)</code></h3>
+
+<p>Extend floating point constant <code>k</code> to floating point type <code>ty</code> of higher size than k&#8217;s.</p>
+
+<h3 id='id2523'><code>k.uitofp(ty)</code></h3>
+
+<p>Convert an unsigned integer constant <code>k</code> to floating point constant of type <code>ty</code>.</p>
+
+<h3 id='id2524'><code>k.sitofp(ty)</code></h3>
+
+<p>Convert a signed integer constant <code>k</code> to floating point constant of type <code>ty</code>.</p>
+
+<h3 id='id2525'><code>k.fptoui(ty)</code></h3>
+
+<p>Convert a floating point constant <code>k</code> to an unsigned integer constant of type <code>ty</code>.</p>
+
+<h3 id='id2526'><code>k.fptosi(ty)</code></h3>
+
+<p>Convert a floating point constant <code>k</code> to a signed integer constant of type <code>ty</code>.</p>
+
+<h3 id='id2527'><code>k.ptrtoint(ty)</code></h3>
+
+<p>Convert a pointer constant <code>k</code> to an integer constant of type <code>ty</code>.</p>
+
+<h3 id='id2528'><code>k.inttoptr(ty)</code></h3>
+
+<p>Convert an integer constant <code>k</code> to a pointer constant of type <code>ty</code>.</p>
+
+<h3 id='id2529'><code>k.bitcast(ty)</code></h3>
+
+<p>Convert <code>k</code> to a (equal-width) constant of type <code>ty</code>.</p>
+
+<h3 id='id2530'><code>k.select(cond,k2,k3)</code></h3>
+
+<p>Replace value with <code>k2</code> if the 1-bit integer constant <code>cond</code> is 1, else with <code>k3</code>.</p>
+
+<h3 id='id2531'><code>k.extract_element(idx)</code></h3>
+
+<p>Extract value at <code>idx</code> (integer constant) from a vector constant <code>k</code>.</p>
+
+<h3 id='id2532'><code>k.insert_element(k2,idx)</code></h3>
+
+<p>Insert value <code>k2</code> (scalar constant) at index <code>idx</code> (integer constant) of vector constant <code>k</code>.</p>
+
+<h3 id='id2533'><code>k.shuffle_vector(k2,mask)</code></h3>
+
+<p>Shuffle vector constant <code>k</code> based on vector constants <code>k2</code> and <code>mask</code>.</p>
+<hr />
+<h1 id='comparison_operations'>Comparison Operations</h1>
+
+<h2 id='icmp'>Integer Comparision</h2>
+
+<p>Predicates for use with <code>icmp</code> instruction are listed below. All of these are integer constants defined in the <code>llvm.core</code> module.</p>
+
+<h3 id='id2534'><code>ICMP_EQ</code></h3>
+
+<p>Equality</p>
+
+<h3 id='id2535'><code>ICMP_NE</code></h3>
+
+<p>Inequality</p>
+
+<h3 id='id2536'><code>ICMP_UGT</code></h3>
+
+<p>Unsigned greater than</p>
+
+<h3 id='id2537'><code>ICMP_UGE</code></h3>
+
+<p>Unsigned greater than or equal</p>
+
+<h3 id='id2538'><code>ICMP_ULT</code></h3>
+
+<p>Unsigned less than</p>
+
+<h3 id='id2539'><code>ICMP_ULE</code></h3>
+
+<p>Unsigned less than or equal</p>
+
+<h3 id='id2540'><code>ICMP_SGT</code></h3>
+
+<p>Signed greater than</p>
+
+<h3 id='id2541'><code>ICMP_SGE</code></h3>
+
+<p>Signed greater than or equal</p>
+
+<h3 id='id2542'><code>ICMP_SLT</code></h3>
+
+<p>Signed less than</p>
+
+<h3 id='id2543'><code>ICMP_SLE</code></h3>
+
+<p>Signed less than or equal</p>
+
+<h2 id='fcmp'>Float Comparision</h2>
+
+<p>Predicates for use with <code>fcmp</code> instruction are listed below. All of these are integer constants defined in the <code>llvm.core</code> module.</p>
+
+<h3 id='id2544'><code>FCMP_FALSE</code></h3>
+
+<p>Always false</p>
+
+<h3 id='id2545'><code>FCMP_OEQ</code></h3>
+
+<p>True if ordered and equal</p>
+
+<h3 id='id2546'><code>FCMP_OGT</code></h3>
+
+<p>True if ordered and greater than</p>
+
+<h3 id='id2547'><code>FCMP_OGE</code></h3>
+
+<p>True if ordered and greater than or equal</p>
+
+<h3 id='id2548'><code>FCMP_OLT</code></h3>
+
+<p>True if ordered and less than</p>
+
+<h3 id='id2549'><code>FCMP_OLE</code></h3>
+
+<p>True if ordered and less than or equal</p>
+
+<h3 id='id2550'><code>FCMP_ONE</code></h3>
+
+<p>True if ordered and operands are unequal</p>
+
+<h3 id='id2551'><code>FCMP_ORD</code></h3>
+
+<p>True if ordered (no NaNs)</p>
+
+<h3 id='id2552'><code>FCMP_UNO</code></h3>
+
+<p>True if unordered: <code>isnan(X) | isnan(Y)</code></p>
+
+<h3 id='id2553'><code>FCMP_UEQ</code></h3>
+
+<p>True if unordered or equal</p>
+
+<h3 id='id2554'><code>FCMP_UGT</code></h3>
+
+<p>True if unordered or greater than</p>
+
+<h3 id='id2555'><code>FCMP_UGE</code></h3>
+
+<p>True if unordered, greater than or equal</p>
+
+<h3 id='id2556'><code>FCMP_ULT</code></h3>
+
+<p>True if unordered, or less than</p>
+
+<h3 id='id2557'><code>FCMP_ULE</code></h3>
+
+<p>True if unordered, less than or equal</p>
+
+<h3 id='id2558'><code>FCMP_UNE</code></h3>
+
+<p>True if unordered or not equal</p>
+
+<h3 id='id2559'><code>FCMP_TRUE</code></h3>
+
+<p>Always true</p>
+
+<h1 id='other_constant_classes_llvmcore'>Other Constant Classes (llvm.core)</h1>
+
+<p>The following subclasses of <code>Constant</code> do not provide additional methods, <strong>they serve only to provide richer type information.</strong></p>
+<table><thead><tr><th>Subclass</th><th>LLVM C++ Class</th><th>Remarks</th></tr></thead><tbody><tr><td style='text-align: left;'><code>ConstantExpr</code></td><td style='text-align: left;'><code>llvmConstantExpr</code></td><td style='text-align: left;'>A constant expression</td>
+</tr><tr><td style='text-align: left;'><code>ConstantAggregateZero</code></td><td style='text-align: left;'><code>llvmConstantAggregateZero</code></td><td style='text-align: left;'>All-zero constant</td>
+</tr><tr><td style='text-align: left;'><code>ConstantInt</code></td><td style='text-align: left;'><code>llvmConstantInt</code></td><td style='text-align: left;'>An integer constant</td>
+</tr><tr><td style='text-align: left;'><code>ConstantFP</code></td><td style='text-align: left;'><code>llvmConstantFP</code></td><td style='text-align: left;'>A floating-point constant</td>
+</tr><tr><td style='text-align: left;'><code>ConstantArray</code></td><td style='text-align: left;'><code>llvmConstantArray</code></td><td style='text-align: left;'>An array constant</td>
+</tr><tr><td style='text-align: left;'><code>ConstantStruct</code></td><td style='text-align: left;'><code>llvmConstantStruct</code></td><td style='text-align: left;'>A structure constant</td>
+</tr><tr><td style='text-align: left;'><code>ConstantVector</code></td><td style='text-align: left;'><code>llvmConstantVector</code></td><td style='text-align: left;'>A vector constant</td>
+</tr><tr><td style='text-align: left;'><code>ConstantPointerNull</code></td><td style='text-align: left;'><code>llvmConstantPointerNull</code></td><td style='text-align: left;'>All-zero pointer constant</td>
+</tr><tr><td style='text-align: left;'><code>UndefValue</code></td><td style='text-align: left;'><code>llvmUndefValue</code></td><td style='text-align: left;'>corresponds to <code>undef</code> of LLVM IR</td>
+</tr></tbody></table>
+<p>These types are helpful in <code>isinstance</code> checks, like so:</p>
+<div class='highlight'><pre><code class='python'><span class='n'>ti</span> <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(</span><span class='mi'>32</span><span class='p'>)</span>
+<span class='n'>k1</span> <span class='o'>=</span> <span class='n'>Constant</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(</span><span class='n'>ti</span><span class='p'>,</span> <span class='mi'>42</span><span class='p'>)</span>           <span class='c'># int32_t k1 = 42;</span>
+<span class='n'>k2</span> <span class='o'>=</span> <span class='n'>Constant</span><span class='o'>.</span><span class='n'>array</span><span class='p'>(</span><span class='n'>ti</span><span class='p'>,</span> <span class='p'>[</span><span class='n'>k1</span><span class='p'>,</span> <span class='n'>k1</span><span class='p'>])</span>   <span class='c'># int32_t k2[] = { k1, k1 };</span>
+
+<span class='k'>assert</span> <span class='nb'>isinstance</span><span class='p'>(</span><span class='n'>k1</span><span class='p'>,</span> <span class='n'>ConstantInt</span><span class='p'>)</span>
+<span class='k'>assert</span> <span class='nb'>isinstance</span><span class='p'>(</span><span class='n'>k2</span><span class='p'>,</span> <span class='n'>ConstantArray</span><span class='p'>)</span>
+</code></pre>
+</div><hr />
+<h1 id='global_value_llvmcore'>Global Value (llvm.core)</h1>
+
+<p>The class <code>llvm.core.GlobalValue</code> represents module-scope aliases, variables and functions. Global variables are represented by the sub-class <code>llvm.core.GlobalVariable</code> and functions by <code>llvm.core.Function</code>.</p>
+
+<p>Global values have the read-write properties <code>linkage</code>, <code>section</code>, <code>visibility</code> and <code>alignment</code>. Use one of the following constants (from llvm.core) as values for <code>linkage</code> (see <a href='http://www.llvm.org/docs/LangRef.html#linkage'>LLVM documentaion</a> for details on each):</p>
+<table><thead><tr><th>Value</th><th>Equivalent LLVM Assembly Keyword</th></tr></thead><tbody><tr><td style='text-align: left;'><code>LINKAGE_EXTERNAL</code></td><td style='text-align: left;'><code>externally_visible</code></td>
+</tr><tr><td style='text-align: left;'><code>LINKAGE_AVAILABLE_EXTERNALLY</code></td><td style='text-align: left;'><code>available_externally</code></td>
+</tr><tr><td style='text-align: left;'><code>LINKAGE_LINKONCE_ANY</code></td><td style='text-align: left;'><code>linkonce</code></td>
+</tr><tr><td style='text-align: left;'><code>LINKAGE_LINKONCE_ODR</code></td><td style='text-align: left;'><code>linkonce_odr</code></td>
+</tr><tr><td style='text-align: left;'><code>LINKAGE_WEAK_ANY</code></td><td style='text-align: left;'><code>weak</code></td>
+</tr><tr><td style='text-align: left;'><code>LINKAGE_WEAK_ODR</code></td><td style='text-align: left;'><code>weak_odr</code></td>
+</tr><tr><td style='text-align: left;'><code>LINKAGE_APPENDING</code></td><td style='text-align: left;'><code>appending</code></td>
+</tr><tr><td style='text-align: left;'><code>LINKAGE_INTERNAL</code></td><td style='text-align: left;'><code>internal</code></td>
+</tr><tr><td style='text-align: left;'><code>LINKAGE_PRIVATE</code></td><td style='text-align: left;'><code>private</code></td>
+</tr><tr><td style='text-align: left;'><code>LINKAGE_DLLIMPORT</code></td><td style='text-align: left;'><code>dllimport</code></td>
+</tr><tr><td style='text-align: left;'><code>LINKAGE_DLLEXPORT</code></td><td style='text-align: left;'><code>dllexport</code></td>
+</tr><tr><td style='text-align: left;'><code>LINKAGE_EXTERNAL_WEAK</code></td><td style='text-align: left;'><code>extern_weak</code></td>
+</tr><tr><td style='text-align: left;'><code>LINKAGE_GHOST</code></td><td style='text-align: left;'>deprecated &#8211; do not use</td>
+</tr><tr><td style='text-align: left;'><code>LINKAGE_COMMON</code></td><td style='text-align: left;'><code>common</code></td>
+</tr><tr><td style='text-align: left;'><code>LINKAGE_LINKER_PRIVATE</code></td><td style='text-align: left;'><code>linker_private</code></td>
+</tr></tbody></table><br />
+<p>The <code>section</code> property can be assigned strings (like &#8220;.rodata&#8221;), which will be used if the target supports it. Visibility property can be set to one of thse constants (from llvm.core, see also <a href='http://www.llvm.org/docs/LangRef.html#visibility'>LLVM docs</a>):</p>
+<table><thead><tr><th>Value</th><th>Equivalent LLVM Assembly Keyword</th></tr></thead><tbody><tr><td style='text-align: left;'><code>VISIBILITY_DEFAULT</code></td><td style='text-align: left;'><code>default</code></td>
+</tr><tr><td style='text-align: left;'><code>VISIBILITY_HIDDEN</code></td><td style='text-align: left;'><code>hidden</code></td>
+</tr><tr><td style='text-align: left;'><code>VISIBILITY_PROTECTED</code></td><td style='text-align: left;'><code>protected</code></td>
+</tr></tbody></table><br />
+<p>The <code>alignment</code> property can be 0 (default), or can be set to a power of 2. The read-only property <code>is_declaration</code> can be used to check if the global is a declaration or not. The module to which the global belongs to can be retrieved using the <code>module</code> property (read-only).</p>
+<hr />
+<h1 id='llvmcoreglobalvalue'>llvm.core.GlobalValue</h1>
+
+<h2 id='base_class'>Base Class</h2>
+
+<ul>
+<li><code>llvm.core.Constant</code></li>
+</ul>
+
+<h2 id='properties'>Properties</h2>
+
+<h3 id='id2560'><code>linkage</code></h3>
+
+<p>The linkage type, takes one of the constants listed above (LINKAGE_*).</p>
+
+<h3 id='id2561'><code>section</code></h3>
+
+<p>A string like &#8220;.rodata&#8221;, indicating the section into which the global is placed into.</p>
+
+<h3 id='id2562'><code>visibility</code></h3>
+
+<p>The visibility type, takes one of the constants listed above (VISIBILITY_*).</p>
+
+<h3 id='id2563'><code>alignment</code></h3>
+
+<p>A power-of-2 integer indicating the boundary to align to.</p>
+
+<h3 id='_readonly'><code>is_declaration</code> [read-only]</h3>
+
+<p><code>True</code> if the global is a declaration, <code>False</code> otherwise.</p>
+
+<h3 id='_readonly'><code>module</code> [read-only]</h3>
+
+<pre><code>The module object to which this global belongs to.</code></pre>
+<hr />
+<h1 id='global_variable_llvmcore'>Global Variable (llvm.core)</h1>
+
+<p>Global variables (<code>llvm.core.GlobalVariable</code>) are subclasses of <code>llvm.core.GlobalValue</code> and represent module-level variables. These can have optional initializers and can be marked as constants. Global variables can be created either by using the <code>add_global_variable</code> method of the <code>Module</code> class (see above), or by using the static method <code>GlobalVariable.new</code>.</p>
+<div class='highlight'><pre><code class='python'><span class='c'># create a global variable using add_global_variable method</span>
+<span class='n'>gv1</span> <span class='o'>=</span> <span class='n'>module_obj</span><span class='o'>.</span><span class='n'>add_global_variable</span><span class='p'>(</span><span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(),</span> <span class='s'>&quot;gv1&quot;</span><span class='p'>)</span>
+
+<span class='c'># or equivalently, using a static constructor method</span>
+<span class='n'>gv2</span> <span class='o'>=</span> <span class='n'>GlobalVariable</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='n'>module_obj</span><span class='p'>,</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(),</span> <span class='s'>&quot;gv2&quot;</span><span class='p'>)</span>
+</code></pre>
+</div>
+<p>Existing global variables of a module can be accessed by name using <code>module_obj.get_global_variable_named(name)</code> or <code>GlobalVariable.get</code>. All existing global variables can be enumerated via iterating over the property <code>module_obj.global_variables</code>.</p>
+<div class='highlight'><pre><code class='python'><span class='c'># retrieve a reference to the global variable gv1,</span>
+<span class='c'># using the get_global_variable_named method</span>
+<span class='n'>gv1</span> <span class='o'>=</span> <span class='n'>module_obj</span><span class='o'>.</span><span class='n'>get_global_variable_named</span><span class='p'>(</span><span class='s'>&quot;gv1&quot;</span><span class='p'>)</span>
+
+<span class='c'># or equivalently, using the static `get` method:</span>
+<span class='n'>gv2</span> <span class='o'>=</span> <span class='n'>GlobalVariable</span><span class='o'>.</span><span class='n'>get</span><span class='p'>(</span><span class='n'>module_obj</span><span class='p'>,</span> <span class='s'>&quot;gv2&quot;</span><span class='p'>)</span>
+
+<span class='c'># list all global variables in a module</span>
+<span class='k'>for</span> <span class='n'>gv</span> <span class='ow'>in</span> <span class='n'>module_obj</span><span class='o'>.</span><span class='n'>global_variables</span><span class='p'>:</span>
+    <span class='k'>print</span> <span class='n'>gv</span><span class='o'>.</span><span class='n'>name</span><span class='p'>,</span> <span class='s'>&quot;of type&quot;</span><span class='p'>,</span> <span class='n'>gv</span><span class='o'>.</span><span class='n'>type</span>
+</code></pre>
+</div>
+<p>The initializer for a global variable can be set by assigning to the <code>initializer</code> property of the object. The <code>is_global_constant</code> property can be used to indicate that the variable is a global constant.</p>
+
+<p>Global variables can be delete using the <code>delete</code> method. Do not use the object after calling <code>delete</code> on it.</p>
+<div class='highlight'><pre><code class='python'><span class='c'># add an initializer 10 (32-bit integer)</span>
+<span class='n'>gv</span><span class='o'>.</span><span class='n'>initializer</span> <span class='o'>=</span> <span class='n'>Constant</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(),</span> <span class='mi'>10</span> <span class='p'>)</span>
+
+<span class='c'># delete the global</span>
+<span class='n'>gv</span><span class='o'>.</span><span class='n'>delete</span><span class='p'>()</span>
+<span class='c'># DO NOT dereference `gv&#39; beyond this point!</span>
+<span class='n'>gv</span> <span class='o'>=</span> <span class='bp'>None</span>
+</code></pre>
+</div>
+<h1 id='llvmcoreglobalvariable'>llvm.core.GlobalVariable</h1>
+
+<h2 id='base_class'>Base Class</h2>
+
+<ul>
+<li><code>llvm.core.GlobalValue</code></li>
+</ul>
+
+<h2 id='static_constructors'>Static Constructors</h2>
+
+<h3 id='id2564'><code>new(module_obj, ty, name)</code></h3>
+
+<p>Create a global variable named <code>name</code> of type <code>ty</code> in the module <code>module_obj</code> and return a <code>GlobalVariable</code> object that represents it.</p>
+
+<h3 id='id2565'><code>get(module_obj, name)</code></h3>
+
+<p>Return a <code>GlobalVariable</code> object to represent the global variable named <code>name</code> in the module <code>module_obj</code> or raise <code>LLVMException</code> if such a variable does not exist.</p>
+
+<h2 id='properties'>Properties</h2>
+
+<h3 id='id2566'><code>initializer</code></h3>
+
+<p>The intializer of the variable. Set to <code>llvm.core.Constant</code> (or derived). Gets the initializer constant, or <code>None</code> if none exists. <code>global_constant</code> <code>True</code> if the variable is a global constant, <code>False</code> otherwise.</p>
+
+<h2 id='methods'>Methods</h2>
+
+<h3 id='id2567'><code>delete()</code></h3>
+
+<p>Deletes the global variable from it&#8217;s module. <em>Do not hold any references to this object after calling <code>delete</code> on it.</em></p>
+<hr />
+<h1 id='function_llvmcore'>Function (llvm.core)</h1>
+
+<p>Functions are represented by <code>llvm.core.Function</code> objects. They are contained within modules, and can be created either with the method <code>module_obj.add_function</code> or the static constructor <code>Function.new</code>. References to functions already present in a module can be retrieved via <code>module.get_function_named</code> or by the static constructor method <code>Function.get</code>. All functions in a module can be enumerated by iterating over <code>module_obj.functions</code>.</p>
+<div class='highlight'><pre><code class='python'><span class='c'># create a type, representing functions that take an integer and return</span>
+<span class='c'># a floating point value.</span>
+<span class='n'>ft</span> <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>function</span><span class='p'>(</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>float</span><span class='p'>(),</span> <span class='p'>[</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>()</span> <span class='p'>]</span> <span class='p'>)</span>
+
+<span class='c'># create a function of this type</span>
+<span class='n'>f1</span> <span class='o'>=</span> <span class='n'>module_obj</span><span class='o'>.</span><span class='n'>add_function</span><span class='p'>(</span><span class='n'>ft</span><span class='p'>,</span> <span class='s'>&quot;func1&quot;</span><span class='p'>)</span>
+
+<span class='c'># or equivalently, like this:</span>
+<span class='n'>f2</span> <span class='o'>=</span> <span class='n'>Function</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='n'>module_obj</span><span class='p'>,</span> <span class='n'>ft</span><span class='p'>,</span> <span class='s'>&quot;func2&quot;</span><span class='p'>)</span>
+
+<span class='c'># get a reference to an existing function</span>
+<span class='n'>f3</span> <span class='o'>=</span> <span class='n'>module_obj</span><span class='o'>.</span><span class='n'>get_function_named</span><span class='p'>(</span><span class='s'>&quot;func3&quot;</span><span class='p'>)</span>
+
+<span class='c'># or like this:</span>
+<span class='n'>f4</span> <span class='o'>=</span> <span class='n'>Function</span><span class='o'>.</span><span class='n'>get</span><span class='p'>(</span><span class='n'>module_obj</span><span class='p'>,</span> <span class='s'>&quot;func4&quot;</span><span class='p'>)</span>
+
+<span class='c'># list all function names in a module</span>
+<span class='k'>for</span> <span class='n'>f</span> <span class='ow'>in</span> <span class='n'>module_obj</span><span class='o'>.</span><span class='n'>functions</span><span class='p'>:</span>
+    <span class='k'>print</span> <span class='n'>f</span><span class='o'>.</span><span class='n'>name</span>
+</code></pre>
+</div>
+<h2 id='intrinsic'>Intrinsic</h2>
+
+<p>References to intrinsic functions can be got via the static constructor <code>intrinsic</code>. This returns a <code>Function</code> object, calling which is equivalent to invoking the intrinsic. The <code>intrinsic</code> method has to be called with a module object, an instrinic ID (which is a numeric constant) and a list of the types of arguments (which LLVM uses to resolve overloaded intrinsic functions).</p>
+<div class='highlight'><pre><code class='python'><span class='c'># get a reference to the llvm.bswap intrinsic</span>
+<span class='n'>bswap</span> <span class='o'>=</span> <span class='n'>Function</span><span class='o'>.</span><span class='n'>intrinsic</span><span class='p'>(</span><span class='n'>mod</span><span class='p'>,</span> <span class='n'>INTR_BSWAP</span><span class='p'>,</span> <span class='p'>[</span><span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>()])</span>
+
+<span class='c'># call it</span>
+<span class='n'>builder</span><span class='o'>.</span><span class='n'>call</span><span class='p'>(</span><span class='n'>bswap</span><span class='p'>,</span> <span class='p'>[</span><span class='n'>value</span><span class='p'>])</span>
+</code></pre>
+</div>
+<p>Here, the constant <code>INTR_BSWAP</code>, available from <code>llvm.core</code>, represents the LLVM intrinsic <a href='http://www.llvm.org/docs/LangRef.html#int_bswap'>llvm.bswap</a>. The <code>[Type.int()]</code> selects the version of <code>llvm.bswap</code> that has a single 32-bit integer argument. The list of intrinsic IDs defined as integer constants in <code>llvm.core</code>. These are:</p>
+
+<p><code>INTR_ANNOTATION</code>,<code>INTR_ATOMIC_CMP_SWAP</code>,<code>INTR_ATOMIC_LOAD_ADD</code>,<code>INTR_ATOMIC_LOAD_AND</code> <code>INTR_ATOMIC_LOAD_MAX</code>,<code>INTR_ATOMIC_LOAD_MIN</code>,<code>INTR_ATOMIC_LOAD_NAND</code>,<code>INTR_ATOMIC_LOAD_OR</code> <code>INTR_ATOMIC_LOAD_SUB</code>,<code>INTR_ATOMIC_LOAD_UMAX</code>,<code>INTR_ATOMIC_LOAD_UMIN</code>,<code>INTR_ATOMIC_LOAD_XOR</code> <code>INTR_ATOMIC_SWAP</code>,<code>INTR_BSWAP</code>,<code>INTR_CONVERTFF</code>,<code>INTR_CONVERTFSI</code> <code>INTR_CONVERTFUI</code>,<code>INTR_CONVERTSIF</code>,<code>INTR_CONVERTSS</code>,<code>INTR_CONVERTSU</code> <code>INTR_CONVERTUIF</code>,<code>INTR_CONVERTUS</code>,<code>INTR_CONVERTUU</code>,<code>INTR_COS</code> <code>INTR_CTLZ</code>,<code>INTR_CTPOP</code>,<code>INTR_CTTZ</code>,<code>INTR_DBG_DECLARE</code> <code>INTR_DBG_VALUE</code>,<code>INTR_EH_DWARF_CFA</code>,<code>INTR_EH_EXCEPTION</code>,<code>INTR_EH_RETURN_I32</code> <code>INTR_EH_RETURN_I64</code>,<code>INTR_EH_SELECTOR</code>,<code>INTR_EH_SJLJ_CALLSITE</code>,<code>INTR_EH_SJLJ_LONGJMP</code> <code>INTR_EH_SJLJ_LSDA</code>,<code>INTR_EH_SJLJ_SETJMP</code>,<code>INTR_EH_TYPEID_FOR</code>,<code>INTR_EH_UNWIND_INIT</code> <code>INTR_EXP</code>,<code>INTR_EXP2</code>,<code>INTR_FLT_ROUNDS</code>,<code>INTR_FRAMEADDRESS</code> <code>INTR_GCREAD</code>,<code>INTR_GCROOT</code>,<code>INTR_GCWRITE</code>,<code>INTR_INIT_TRAMPOLINE</code> <code>INTR_INVARIANT_END</code>,<code>INTR_INVARIANT_START</code>,<code>INTR_LIFETIME_END</code>,<code>INTR_LIFETIME_START</code> <code>INTR_LOG</code>,<code>INTR_LOG10</code>,<code>INTR_LOG2</code>,<code>INTR_LONGJMP</code> <code>INTR_MEMCPY</code>,<code>INTR_MEMMOVE</code>,<code>INTR_MEMORY_BARRIER</code>,<code>INTR_MEMSET</code> <code>INTR_OBJECTSIZE</code>,<code>INTR_PCMARKER</code>,<code>INTR_POW</code>,<code>INTR_POWI</code> <code>INTR_PREFETCH</code>,<code>INTR_PTR_ANNOTATION</code>,<code>INTR_READCYCLECOUNTER</code>,<code>INTR_RETURNADDRESS</code> <code>INTR_SADD_WITH_OVERFLOW</code>,<code>INTR_SETJMP</code>,<code>INTR_SIGLONGJMP</code>,<code>INTR_SIGSETJMP</code> <code>INTR_SIN</code>,<code>INTR_SMUL_WITH_OVERFLOW</code>,<code>INTR_SQRT</code>,<code>INTR_SSUB_WITH_OVERFLOW</code> <code>INTR_STACKPROTECTOR</code>,<code>INTR_STACKRESTORE</code>,<code>INTR_STACKSAVE</code>,<code>INTR_TRAP</code> <code>INTR_UADD_WITH_OVERFLOW</code>,<code>INTR_UMUL_WITH_OVERFLOW</code>,<code>INTR_USUB_WITH_OVERFLOW</code>,<code>INTR_VACOPY</code> <code>INTR_VAEND</code>,<code>INTR_VAR_ANNOTATION</code>,<code>INTR_VASTART</code></p>
+
+<p>There are also target-specific intrinsics (which correspond to that target&#8217;s CPU instructions) available, but are omitted here for brevity. Full list can be seen from <a href='https://github.com/numba/llvm-py/blob/master/llvm/_intrinsic_ids.py'><em>intrinsic</em>ids.py</a>. See the <a href='http://www.llvm.org/docs/LangRef.html'>LLVM Language Reference</a> for more information on the intrinsics, and the <a href='https://github.com/numba/llvm-py/blob/master/test/intrinsic.py'>test</a> directory in the source distribution for more examples. The intrinsic ID can be retrieved from a function object with the read-only property <code>intrinsic_id</code>.</p>
+
+<blockquote>
+<p><strong>Auto-generation of Intrinsic IDs</strong></p>
+
+<p>A script (tool/intrgen.py in source tree) generates the intrinsic IDs automatically. This is necessary when compiling llvm-py with a different version of LLVM.</p>
+</blockquote>
+
+<h2 id='callconv'>Calling Convention</h2>
+
+<p>The function&#8217;s calling convention can be set using the <code>calling_convention</code> property. The following (integer) constants defined in <code>llvm.core</code> can be used as values:</p>
+<table><thead><tr><th>Value</th><th>Equivalent LLVM Assembly Keyword</th></tr></thead><tbody><tr><td style='text-align: left;'><code>CC_C</code></td><td style='text-align: left;'><code>ccc</code></td>
+</tr><tr><td style='text-align: left;'><code>CC_FASTCALL</code></td><td style='text-align: left;'><code>fastcc</code></td>
+</tr><tr><td style='text-align: left;'><code>CC_COLDCALL</code></td><td style='text-align: left;'><code>coldcc</code></td>
+</tr><tr><td style='text-align: left;'><code>CC_X86_STDCALL</code></td><td style='text-align: left;'><code>x86_stdcallcc</code></td>
+</tr><tr><td style='text-align: left;'><code>CC_X86_FASTCALL</code></td><td style='text-align: left;'><code>x86_fastcallcc</code></td>
+</tr></tbody></table>
+<p>See the <a href='http://www.llvm.org/docs/LangRef.html#callingconv'>LLVM docs</a> for more information on each. Backend-specific numbered conventions can be directly passed as integers.</p>
+
+<p>An arbitrary string identifying which garbage collector to use can be set or got with the property <code>collector</code>.</p>
+
+<p>The value objects corresponding to the arguments of a function can be got using the read-only property <code>args</code>. These can be iterated over, and also be indexed via integers. An example:</p>
+<div class='highlight'><pre><code class='python'><span class='c'># list all argument names and types</span>
+<span class='k'>for</span> <span class='n'>arg</span> <span class='ow'>in</span> <span class='n'>fn</span><span class='o'>.</span><span class='n'>args</span><span class='p'>:</span>
+    <span class='k'>print</span> <span class='n'>arg</span><span class='o'>.</span><span class='n'>name</span><span class='p'>,</span> <span class='s'>&quot;of type&quot;</span><span class='p'>,</span> <span class='n'>arg</span><span class='o'>.</span><span class='n'>type</span>
+
+<span class='c'># change the name of the first argument</span>
+<span class='n'>fn</span><span class='o'>.</span><span class='n'>args</span><span class='p'>[</span><span class='mi'>0</span><span class='p'>]</span><span class='o'>.</span><span class='n'>name</span> <span class='o'>=</span> <span class='s'>&quot;objptr&quot;</span>
+</code></pre>
+</div>
+<p>Basic blocks (see later) are contained within functions. When newly created, a function has no basic blocks. They have to be added explicitly, using the <code>append_basic_block</code> method, which adds a new, empty basic block as the last one in the function. The first basic block of the function can be retrieved using the <code>get_entry_basic_block</code> method. The existing basic blocks can be enumerated by iterating over using the read-only property <code>basic_blocks</code>. The number of basic blocks can be got via <code>basic_block_count</code> method. Note that <code>get_entry_basic_block</code> is slightly faster than <code>basic_blocks[0]</code> and so is <code>basic_block_count</code>, over <code>len(f.basic_blocks)</code>.</p>
+<div class='highlight'><pre><code class='python'><span class='c'># add a basic block</span>
+<span class='n'>b1</span> <span class='o'>=</span> <span class='n'>fn</span><span class='o'>.</span><span class='n'>append_basic_block</span><span class='p'>(</span><span class='s'>&quot;entry&quot;</span><span class='p'>)</span>
+
+<span class='c'># get the first one</span>
+<span class='n'>b2</span> <span class='o'>=</span> <span class='n'>fn</span><span class='o'>.</span><span class='n'>get_entry_basic_block</span><span class='p'>()</span>
+<span class='n'>b2</span> <span class='o'>=</span> <span class='n'>fn</span><span class='o'>.</span><span class='n'>basic_blocks</span><span class='p'>[</span><span class='mi'>0</span><span class='p'>]</span>  <span class='c'># slower than previous method</span>
+
+<span class='c'># print names of all basic blocks</span>
+<span class='k'>for</span> <span class='n'>b</span> <span class='ow'>in</span> <span class='n'>fn</span><span class='o'>.</span><span class='n'>basic_blocks</span><span class='p'>:</span>
+    <span class='k'>print</span> <span class='n'>b</span><span class='o'>.</span><span class='n'>name</span>
+
+<span class='c'># get number of basic blocks</span>
+<span class='n'>n</span> <span class='o'>=</span> <span class='n'>fn</span><span class='o'>.</span><span class='n'>basic_block_count</span>
+<span class='n'>n</span> <span class='o'>=</span> <span class='nb'>len</span><span class='p'>(</span><span class='n'>fn</span><span class='o'>.</span><span class='n'>basic_blocks</span><span class='p'>)</span>  <span class='c'># slower than previous method</span>
+</code></pre>
+</div>
+<p>Functions can be deleted using the method <code>delete</code>. This deletes them from their containing module. All references to the function object should be dropped after <code>delete</code> has been called.</p>
+
+<p>Functions can be verified with the <code>verify</code> method. Note that this may not work properly (aborts on errors).</p>
+
+<h2 id='fnattr'>Function Attributes</h2>
+
+<p>Function attributes, as documented <a href='http://www.llvm.org/docs/LangRef.html#fnattrs'>here</a>, can be set on functions using the methods <code>add_attribute</code> and <code>remove_attribute</code>. The following values may be used to refer to the LLVM attributes:</p>
+<table><thead><tr><th>Value</th><th>Equivalent LLVM Assembly Keyword</th></tr></thead><tbody><tr><td style='text-align: left;'><code>ATTR_ALWAYS_INLINE</code></td><td style='text-align: left;'><code>alwaysinline</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_INLINE_HINT</code></td><td style='text-align: left;'><code>inlinehint</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_NO_INLINE</code></td><td style='text-align: left;'><code>noinline</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_OPTIMIZE_FOR_SIZE</code></td><td style='text-align: left;'><code>optsize</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_NO_RETURN</code></td><td style='text-align: left;'><code>noreturn</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_NO_UNWIND</code></td><td style='text-align: left;'><code>nounwind</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_READ_NONE</code></td><td style='text-align: left;'><code>readnone</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_READONLY</code></td><td style='text-align: left;'><code>readonly</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_STACK_PROTECT</code></td><td style='text-align: left;'><code>ssp</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_STACK_PROTECT_REQ</code></td><td style='text-align: left;'><code>sspreq</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_NO_REDZONE</code></td><td style='text-align: left;'><code>noredzone</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_NO_IMPLICIT_FLOAT</code></td><td style='text-align: left;'><code>noimplicitfloat</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_NAKED</code></td><td style='text-align: left;'><code>naked</code></td>
+</tr></tbody></table>
+<p>Here is how attributes can be set and removed:</p>
+<div class='highlight'><pre><code class='python'><span class='c'># create a function</span>
+<span class='n'>ti</span> <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(</span><span class='mi'>32</span><span class='p'>)</span>
+<span class='n'>tf</span> <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>function</span><span class='p'>(</span><span class='n'>ti</span><span class='p'>,</span> <span class='p'>[</span><span class='n'>ti</span><span class='p'>,</span> <span class='n'>ti</span><span class='p'>])</span>
+<span class='n'>m</span> <span class='o'>=</span> <span class='n'>Module</span><span class='o'>.</span><span class='n'>new</span><span class='p'>(</span><span class='s'>&#39;mod&#39;</span><span class='p'>)</span>
+<span class='n'>f</span> <span class='o'>=</span> <span class='n'>m</span><span class='o'>.</span><span class='n'>add_function</span><span class='p'>(</span><span class='n'>tf</span><span class='p'>,</span> <span class='s'>&#39;sum&#39;</span><span class='p'>)</span>
+<span class='k'>print</span> <span class='n'>f</span>
+<span class='c'>#   declare i32 @sum(i32, i32)</span>
+
+<span class='c'># add a couple of attributes</span>
+<span class='n'>f</span><span class='o'>.</span><span class='n'>add_attribute</span><span class='p'>(</span><span class='n'>ATTR_NO_UNWIND</span><span class='p'>)</span>
+<span class='n'>f</span><span class='o'>.</span><span class='n'>add_attribute</span><span class='p'>(</span><span class='n'>ATTR_READONLY</span><span class='p'>)</span>
+<span class='k'>print</span> <span class='n'>f</span>
+<span class='c'>#   declare i32 @sum(i32, i32) nounwind readonly</span>
+</code></pre>
+</div><hr />
+<h1 id='llvmcorefunction'>llvm.core.Function</h1>
+
+<h2 id='base_class'>Base Class</h2>
+
+<ul>
+<li><code>llvm.core.GlobalValue</code></li>
+</ul>
+
+<h2 id='static_constructors'>Static Constructors</h2>
+
+<h3 id='id2568'><code>new(module_obj, func_ty, name)</code></h3>
+
+<p>Create a function named <code>name</code> of type <code>func_ty</code> in the module <code>module_obj</code> and return a <code>Function</code> object that represents it.</p>
+
+<h3 id='id2569'><code>get(module_obj, name)</code></h3>
+
+<p>Return a <code>Function</code> object to represent the function named <code>name</code> in the module <code>module_obj</code> or raise <code>LLVMException</code> if such a function does not exist.</p>
+
+<h3 id='id2570'><code>get_or_insert(module_obj, func_ty, name)</code></h3>
+
+<p>Similar to <code>get</code>, except that if the function does not exist it is added first, as though with <code>new</code>.</p>
+
+<h3 id='id2571'><code>intrinsic(module_obj, intrinsic_id, types)</code></h3>
+
+<p>Create and return a <code>Function</code> object that refers to an intrinsic function, as described <a href='#intrinsic'>above</a>.</p>
+
+<h2 id='properties'>Properties</h2>
+
+<h3 id='id2572'><code>calling_convention</code></h3>
+
+<p>The calling convention for the function, as listed <a href='#callconv'>above</a>.</p>
+
+<h3 id='id2573'><code>collector</code></h3>
+
+<p>A string holding the name of the garbage collection algorithm. See <a href='http://www.llvm.org/docs/LangRef.html#gc'>LLVM docs</a>.</p>
+
+<h3 id='id2574'><code>does_not_throw</code></h3>
+
+<p>Setting to True sets the <code>ATTR_NO_UNWIND</code> attribute, False removes it. Shortcut to using <code>f.add_attribute(ATTR_NO_UNWIND)</code> and <code>f.remove_attribute(ATTR_NO_UNWIND)</code>.</p>
+
+<h3 id='_readonly'><code>args</code> [read-only]</h3>
+
+<p>List of <code>llvm.core.Argument</code> objects representing the formal arguments of the function.</p>
+
+<h3 id='_readonly'><code>basic_block_count</code> [read-only]</h3>
+
+<p>Number of basic blocks belonging to this function. Same as <code>len(f.basic_blocks)</code> but faster if you just want the count.</p>
+
+<h3 id='_readonly'><code>entry_basic_block</code> [read-only]</h3>
+
+<p>The <code>llvm.core.BasicBlock</code> object representing the entry basic block for this function, or <code>None</code> if there are no basic blocks.</p>
+
+<h3 id='_readonly'><code>basic_blocks</code> [read-only]</h3>
+
+<p>List of <code>llvm.core.BasicBlock</code> objects representing the basic blocks belonging to this function.</p>
+
+<h3 id='_readonly'><code>intrinsic_id</code> [read-only]</h3>
+
+<p>Returns the ID of the intrinsic if this object represents an intrinsic instruction. Otherwise 0.</p>
+
+<h2 id='methods'>Methods</h2>
+
+<h3 id='id2575'><code>delete()</code></h3>
+
+<p>Deletes the function from it&#8217;s module. <em>Do not hold any references to this object after calling <code>delete</code> on it.</em></p>
+
+<h3 id='id2576'><code>append_basic_block(name)</code></h3>
+
+<p>Add a new basic block named <code>name</code>, and return a corresponding <code>llvm.core.BasicBlock</code> object. Note that if this is not the entry basic block, you&#8217;ll have to add appropriate branch instructions from other basic blocks yourself.</p>
+
+<h3 id='id2577'><code>add_attribute(attr)</code></h3>
+
+<p>Add an attribute <code>attr</code> to the function, from the set listed above.</p>
+
+<h3 id='id2578'><code>remove_attribute(attr)</code></h3>
+
+<p>Remove the attribute <code>attr</code> of the function.</p>
+
+<h3 id='id2579'><code>viewCFG()</code></h3>
+
+<p>Displays the control flow graph using the GraphViz tool.</p>
+
+<h3 id='id2580'><code>viewCFGOnly()</code></h3>
+
+<p>Displays the control flow graph using the GraphViz tool, but omitting function bodies.</p>
+
+<h3 id='id2581'><code>verify()</code></h3>
+
+<p>Verifies the function. See <a href='http://llvm.org/docs/Passes.html#verify'>LLVM docs</a>.</p>
+<hr />
+<h1 id='argattrs'>Argument (llvm.core)</h1>
+
+<p>The <code>args</code> property of <code>llvm.core.Function</code> objects yields <code>llvm.core.Argument</code> objects. This allows for setting attributes for functions arguments. <code>Argument</code> objects cannot be constructed from user code, the only way to get a reference to these are from <code>Function</code> objects.</p>
+
+<p>The method <code>add_attribute</code> and <code>remove_attribute</code> can be used to add or remove the following attributes:</p>
+<table><thead><tr><th>Value</th><th>Equivalent LLVM Assembly Keyword</th></tr></thead><tbody><tr><td style='text-align: left;'><code>ATTR_ZEXT</code></td><td style='text-align: left;'><code>zeroext</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_SEXT</code></td><td style='text-align: left;'><code>signext</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_IN_REG</code></td><td style='text-align: left;'><code>inreg</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_BY_VAL</code></td><td style='text-align: left;'><code>byval</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_STRUCT_RET</code></td><td style='text-align: left;'><code>sret</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_NO_ALIAS</code></td><td style='text-align: left;'><code>noalias</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_NO_CAPTURE</code></td><td style='text-align: left;'><code>nocapture</code></td>
+</tr><tr><td style='text-align: left;'><code>ATTR_NEST</code></td><td style='text-align: left;'><code>nest</code></td>
+</tr></tbody></table>
+<p>These method work exactly like the <a href='#fnattr'>corresponding methods</a> of the <code>Function</code> class above. Refer <a href='http://www.llvm.org/docs/LangRef.html#paramattrs'>LLVM docs</a> for information on what each attribute means.</p>
+
+<p>The alignment of any argument can be set via the <code>alignment</code> property, to any power of 2.</p>
+<hr />
+<h1 id='llvmcoreargument'>llvm.core.Argument</h1>
+
+<h2 id='base_class'>Base Class</h2>
+
+<ul>
+<li><code>llvm.core.Value</code></li>
+</ul>
+
+<h2 id='properties'>Properties</h2>
+
+<h3 id='id2582'><code>alignment</code></h3>
+
+<p>The alignment of the argument. Must be a power of 2.</p>
+
+<h2 id='methods'>Methods</h2>
+
+<h3 id='id2583'><code>add_attribute(attr)</code></h3>
+
+<p>Add an attribute <code>attr</code> to the argument, from the set listed above.</p>
+
+<h3 id='id2584'><code>remove_attribute(attr)</code></h3>
+
+<p>Remove the attribute <code>attr</code> of the argument.</p>
+<hr />
+<h1 id='instructions_llvmcore'>Instructions (llvm.core)</h1>
+
+<p>An <code>llvm.core.Instruction</code> object represents an LLVM instruction. This class is the root of a small hierarchy:</p>
+
+<pre><code>Instruction
+    CallOrInvokeInstruction
+    PHINode
+    SwitchInstruction
+    CompareInstruction</code></pre>
+
+<p>Instructions are not created directly, but via a builder. The builder both creates instructions and adds them to a basic block at the same time. One way of getting instruction objects are from basic blocks.</p>
+
+<p>Being derived from <a href='#user'><code>llvm.core.User</code></a>, the instruction is-a user, i.e., an instruction in turn uses other values. The values an instruction uses are its operands. These may be accessed using <code>operands</code> property from the <code>llvm.core.User</code> base.</p>
+
+<p>The name of the instruction (like <code>add</code>, <code>mul</code> etc) can be got via the <code>opcode_name</code> property. The <code>basic_block</code> property gives the basic block to which the instruction belongs to. Note that llvm-py does not allow free-standing instruction objects (i.e., all instructions are created contained within a basic block).</p>
+
+<p>Classes of instructions can be got via the properties <code>is_terminator</code>, <code>is_binary_op</code>, <code>is_shift</code> etc. See below for the full list.</p>
+
+<h1 id='llvmcoreinstruction'>llvm.core.Instruction</h1>
+
+<h2 id='base_class'>Base Class</h2>
+
+<ul>
+<li><code>llvm.core.User</code></li>
+</ul>
+
+<h2 id='properties'>Properties</h2>
+
+<h3 id='_readonly'><code>basic_block</code> [read-only]</h3>
+
+<p>The basic block to which this instruction belongs to.</p>
+
+<h3 id='_readonly'><code>is_terminator</code> [read-only]</h3>
+
+<p>True if the instruction is a terminator instruction.</p>
+
+<h3 id='_readonly'><code>is_binary_op</code> [read-only]</h3>
+
+<p>True if the instruction is a binary operator.</p>
+
+<h3 id='_readonly'><code>is_shift</code> [read-only]</h3>
+
+<p>True if the instruction is a shift instruction.</p>
+
+<h3 id='_readonly'><code>is_cast</code> [read-only]</h3>
+
+<p>True if the instruction is a cast instruction.</p>
+
+<h3 id='_readonly'><code>is_logical_shift</code> [read-only]</h3>
+
+<p>True if the instruction is a logical shift instruction.</p>
+
+<h3 id='_readonly'><code>is_arithmetic_shift</code> [read-only]</h3>
+
+<p>True if the instruction is an arithmetic shift instruction.</p>
+
+<h3 id='_readonly'><code>is_associative</code> [read-only]</h3>
+
+<p>True if the instruction is associative.</p>
+
+<h3 id='_readonly'><code>is_commutative</code> [read-only]</h3>
+
+<p>True if the instruction is commutative.</p>
+
+<h3 id='_readonly'><code>is_volatile</code> [read-only]</h3>
+
+<p>True if the instruction is a volatile load or store.</p>
+
+<h3 id='_readonly'><code>opcode</code> [read-only]</h3>
+
+<p>The numeric opcode value of the instruction. Do not rely on the absolute value of this number, it may change with LLVM version.</p>
+
+<h3 id='_readonly'><code>opcode_name</code> [read-only]</h3>
+
+<p>The name of the instruction, like <code>add</code>, <code>sub</code> etc.</p>
+<hr />
+<h1 id='callorinvokeinstruction_llvmcore'>CallOrInvokeInstruction (llvm.core)</h1>
+
+<p>The <code>llvm.core.CallOrInvokeInstruction</code> is a subclass of <code>llvm.core.Instruction</code>, and represents either a <code>call</code> or an <code>invoke</code> instruction.</p>
+
+<h1 id='llvmcorecallorinvokeinstruction'>llvm.core.CallOrInvokeInstruction</h1>
+
+<h2 id='base_class'>Base Class</h2>
+
+<ul>
+<li><code>llvm.core.Instruction</code></li>
+</ul>
+
+<h2 id='properties'>Properties</h2>
+
+<p><code>calling_convention</code> Get or set the calling convention. See the link:#callconv<span>list above</span> for possible values.</p>
+
+<h2 id='methods'>Methods</h2>
+
+<h3 id='id2585'><code>add_parameter_attribute(idx, attr)</code></h3>
+
+<p>Add an attribute <code>attr</code> to the <code>idx</code>-th argument. See <a href='#argattrs'>above</a> for possible values of <code>attr</code>.</p>
+
+<h3 id='id2586'><code>remove_parameter_attribute(idx, attr)</code></h3>
+
+<p>Remove an attribute <code>attr</code> from the <code>idx</code>-th argument. See <a href='#argattrs'>above</a> for possible values of <code>attr</code>.</p>
+
+<h3 id='id2587'><code>set_parameter_alignment(idx, align)</code></h3>
+
+<p>Set the alignment of the <code>idx</code>-th argument to <code>align</code>. <code>align</code> should be a power of two.</p>
+<hr />
+<h1 id='phinode_llvmcore'>PHINode (llvm.core)</h1>
+
+<p>The <code>llvm.core.PHINode</code> is a subclass of <code>llvm.core.Instruction</code>, and represents the <code>phi</code> instruction. When created (using <code>Builder.phi</code>) the phi node contains no incoming blocks (nor their corresponding values). To add an incoming arc to the phi node, use the <code>add_incoming</code> method, which takes a source block (<code>llvm.core.BasicBlock</code> object) and a value (object of <code>llvm.core.Value</code> or of a class derived from it) that the phi node will take on if control branches in from that block.</p>
+
+<h1 id='llvmcorephinode'>llvm.core.PHINode</h1>
+
+<h2 id='base_class'>Base Class</h2>
+
+<ul>
+<li><code>llvm.core.Instruction</code></li>
+</ul>
+
+<h2 id='properties'>Properties</h2>
+
+<p><code>incoming_count</code> <span>read-only</span> The number of incoming arcs for this phi node.</p>
+
+<h2 id='methods'>Methods</h2>
+
+<h3 id='id2588'><code>add_incoming(value, block)</code></h3>
+
+<p>Add an incoming arc, from the <code>llvm.core.BasicBlock</code> object <code>block</code>, with the corresponding value <code>value</code>. <code>value</code> should be an object of <code>llvm.core.Value</code> (or of a descendent class). See <a href='#argattrs'>above</a> for possible values of <code>attr</code>.</p>
+
+<h3 id='id2589'><code>get_incoming_value(idx)</code></h3>
+
+<p>Returns the <code>idx</code>-th incoming arc&#8217;s value.</p>
+
+<h3 id='id2590'><code>get_incoming_block(idx)</code></h3>
+
+<p>Returns the <code>idx</code>-th incoming arc&#8217;s block.</p>
+
+<h1 id='switchinstruction_llvmcore'>SwitchInstruction (llvm.core)</h1>
+
+<p>(TODO describe)</p>
+
+<h1 id='llvmcoreswitchinstruction'>llvm.core.SwitchInstruction</h1>
+
+<h2 id='base_class'>Base Class</h2>
+
+<ul>
+<li><code>llvm.core.Instruction</code></li>
+</ul>
+
+<h2 id='methods'>Methods</h2>
+
+<h3 id='id2591'><code>add_case(const, block)</code></h3>
+
+<p>Add another case to the switch statement. When the expression being evaluated equals <code>const</code>, then control branches to <code>block</code>. Here <code>const</code> must be of type <code>llvm.core.ConstantInt</code>.</p>
+<hr />
+<h1 id='compareinstruction_llvmcore'>CompareInstruction (llvm.core)</h1>
+
+<p>(TODO describe)</p>
+
+<h1 id='llvmcorecompareinstruction'>llvm.core.CompareInstruction</h1>
+
+<h2 id='base_class'>Base Class</h2>
+
+<ul>
+<li><code>llvm.core.Instruction</code></li>
+</ul>
+
+<h2 id='properties'>Properties</h2>
+
+<h3 id='_readonly'><code>predicate</code> <span>read-only</span></h3>
+
+<p>The predicate of the compare instruction, one of the <code>ICMP_*</code> or <code>FCMP_*</code> constants.</p>
+<hr />
+<h1 id='basic_block_llvmcore'>Basic Block (llvm.core)</h1>
+
+<p>TODO</p>
+
+<h1 id='builder_llvmcore'>Builder (llvm.core)</h1>
+
+<p>TODO</p>
+
+<h1 id='target_data_llvmee'>Target Data (llvm.ee)</h1>
+
+<p>TODO</p>
+
+<h1 id='execution_engine_llvmee'>Execution Engine (llvm.ee)</h1>
+
+<p>TODO. For now, see <code>test/example-jit.py</code>.</p>
+
+<h1 id='pass_manager_and_passes_llvmpasses'>Pass Manager and Passes (llvm.passes)</h1>
+
+<p>TODO. For now, see <code>test/passes.py</code>.</p>
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy;  2012
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+
