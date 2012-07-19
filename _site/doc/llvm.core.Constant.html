@@ -191,58 +191,58 @@
 </code></pre>
 </div>
 <h1 id='llvmcoreconstant'>llvm.core.Constant</h1>
-<div class='maruku_toc'><ul style='list-style: none;'><li><a href='#llvmcoreconstant'>llvm.core.Constant</a><ul style='list-style: none;'><li><a href='#static_factory_methods'>Static factory methods</a><ul style='list-style: none;'><li><a href='#id22817'><code>null(ty)</code></a></li><li><a href='#id22818'><code>all_ones(ty)</code></a></li><li><a href='#id22819'><code>undef(ty)</code></a></li><li><a href='#id22820'><code>int(ty, value)</code></a></li><li><a href='#id22821'><code>int_signextend(ty, value)</code></a></li><li><a href='#id22822'><code>real(ty, value)</code></a></li><li><a href='#id22823'><code>stringz(value)</code></a></li><li><a href='#id22824'><code>string(value)</code></a></li><li><a href='#id22825'><code>array(ty, consts)</code></a></li><li><a href='#id22826'><code>struct(ty, consts)</code></a></li><li><a href='#id22827'><code>packed_struct(ty, consts)</code></a></li><li><a href='#id22828'><code>vector(consts)</code></a></li><li><a href='#id22829'><code>sizeof(ty)</code></a></li></ul></li><li><a href='#methods'>Methods</a><ul style='list-style: none;'><li><a href='#id22830'><code>k.neg()</code></a></li><li><a href='#id22831'><code>k.not_()</code></a></li><li><a href='#id22832'><code>k.add(k2)</code></a></li><li><a href='#id22833'><code>k.fadd(k2)</code></a></li><li><a href='#id22834'><code>k.sub(k2)</code></a></li><li><a href='#id22835'><code>k.fsub(k2)</code></a></li><li><a href='#id22836'><code>k.mul(k2)</code></a></li><li><a href='#id22837'><code>k.fmul(k2)</code></a></li><li><a href='#id22838'><code>k.udiv(k2)</code></a></li><li><a href='#id22839'><code>k.sdiv(k2)</code></a></li><li><a href='#id22840'><code>k.fdiv(k2)</code></a></li><li><a href='#id22841'><code>k.urem(k2)</code></a></li><li><a href='#id22842'><code>k.srem(k2)</code></a></li><li><a href='#id22843'><code>k.frem(k2)</code></a></li><li><a href='#id22844'><code>k.and_(k2)</code></a></li><li><a href='#id22845'><code>k.or_(k2)</code></a></li><li><a href='#id22846'><code>k.xor(k2)</code></a></li><li><a href='#id22847'><code>k.icmp(icmp, k2)</code></a></li><li><a href='#id22848'><code>k.fcmp(fcmp, k2)</code></a></li><li><a href='#id22849'><code>k.shl(k2)</code></a></li><li><a href='#id22850'><code>k.lshr(k2)</code></a></li><li><a href='#id22851'><code>k.ashr(k2)</code></a></li><li><a href='#id22852'><code>k.gep(indices)</code></a></li><li><a href='#id22853'><code>k.trunc(ty)</code></a></li><li><a href='#id22854'><code>k.sext(ty)</code></a></li><li><a href='#id22855'><code>k.zext(ty)</code></a></li><li><a href='#id22856'><code>k.fptrunc(ty)</code></a></li><li><a href='#id22857'><code>k.fpext(ty)</code></a></li><li><a href='#id22858'><code>k.uitofp(ty)</code></a></li><li><a href='#id22859'><code>k.sitofp(ty)</code></a></li><li><a href='#id22860'><code>k.fptoui(ty)</code></a></li><li><a href='#id22861'><code>k.fptosi(ty)</code></a></li><li><a href='#id22862'><code>k.ptrtoint(ty)</code></a></li><li><a href='#id22863'><code>k.inttoptr(ty)</code></a></li><li><a href='#id22864'><code>k.bitcast(ty)</code></a></li><li><a href='#id22865'><code>k.select(cond,k2,k3)</code></a></li><li><a href='#id22866'><code>k.extract_element(idx)</code></a></li><li><a href='#id22867'><code>k.insert_element(k2,idx)</code></a></li><li><a href='#id22868'><code>k.shuffle_vector(k2,mask)</code></a></li></ul></li></ul></li><li><a href='#other_constant_classes'>Other Constant Classes</a></li></ul></div>
+<div class='maruku_toc'><ul style='list-style: none;'><li><a href='#llvmcoreconstant'>llvm.core.Constant</a><ul style='list-style: none;'><li><a href='#static_factory_methods'>Static factory methods</a><ul style='list-style: none;'><li><a href='#id103'><code>null(ty)</code></a></li><li><a href='#id104'><code>all_ones(ty)</code></a></li><li><a href='#id105'><code>undef(ty)</code></a></li><li><a href='#id106'><code>int(ty, value)</code></a></li><li><a href='#id107'><code>int_signextend(ty, value)</code></a></li><li><a href='#id108'><code>real(ty, value)</code></a></li><li><a href='#id109'><code>stringz(value)</code></a></li><li><a href='#id110'><code>string(value)</code></a></li><li><a href='#id111'><code>array(ty, consts)</code></a></li><li><a href='#id112'><code>struct(ty, consts)</code></a></li><li><a href='#id113'><code>packed_struct(ty, consts)</code></a></li><li><a href='#id114'><code>vector(consts)</code></a></li><li><a href='#id115'><code>sizeof(ty)</code></a></li></ul></li><li><a href='#methods'>Methods</a><ul style='list-style: none;'><li><a href='#id116'><code>k.neg()</code></a></li><li><a href='#id117'><code>k.not_()</code></a></li><li><a href='#id118'><code>k.add(k2)</code></a></li><li><a href='#id119'><code>k.fadd(k2)</code></a></li><li><a href='#id120'><code>k.sub(k2)</code></a></li><li><a href='#id121'><code>k.fsub(k2)</code></a></li><li><a href='#id122'><code>k.mul(k2)</code></a></li><li><a href='#id123'><code>k.fmul(k2)</code></a></li><li><a href='#id124'><code>k.udiv(k2)</code></a></li><li><a href='#id125'><code>k.sdiv(k2)</code></a></li><li><a href='#id126'><code>k.fdiv(k2)</code></a></li><li><a href='#id127'><code>k.urem(k2)</code></a></li><li><a href='#id128'><code>k.srem(k2)</code></a></li><li><a href='#id129'><code>k.frem(k2)</code></a></li><li><a href='#id130'><code>k.and_(k2)</code></a></li><li><a href='#id131'><code>k.or_(k2)</code></a></li><li><a href='#id132'><code>k.xor(k2)</code></a></li><li><a href='#id133'><code>k.icmp(icmp, k2)</code></a></li><li><a href='#id134'><code>k.fcmp(fcmp, k2)</code></a></li><li><a href='#id135'><code>k.shl(k2)</code></a></li><li><a href='#id136'><code>k.lshr(k2)</code></a></li><li><a href='#id137'><code>k.ashr(k2)</code></a></li><li><a href='#id138'><code>k.gep(indices)</code></a></li><li><a href='#id139'><code>k.trunc(ty)</code></a></li><li><a href='#id140'><code>k.sext(ty)</code></a></li><li><a href='#id141'><code>k.zext(ty)</code></a></li><li><a href='#id142'><code>k.fptrunc(ty)</code></a></li><li><a href='#id143'><code>k.fpext(ty)</code></a></li><li><a href='#id144'><code>k.uitofp(ty)</code></a></li><li><a href='#id145'><code>k.sitofp(ty)</code></a></li><li><a href='#id146'><code>k.fptoui(ty)</code></a></li><li><a href='#id147'><code>k.fptosi(ty)</code></a></li><li><a href='#id148'><code>k.ptrtoint(ty)</code></a></li><li><a href='#id149'><code>k.inttoptr(ty)</code></a></li><li><a href='#id150'><code>k.bitcast(ty)</code></a></li><li><a href='#id151'><code>k.select(cond,k2,k3)</code></a></li><li><a href='#id152'><code>k.extract_element(idx)</code></a></li><li><a href='#id153'><code>k.insert_element(k2,idx)</code></a></li><li><a href='#id154'><code>k.shuffle_vector(k2,mask)</code></a></li></ul></li></ul></li><li><a href='#other_constant_classes'>Other Constant Classes</a></li></ul></div>
 <h2 id='static_factory_methods'>Static factory methods</h2>
 
-<h3 id='id22817'><code>null(ty)</code></h3>
+<h3 id='id103'><code>null(ty)</code></h3>
 
 <p>A null value (all zeros) of type <code>ty</code></p>
 
-<h3 id='id22818'><code>all_ones(ty)</code></h3>
+<h3 id='id104'><code>all_ones(ty)</code></h3>
 
 <p>All 1&#8217;s value of type <code>ty</code></p>
 
-<h3 id='id22819'><code>undef(ty)</code></h3>
+<h3 id='id105'><code>undef(ty)</code></h3>
 
 <p>An undefined value of type <code>ty</code></p>
 
-<h3 id='id22820'><code>int(ty, value)</code></h3>
+<h3 id='id106'><code>int(ty, value)</code></h3>
 
 <p>Integer of type <code>ty</code>, with value <code>value</code> (a Python int or long)</p>
 
-<h3 id='id22821'><code>int_signextend(ty, value)</code></h3>
+<h3 id='id107'><code>int_signextend(ty, value)</code></h3>
 
 <p>Integer of signed type <code>ty</code> (use for signed types)</p>
 
-<h3 id='id22822'><code>real(ty, value)</code></h3>
+<h3 id='id108'><code>real(ty, value)</code></h3>
 
 <p>Floating point value of type <code>ty</code>, with value <code>value</code> (a Python float)</p>
 
-<h3 id='id22823'><code>stringz(value)</code></h3>
+<h3 id='id109'><code>stringz(value)</code></h3>
 
 <p>A null-terminated string. <code>value</code> is a Python string</p>
 
-<h3 id='id22824'><code>string(value)</code></h3>
+<h3 id='id110'><code>string(value)</code></h3>
 
 <p>As <code>string(ty)</code>, but not null terminated</p>
 
-<h3 id='id22825'><code>array(ty, consts)</code></h3>
+<h3 id='id111'><code>array(ty, consts)</code></h3>
 
 <p>Array of type <code>ty</code>, initialized with <code>consts</code> (an iterable yielding <code>Constant</code> objects of the appropriate type)</p>
 
-<h3 id='id22826'><code>struct(ty, consts)</code></h3>
+<h3 id='id112'><code>struct(ty, consts)</code></h3>
 
 <p>Struct (unpacked) of type <code>ty</code>, initialized with <code>consts</code> (an iterable yielding <code>Constant</code> objects of the appropriate type)</p>
 
-<h3 id='id22827'><code>packed_struct(ty, consts)</code></h3>
+<h3 id='id113'><code>packed_struct(ty, consts)</code></h3>
 
 <p>As <code>struct(ty, consts)</code> but packed</p>
 
-<h3 id='id22828'><code>vector(consts)</code></h3>
+<h3 id='id114'><code>vector(consts)</code></h3>
 
 <p>Vector, initialized with <code>consts</code> (an iterable yielding <code>Constant</code> objects of the appropriate type)</p>
 
-<h3 id='id22829'><code>sizeof(ty)</code></h3>
+<h3 id='id115'><code>sizeof(ty)</code></h3>
 
 <p>Constant value representing the sizeof the type <code>ty</code></p>
 
@@ -250,159 +250,159 @@
 
 <p>The following operations on constants are supported. For more details on any operation, consult the <a href='http://www.llvm.org/docs/LangRef.html#constantexprs'>Constant Expressions</a> section of the LLVM Language Reference.</p>
 
-<h3 id='id22830'><code>k.neg()</code></h3>
+<h3 id='id116'><code>k.neg()</code></h3>
 
 <p>negation, same as <code>0 - k</code></p>
 
-<h3 id='id22831'><code>k.not_()</code></h3>
+<h3 id='id117'><code>k.not_()</code></h3>
 
 <p>1&#8217;s complement of <code>k</code>. Note trailing underscore.</p>
 
-<h3 id='id22832'><code>k.add(k2)</code></h3>
+<h3 id='id118'><code>k.add(k2)</code></h3>
 
 <p><code>k + k2</code>, where <code>k</code> and <code>k2</code> are integers.</p>
 
-<h3 id='id22833'><code>k.fadd(k2)</code></h3>
+<h3 id='id119'><code>k.fadd(k2)</code></h3>
 
 <p><code>k + k2</code>, where <code>k</code> and <code>k2</code> are floating-point.</p>
 
-<h3 id='id22834'><code>k.sub(k2)</code></h3>
+<h3 id='id120'><code>k.sub(k2)</code></h3>
 
 <p><code>k - k2</code>, where <code>k</code> and <code>k2</code> are integers.</p>
 
-<h3 id='id22835'><code>k.fsub(k2)</code></h3>
+<h3 id='id121'><code>k.fsub(k2)</code></h3>
 
 <p><code>k - k2</code>, where <code>k</code> and <code>k2</code> are floating-point.</p>
 
-<h3 id='id22836'><code>k.mul(k2)</code></h3>
+<h3 id='id122'><code>k.mul(k2)</code></h3>
 
 <p><code>k * k2</code>, where <code>k</code> and <code>k2</code> are integers.</p>
 
-<h3 id='id22837'><code>k.fmul(k2)</code></h3>
+<h3 id='id123'><code>k.fmul(k2)</code></h3>
 
 <p><code>k * k2</code>, where <code>k</code> and <code>k2</code> are floating-point.</p>
 
-<h3 id='id22838'><code>k.udiv(k2)</code></h3>
+<h3 id='id124'><code>k.udiv(k2)</code></h3>
 
 <p>Quotient of unsigned division of <code>k</code> with <code>k2</code></p>
 
-<h3 id='id22839'><code>k.sdiv(k2)</code></h3>
+<h3 id='id125'><code>k.sdiv(k2)</code></h3>
 
 <p>Quotient of signed division of <code>k</code> with <code>k2</code></p>
 
-<h3 id='id22840'><code>k.fdiv(k2)</code></h3>
+<h3 id='id126'><code>k.fdiv(k2)</code></h3>
 
 <p>Quotient of floating point division of <code>k</code> with <code>k2</code></p>
 
-<h3 id='id22841'><code>k.urem(k2)</code></h3>
+<h3 id='id127'><code>k.urem(k2)</code></h3>
 
 <p>Reminder of unsigned division of <code>k</code> with <code>k2</code></p>
 
-<h3 id='id22842'><code>k.srem(k2)</code></h3>
+<h3 id='id128'><code>k.srem(k2)</code></h3>
 
 <p>Reminder of signed division of <code>k</code> with <code>k2</code></p>
 
-<h3 id='id22843'><code>k.frem(k2)</code></h3>
+<h3 id='id129'><code>k.frem(k2)</code></h3>
 
 <p>Reminder of floating point division of <code>k</code> with <code>k2</code></p>
 
-<h3 id='id22844'><code>k.and_(k2)</code></h3>
+<h3 id='id130'><code>k.and_(k2)</code></h3>
 
 <p>Bitwise and of <code>k</code> and <code>k2</code>. Note trailing underscore.</p>
 
-<h3 id='id22845'><code>k.or_(k2)</code></h3>
+<h3 id='id131'><code>k.or_(k2)</code></h3>
 
 <p>Bitwise or of <code>k</code> and <code>k2</code>. Note trailing underscore.</p>
 
-<h3 id='id22846'><code>k.xor(k2)</code></h3>
+<h3 id='id132'><code>k.xor(k2)</code></h3>
 
 <p>Bitwise exclusive-or of <code>k</code> and <code>k2</code>.</p>
 
-<h3 id='id22847'><code>k.icmp(icmp, k2)</code></h3>
+<h3 id='id133'><code>k.icmp(icmp, k2)</code></h3>
 
 <p>Compare <code>k</code> with <code>k2</code> using the predicate <code>icmp</code>. See <a href='comparision.html#icmp'>here</a> for list of predicates for integer operands.</p>
 
-<h3 id='id22848'><code>k.fcmp(fcmp, k2)</code></h3>
+<h3 id='id134'><code>k.fcmp(fcmp, k2)</code></h3>
 
 <p>Compare <code>k</code> with <code>k2</code> using the predicate <code>fcmp</code>. See <a href='comparision.html#fcmp'>here</a> for list of predicates for real operands.</p>
 
-<h3 id='id22849'><code>k.shl(k2)</code></h3>
+<h3 id='id135'><code>k.shl(k2)</code></h3>
 
 <p>Shift <code>k</code> left by <code>k2</code> bits.</p>
 
-<h3 id='id22850'><code>k.lshr(k2)</code></h3>
+<h3 id='id136'><code>k.lshr(k2)</code></h3>
 
 <p>Shift <code>k</code> logically right by <code>k2</code> bits (new bits are 0s).</p>
 
-<h3 id='id22851'><code>k.ashr(k2)</code></h3>
+<h3 id='id137'><code>k.ashr(k2)</code></h3>
 
 <p>Shift <code>k</code> arithmetically right by <code>k2</code> bits (new bits are same as previous sign bit).</p>
 
-<h3 id='id22852'><code>k.gep(indices)</code></h3>
+<h3 id='id138'><code>k.gep(indices)</code></h3>
 
 <p>GEP, see <a href='http://www.llvm.org/docs/GetElementPtr.html'>LLVM docs</a>.</p>
 
-<h3 id='id22853'><code>k.trunc(ty)</code></h3>
+<h3 id='id139'><code>k.trunc(ty)</code></h3>
 
 <p>Truncate <code>k</code> to a type <code>ty</code> of lower bitwidth.</p>
 
-<h3 id='id22854'><code>k.sext(ty)</code></h3>
+<h3 id='id140'><code>k.sext(ty)</code></h3>
 
 <p>Sign extend <code>k</code> to a type <code>ty</code> of higher bitwidth, while extending the sign bit.</p>
 
-<h3 id='id22855'><code>k.zext(ty)</code></h3>
+<h3 id='id141'><code>k.zext(ty)</code></h3>
 
 <p>Sign extend <code>k</code> to a type <code>ty</code> of higher bitwidth, all new bits are 0s.</p>
 
-<h3 id='id22856'><code>k.fptrunc(ty)</code></h3>
+<h3 id='id142'><code>k.fptrunc(ty)</code></h3>
 
 <p>Truncate floating point constant <code>k</code> to floating point type <code>ty</code> of lower size than k&#8217;s.</p>
 
-<h3 id='id22857'><code>k.fpext(ty)</code></h3>
+<h3 id='id143'><code>k.fpext(ty)</code></h3>
 
 <p>Extend floating point constant <code>k</code> to floating point type <code>ty</code> of higher size than k&#8217;s.</p>
 
-<h3 id='id22858'><code>k.uitofp(ty)</code></h3>
+<h3 id='id144'><code>k.uitofp(ty)</code></h3>
 
 <p>Convert an unsigned integer constant <code>k</code> to floating point constant of type <code>ty</code>.</p>
 
-<h3 id='id22859'><code>k.sitofp(ty)</code></h3>
+<h3 id='id145'><code>k.sitofp(ty)</code></h3>
 
 <p>Convert a signed integer constant <code>k</code> to floating point constant of type <code>ty</code>.</p>
 
-<h3 id='id22860'><code>k.fptoui(ty)</code></h3>
+<h3 id='id146'><code>k.fptoui(ty)</code></h3>
 
 <p>Convert a floating point constant <code>k</code> to an unsigned integer constant of type <code>ty</code>.</p>
 
-<h3 id='id22861'><code>k.fptosi(ty)</code></h3>
+<h3 id='id147'><code>k.fptosi(ty)</code></h3>
 
 <p>Convert a floating point constant <code>k</code> to a signed integer constant of type <code>ty</code>.</p>
 
-<h3 id='id22862'><code>k.ptrtoint(ty)</code></h3>
+<h3 id='id148'><code>k.ptrtoint(ty)</code></h3>
 
 <p>Convert a pointer constant <code>k</code> to an integer constant of type <code>ty</code>.</p>
 
-<h3 id='id22863'><code>k.inttoptr(ty)</code></h3>
+<h3 id='id149'><code>k.inttoptr(ty)</code></h3>
 
 <p>Convert an integer constant <code>k</code> to a pointer constant of type <code>ty</code>.</p>
 
-<h3 id='id22864'><code>k.bitcast(ty)</code></h3>
+<h3 id='id150'><code>k.bitcast(ty)</code></h3>
 
 <p>Convert <code>k</code> to a (equal-width) constant of type <code>ty</code>.</p>
 
-<h3 id='id22865'><code>k.select(cond,k2,k3)</code></h3>
+<h3 id='id151'><code>k.select(cond,k2,k3)</code></h3>
 
 <p>Replace value with <code>k2</code> if the 1-bit integer constant <code>cond</code> is 1, else with <code>k3</code>.</p>
 
-<h3 id='id22866'><code>k.extract_element(idx)</code></h3>
+<h3 id='id152'><code>k.extract_element(idx)</code></h3>
 
 <p>Extract value at <code>idx</code> (integer constant) from a vector constant <code>k</code>.</p>
 
-<h3 id='id22867'><code>k.insert_element(k2,idx)</code></h3>
+<h3 id='id153'><code>k.insert_element(k2,idx)</code></h3>
 
 <p>Insert value <code>k2</code> (scalar constant) at index <code>idx</code> (integer constant) of vector constant <code>k</code>.</p>
 
-<h3 id='id22868'><code>k.shuffle_vector(k2,mask)</code></h3>
+<h3 id='id154'><code>k.shuffle_vector(k2,mask)</code></h3>
 
 <p>Shuffle vector constant <code>k</code> based on vector constants <code>k2</code> and <code>mask</code>.</p>
 <hr />

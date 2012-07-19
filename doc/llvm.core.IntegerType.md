@@ -12,7 +12,8 @@ title: IntegerType (llvm.core)
 ## Properties
 
 
-### `width` \[read-only\]
+### `width` 
+\[read-only\]
 
 The width of the integer type, in number of bits.
 

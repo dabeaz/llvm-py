@@ -186,15 +186,21 @@
 
 <h2 id='properties'>Properties</h2>
 
-<h3 id='_readonly'><code>return_type</code> [read-only]</h3>
+<h3 id='id73'><code>return_type</code></h3>
+
+<p>[read-only]</p>
 
 <p>A <a href='llvm.core.Type.html'>Type</a> object, representing the return type of the function.</p>
 
-<h3 id='_readonly'><code>vararg</code> [read-only]</h3>
+<h3 id='id74'><code>vararg</code></h3>
+
+<p>[read-only]</p>
 
 <p><code>True</code> if the function is variadic.</p>
 
-<h3 id='_readonly'><code>args</code> [read-only]</h3>
+<h3 id='id75'><code>args</code></h3>
+
+<p>[read-only]</p>
 
 <p>Returns an iterable object that yields <a href='llvm.core.Type.html'>Type</a> objects that represent, in order, the types of the arguments accepted by the function. Used like this:</p>
 <div class='highlight'><pre><code class='python'><span class='n'>func_type</span> <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>function</span><span class='p'>(</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(),</span> <span class='p'>[</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(),</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>()</span> <span class='p'>]</span> <span class='p'>)</span>
@@ -204,7 +210,9 @@
 <span class='k'>assert</span> <span class='n'>func_type</span><span class='o'>.</span><span class='n'>arg_count</span> <span class='o'>==</span> <span class='nb'>len</span><span class='p'>(</span><span class='n'>func_type</span><span class='o'>.</span><span class='n'>args</span><span class='p'>)</span>
 </code></pre>
 </div>
-<h3 id='_readonly'><code>arg_count</code> [read-only]</h3>
+<h3 id='id76'><code>arg_count</code></h3>
+
+<p>[read-only]</p>
 
 <p>The number of arguments. Same as <code>len(obj.args)</code>, but faster.</p>
   </div>

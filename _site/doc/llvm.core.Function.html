@@ -177,7 +177,7 @@
 <div class="row">
   <div class="span12">
     <h1 id='llvmcorefunction'>llvm.core.Function</h1>
-<div class='maruku_toc'><ul style='list-style: none;'><li><a href='#base_class'>Base Class</a></li><li><a href='#static_constructors'>Static Constructors</a><ul style='list-style: none;'><li><a href='#id22782'><code>new(module_obj, func_ty, name)</code></a></li><li><a href='#id22783'><code>get(module_obj, name)</code></a></li><li><a href='#id22784'><code>get_or_insert(module_obj, func_ty, name)</code></a></li><li><a href='#id22785'><code>intrinsic(module_obj, intrinsic_id, types)</code></a></li></ul></li><li><a href='#properties'>Properties</a><ul style='list-style: none;'><li><a href='#id22786'><code>calling_convention</code></a></li><li><a href='#id22787'><code>collector</code></a></li><li><a href='#id22788'><code>does_not_throw</code></a></li><li><a href='#_readonly'><code>args</code> [read-only]</a></li><li><a href='#_readonly'><code>basic_block_count</code> [read-only]</a></li><li><a href='#_readonly'><code>entry_basic_block</code> [read-only]</a></li><li><a href='#_readonly'><code>basic_blocks</code> [read-only]</a></li><li><a href='#_readonly'><code>intrinsic_id</code> [read-only]</a></li></ul></li><li><a href='#methods'>Methods</a><ul style='list-style: none;'><li><a href='#id22789'><code>delete()</code></a></li><li><a href='#id22790'><code>append_basic_block(name)</code></a></li><li><a href='#id22791'><code>add_attribute(attr)</code></a></li><li><a href='#id22792'><code>remove_attribute(attr)</code></a></li><li><a href='#id22793'><code>viewCFG()</code></a></li><li><a href='#id22794'><code>viewCFGOnly()</code></a></li><li><a href='#id22795'><code>verify()</code></a></li></ul></li></ul></div>
+<div class='maruku_toc'><ul style='list-style: none;'><li><a href='#base_class'>Base Class</a></li><li><a href='#static_constructors'>Static Constructors</a><ul style='list-style: none;'><li><a href='#id54'><code>new(module_obj, func_ty, name)</code></a></li><li><a href='#id55'><code>get(module_obj, name)</code></a></li><li><a href='#id56'><code>get_or_insert(module_obj, func_ty, name)</code></a></li><li><a href='#id57'><code>intrinsic(module_obj, intrinsic_id, types)</code></a></li></ul></li><li><a href='#properties'>Properties</a><ul style='list-style: none;'><li><a href='#id58'><code>calling_convention</code></a></li><li><a href='#id59'><code>collector</code></a></li><li><a href='#id60'><code>does_not_throw</code></a></li><li><a href='#id61'><code>args</code></a></li><li><a href='#id62'><code>basic_block_count</code></a></li><li><a href='#id63'><code>entry_basic_block</code></a></li><li><a href='#id64'><code>basic_blocks</code></a></li><li><a href='#id65'><code>intrinsic_id</code></a></li></ul></li><li><a href='#methods'>Methods</a><ul style='list-style: none;'><li><a href='#id66'><code>delete()</code></a></li><li><a href='#id67'><code>append_basic_block(name)</code></a></li><li><a href='#id68'><code>add_attribute(attr)</code></a></li><li><a href='#id69'><code>remove_attribute(attr)</code></a></li><li><a href='#id70'><code>viewCFG()</code></a></li><li><a href='#id71'><code>viewCFGOnly()</code></a></li><li><a href='#id72'><code>verify()</code></a></li></ul></li></ul></div>
 <h2 id='base_class'>Base Class</h2>
 
 <ul>
@@ -186,83 +186,93 @@
 
 <h2 id='static_constructors'>Static Constructors</h2>
 
-<h3 id='id22782'><code>new(module_obj, func_ty, name)</code></h3>
+<h3 id='id54'><code>new(module_obj, func_ty, name)</code></h3>
 
 <p>Create a function named <code>name</code> of type <code>func_ty</code> in the module <code>module_obj</code> and return a <code>Function</code> object that represents it.</p>
 
-<h3 id='id22783'><code>get(module_obj, name)</code></h3>
+<h3 id='id55'><code>get(module_obj, name)</code></h3>
 
 <p>Return a <code>Function</code> object to represent the function named <code>name</code> in the module <code>module_obj</code> or raise <code>LLVMException</code> if such a function does not exist.</p>
 
-<h3 id='id22784'><code>get_or_insert(module_obj, func_ty, name)</code></h3>
+<h3 id='id56'><code>get_or_insert(module_obj, func_ty, name)</code></h3>
 
 <p>Similar to <code>get</code>, except that if the function does not exist it is added first, as though with <code>new</code>.</p>
 
-<h3 id='id22785'><code>intrinsic(module_obj, intrinsic_id, types)</code></h3>
+<h3 id='id57'><code>intrinsic(module_obj, intrinsic_id, types)</code></h3>
 
 <p>Create and return a <code>Function</code> object that refers to an intrinsic function, as described <a href='functions.html#intrinsic'>here</a>.</p>
 
 <h2 id='properties'>Properties</h2>
 
-<h3 id='id22786'><code>calling_convention</code></h3>
+<h3 id='id58'><code>calling_convention</code></h3>
 
 <p>The calling convention for the function, as listed <a href='functions.html#callconv'>here</a>.</p>
 
-<h3 id='id22787'><code>collector</code></h3>
+<h3 id='id59'><code>collector</code></h3>
 
 <p>A string holding the name of the garbage collection algorithm. See <a href='http://www.llvm.org/docs/LangRef.html#gc'>LLVM docs</a>.</p>
 
-<h3 id='id22788'><code>does_not_throw</code></h3>
+<h3 id='id60'><code>does_not_throw</code></h3>
 
 <p>Setting to True sets the <code>ATTR_NO_UNWIND</code> attribute, False removes it. Shortcut to using <code>f.add_attribute(ATTR_NO_UNWIND)</code> and <code>f.remove_attribute(ATTR_NO_UNWIND)</code>.</p>
 
-<h3 id='_readonly'><code>args</code> [read-only]</h3>
+<h3 id='id61'><code>args</code></h3>
+
+<p>[read-only]</p>
 
 <p>List of <a href='llvm.core.Argument.html'>llvm.core.Argument</a> objects representing the formal arguments of the function.</p>
 
-<h3 id='_readonly'><code>basic_block_count</code> [read-only]</h3>
+<h3 id='id62'><code>basic_block_count</code></h3>
+
+<p>[read-only]</p>
 
 <p>Number of basic blocks belonging to this function. Same as <code>len(f.basic_blocks)</code> but faster if you just want the count.</p>
 
-<h3 id='_readonly'><code>entry_basic_block</code> [read-only]</h3>
+<h3 id='id63'><code>entry_basic_block</code></h3>
+
+<p>[read-only]</p>
 
 <p>The <a href='llvm.core.BasicBlock.html'>llvm.core.BasicBlock</a> object representing the entry basic block for this function, or <code>None</code> if there are no basic blocks.</p>
 
-<h3 id='_readonly'><code>basic_blocks</code> [read-only]</h3>
+<h3 id='id64'><code>basic_blocks</code></h3>
+
+<p>[read-only]</p>
 
 <p>List of <a href='llvm.core.BasicBlock.html'>llvm.core.BasicBlock</a> objects representing the basic blocks belonging to this function.</p>
 
-<h3 id='_readonly'><code>intrinsic_id</code> [read-only]</h3>
+<h3 id='id65'><code>intrinsic_id</code></h3>
+
+<p>[read-only]</p>
 
 <p>Returns the ID of the intrinsic if this object represents an intrinsic instruction. Otherwise 0.</p>
 
 <h2 id='methods'>Methods</h2>
 
-<h3 id='id22789'><code>delete()</code></h3>
+<h3 id='id66'><code>delete()</code></h3>
 
 <p>Deletes the function from it&#8217;s module. Do not hold any references to this object after calling <code>delete</code> on it.</p>
 
-<h3 id='id22790'><code>append_basic_block(name)</code></h3>
+<h3 id='id67'><code>append_basic_block(name)</code></h3>
 
 <p>Add a new basic block named <code>name</code>, and return a corresponding <a href='llvm.core.BasicBlock.html'>llvm.core.BasicBlock</a> object. Note that if this is not the entry basic block, you&#8217;ll have to add appropriate branch instructions from other basic blocks yourself.</p>
 
-<h3 id='id22791'><code>add_attribute(attr)</code></h3>
+<h3 id='id68'><code>add_attribute(attr)</code></h3>
 
 <p>Add an attribute <code>attr</code> to the function, from the set listed above.</p>
 
-<h3 id='id22792'><code>remove_attribute(attr)</code></h3>
+<h3 id='id69'><code>remove_attribute(attr)</code></h3>
 
 <p>Remove the attribute <code>attr</code> of the function.</p>
 
-<h3 id='id22793'><code>viewCFG()</code></h3>
+<h3 id='id70'><code>viewCFG()</code></h3>
 
 <p>Displays the control flow graph using the GraphViz tool.</p>
 
-<h3 id='id22794'><code>viewCFGOnly()</code></h3>
+<h3 id='id71'><code>viewCFGOnly()</code></h3>
 
 <p>Displays the control flow graph using the GraphViz tool, but omitting function bodies.</p>
 
-<h3 id='id22795'><code>verify()</code></h3>
+<h3 id='id72'><code>verify()</code></h3>
 
 <p>Verifies the function. See <a href='http://llvm.org/docs/Passes.html#verify'>LLVM docs</a>.</p>
   </div>

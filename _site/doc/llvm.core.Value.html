@@ -177,36 +177,44 @@
 <div class="row">
   <div class="span12">
     <h1 id='llvmcorevalue'>llvm.core.Value</h1>
-<div class='maruku_toc'><ul style='list-style: none;'><li><a href='#properties'>Properties</a><ul style='list-style: none;'><li><a href='#id22871'><code>name</code></a></li><li><a href='#_readonly'><code>type</code> [read-only]</a></li><li><a href='#_readonly'><code>uses</code> [read-only]</a></li><li><a href='#_readonly'><code>use_count</code> [read-only]</a></li><li><a href='#_readonly'><code>value_id</code> [read-only]</a></li></ul></li><li><a href='#special_methods'>Special Methods</a><ul style='list-style: none;'><li><a href='#id22872'><code>__str__</code></a></li><li><a href='#id22873'><code>__eq__</code></a></li></ul></li></ul></div>
+<div class='maruku_toc'><ul style='list-style: none;'><li><a href='#properties'>Properties</a><ul style='list-style: none;'><li><a href='#id158'><code>name</code></a></li><li><a href='#id159'><code>type</code></a></li><li><a href='#id160'><code>uses</code></a></li><li><a href='#id161'><code>use_count</code></a></li><li><a href='#id162'><code>value_id</code></a></li></ul></li><li><a href='#special_methods'>Special Methods</a><ul style='list-style: none;'><li><a href='#id163'><code>__str__</code></a></li><li><a href='#id164'><code>__eq__</code></a></li></ul></li></ul></div>
 <h2 id='properties'>Properties</h2>
 
-<h3 id='id22871'><code>name</code></h3>
+<h3 id='id158'><code>name</code></h3>
 
 <p>The name of the value.</p>
 
-<h3 id='_readonly'><code>type</code> [read-only]</h3>
+<h3 id='id159'><code>type</code></h3>
+
+<p>[read-only]</p>
 
 <p>An <code>llvm.core.Type</code> object representing the type of the value.</p>
 
-<h3 id='_readonly'><code>uses</code> [read-only]</h3>
+<h3 id='id160'><code>uses</code></h3>
+
+<p>[read-only]</p>
 
 <p>The list of values (<code>llvm.core.Value</code>) that use this value.</p>
 
-<h3 id='_readonly'><code>use_count</code> [read-only]</h3>
+<h3 id='id161'><code>use_count</code></h3>
+
+<p>[read-only]</p>
 
 <p>The number of values that use (refer) this value. Same as <code>len(val.uses)</code> but faster if you just want the count.</p>
 
-<h3 id='_readonly'><code>value_id</code> [read-only]</h3>
+<h3 id='id162'><code>value_id</code></h3>
+
+<p>[read-only]</p>
 
 <p>Returns <code>llvmValuegetValueID()</code>. Refer LLVM documentation for more info.</p>
 
 <h2 id='special_methods'>Special Methods</h2>
 
-<h3 id='id22872'><code>__str__</code></h3>
+<h3 id='id163'><code>__str__</code></h3>
 
 <p><code>Value</code> objects can be stringified into it&#8217;s LLVM assembly language representation.</p>
 
-<h3 id='id22873'><code>__eq__</code></h3>
+<h3 id='id164'><code>__eq__</code></h3>
 
 <p><code>Value</code> objects can be compared for equality. Internally, this converts both arguments into their LLVM assembly representations and compares the resultant strings.</p>
   </div>

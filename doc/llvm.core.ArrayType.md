@@ -13,12 +13,14 @@ title: ArrayType (llvm.core)
 ## Properties
 
 
-### `element` \[read-only\]
+### `element` 
+\[read-only\]
 
 A `Type` object representing the type of the element of the array.
 
 
-### `count` \[read-only\]
+### `count` 
+\[read-only\]
 
 The number of elements in the array.
 
