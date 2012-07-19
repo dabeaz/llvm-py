@@ -37,11 +37,11 @@ Here is a quick overview of the contents of each package:
 - [Type](types.html) -- represents an LLVM Type
 - [Value](values.html) -- represents an LLVM Value, including:
   globals, constants, variables, arguments, functions, instructions, etc..
-- BasicBlock -- another derived of Value, represents an LLVM basic block
-- Builder -- used for creating instructions, wraps LLVM IRBuilder helper
+- [BasicBlock](llvm.core.BasicBlock.html) -- another derived of Value,
+  represents an LLVM basic block
+- [Builder](llvm.core.Builder.html) -- used for creating instructions,
+  wraps LLVM IRBuilder helper
   class
-- ModuleProvider -- required to use modules in execution engine and pass
-  manager
 - constants *TYPE_\** that represents various types
 - constants *CC_\** that represent calling conventions
 - constants *ICMP_\** and *FCMP_\** that represent integer and real

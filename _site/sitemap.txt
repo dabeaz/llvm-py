@@ -21,8 +21,10 @@ http://numba.github.com/llvm-py/doc/llvm.core.StructType.html
 http://numba.github.com/llvm-py/doc/llvm.core.GlobalVariable.html
 http://numba.github.com/llvm-py/doc/userguide.html
 http://numba.github.com/llvm-py/doc/types.html
+http://numba.github.com/llvm-py/doc/llvm.core.Builder.html
 http://numba.github.com/llvm-py/doc/llvm_concepts.html
 http://numba.github.com/llvm-py/doc/llvm.core.User.html
 http://numba.github.com/llvm-py/doc/llvm.core.Module.html
+http://numba.github.com/llvm-py/doc/llvm.core.BasicBlock.html
 http://numba.github.com/llvm-py/sitemap.txt
 http://numba.github.com/llvm-py/pages.html

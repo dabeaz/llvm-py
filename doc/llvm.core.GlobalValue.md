@@ -5,7 +5,7 @@ title: GlobalValue (llvm.core)
 
 The class `llvm.core.GlobalValue` represents module-scope aliases, variables
 and functions. Global variables are represented by the sub-class
-`llvm.core.GlobalVariable` and functions by `llvm.core.Function`.
+[llvm.core.GlobalVariable][] and functions by [llvm.core.Function][].
 
 Global values have the read-write properties `linkage`, `section`,
 `visibility` and `alignment`. Use one of the following constants (from
@@ -92,4 +92,6 @@ A power-of-2 integer indicating the boundary to align to.
 
     The module object to which this global belongs to.
 
+[llvm.core.GlobalVariable]: llvm.core.GlobalVariable.html
+[llvm.core.Function]: llvm.core.Function.html
 

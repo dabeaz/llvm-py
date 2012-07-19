@@ -144,6 +144,14 @@
   
     
       
+    
+  
+    
+      
+    
+  
+    
+      
       	
       	<li><a href="/pages.html">Pages</a></li>
       	
@@ -169,62 +177,62 @@
 <div class="row">
   <div class="span12">
     <h1 id='llvmcoretype'>llvm.core.Type</h1>
-<div class='maruku_toc'><ul style='list-style: none;'><li><a href='#static_constructors'>Static Constructors</a><ul style='list-style: none;'><li><a href='#id51'><code>int(n)</code></a></li><li><a href='#id52'><code>float()</code></a></li><li><a href='#id53'><code>double()</code></a></li><li><a href='#id54'><code>x86_fp80()</code></a></li><li><a href='#id55'><code>fp128()</code></a></li><li><a href='#id56'><code>ppc_fp128()</code></a></li><li><a href='#id57'><code>function(ret, params, vararg=False)</code></a></li><li><a href='#id58'><code>struct(eltys)</code></a></li><li><a href='#id59'><code>packed_struct(eltys)</code></a></li><li><a href='#id60'><code>array(elty, count)</code></a></li><li><a href='#id61'><code>pointer(pty, addrspc=0)</code></a></li><li><a href='#id62'><code>void()</code></a></li><li><a href='#id63'><code>label()</code></a></li><li><a href='#id64'><code>opaque()</code></a></li></ul></li><li><a href='#properties'>Properties</a><ul style='list-style: none;'><li><a href='#_readonly'><code>kind</code> [read-only]</a><ul style='list-style: none;'><li><a href='#example'>Example:</a></li></ul></li></ul></li><li><a href='#methods'>Methods</a><ul style='list-style: none;'><li><a href='#id65'><code>refine</code></a></li></ul></li><li><a href='#special_methods'>Special Methods</a><ul style='list-style: none;'><li><a href='#id66'><code>__str__</code></a></li><li><a href='#id67'><code>__eq__</code></a></li></ul></li></ul></div>
+<div class='maruku_toc'><ul style='list-style: none;'><li><a href='#static_constructors'>Static Constructors</a><ul style='list-style: none;'><li><a href='#id22796'><code>int(n)</code></a></li><li><a href='#id22797'><code>float()</code></a></li><li><a href='#id22798'><code>double()</code></a></li><li><a href='#id22799'><code>x86_fp80()</code></a></li><li><a href='#id22800'><code>fp128()</code></a></li><li><a href='#id22801'><code>ppc_fp128()</code></a></li><li><a href='#id22802'><code>function(ret, params, vararg=False)</code></a></li><li><a href='#id22803'><code>struct(eltys)</code></a></li><li><a href='#id22804'><code>packed_struct(eltys)</code></a></li><li><a href='#id22805'><code>array(elty, count)</code></a></li><li><a href='#id22806'><code>pointer(pty, addrspc=0)</code></a></li><li><a href='#id22807'><code>void()</code></a></li><li><a href='#id22808'><code>label()</code></a></li><li><a href='#id22809'><code>opaque()</code></a></li></ul></li><li><a href='#properties'>Properties</a><ul style='list-style: none;'><li><a href='#_readonly'><code>kind</code> [read-only]</a><ul style='list-style: none;'><li><a href='#example'>Example:</a></li></ul></li></ul></li><li><a href='#methods'>Methods</a><ul style='list-style: none;'><li><a href='#id22810'><code>refine</code></a></li></ul></li><li><a href='#special_methods'>Special Methods</a><ul style='list-style: none;'><li><a href='#id22811'><code>__str__</code></a></li><li><a href='#id22812'><code>__eq__</code></a></li></ul></li></ul></div>
 <h2 id='static_constructors'>Static Constructors</h2>
 
-<h3 id='id51'><code>int(n)</code></h3>
+<h3 id='id22796'><code>int(n)</code></h3>
 
 <p>Create an integer type of bit width <code>n</code>.</p>
 
-<h3 id='id52'><code>float()</code></h3>
+<h3 id='id22797'><code>float()</code></h3>
 
 <p>Create a 32-bit floating point type.</p>
 
-<h3 id='id53'><code>double()</code></h3>
+<h3 id='id22798'><code>double()</code></h3>
 
 <p>Create a 64-bit floating point type.</p>
 
-<h3 id='id54'><code>x86_fp80()</code></h3>
+<h3 id='id22799'><code>x86_fp80()</code></h3>
 
 <p>Create a 80-bit 80x87-style floating point type.</p>
 
-<h3 id='id55'><code>fp128()</code></h3>
+<h3 id='id22800'><code>fp128()</code></h3>
 
 <p>Create a 128-bit floating point type (112-bit mantissa).</p>
 
-<h3 id='id56'><code>ppc_fp128()</code></h3>
+<h3 id='id22801'><code>ppc_fp128()</code></h3>
 
 <p>Create a 128-bit float (two 64-bits).</p>
 
-<h3 id='id57'><code>function(ret, params, vararg=False)</code></h3>
+<h3 id='id22802'><code>function(ret, params, vararg=False)</code></h3>
 
 <p>Create a function type, having the return type <code>ret</code> (must be a <code>Type</code>), accepting the parameters <code>params</code>, where <code>params</code> is an iterable, that yields <code>Type</code> objects representing the type of each function argument in order. If <code>vararg</code> is <code>True</code>, function is variadic.</p>
 
-<h3 id='id58'><code>struct(eltys)</code></h3>
+<h3 id='id22803'><code>struct(eltys)</code></h3>
 
 <p>Create an unpacked structure. <code>eltys</code> is an iterable, that yields <code>Type</code> objects representing the type of each element in order.</p>
 
-<h3 id='id59'><code>packed_struct(eltys)</code></h3>
+<h3 id='id22804'><code>packed_struct(eltys)</code></h3>
 
 <p>Like <code>struct(eltys)</code>, but creates a packed struct.</p>
 
-<h3 id='id60'><code>array(elty, count)</code></h3>
+<h3 id='id22805'><code>array(elty, count)</code></h3>
 
 <p>Creates an array type, holding <code>count</code> elements, each of type <code>elty</code> (which should be a <code>Type</code>).</p>
 
-<h3 id='id61'><code>pointer(pty, addrspc=0)</code></h3>
+<h3 id='id22806'><code>pointer(pty, addrspc=0)</code></h3>
 
 <p>Create a pointer to type <code>pty</code> (which should be a <code>Type</code>). <code>addrspc</code> is an integer that represents the address space of the pointer (see LLVM docs or ask on llvm-dev for more info).</p>
 
-<h3 id='id62'><code>void()</code></h3>
+<h3 id='id22807'><code>void()</code></h3>
 
 <p>Creates a void type. Used for function return types.</p>
 
-<h3 id='id63'><code>label()</code></h3>
+<h3 id='id22808'><code>label()</code></h3>
 
 <p>Creates a label type.</p>
 
-<h3 id='id64'><code>opaque()</code></h3>
+<h3 id='id22809'><code>opaque()</code></h3>
 
 <p>Opaque type, used for creating self-referencing types.</p>
 
@@ -259,17 +267,17 @@
 </div>
 <h2 id='methods'>Methods</h2>
 
-<h3 id='id65'><code>refine</code></h3>
+<h3 id='id22810'><code>refine</code></h3>
 
-<p>Used for constructing self-referencing types. See the documentation of <code>TypeHandle</code> objects.</p>
+<p>Used for constructing self-referencing types. See the documentation of <a href='llvm.core.TypeHandle.html'>TypeHandle</a> objects.</p>
 
 <h2 id='special_methods'>Special Methods</h2>
 
-<h3 id='id66'><code>__str__</code></h3>
+<h3 id='id22811'><code>__str__</code></h3>
 
 <p><code>Type</code> objects can be stringified into it&#8217;s LLVM assembly language representation.</p>
 
-<h3 id='id67'><code>__eq__</code></h3>
+<h3 id='id22812'><code>__eq__</code></h3>
 
 <p><code>Type</code> objects can be compared for equality. Internally, this converts both arguments into their LLVM assembly representations and compares the resultant strings.</p>
   </div>

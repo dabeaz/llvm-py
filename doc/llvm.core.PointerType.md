@@ -20,5 +20,5 @@ The address space of the pointer.
 
 ### `pointee` \[read-only\]
 
-A `Type` object representing the type of the value pointed to.
+A [Type](llvm.core.Type.html) object representing the type of the value pointed to.
 

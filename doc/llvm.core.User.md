@@ -13,17 +13,20 @@ chains of the SSA.
 
 # llvm.core.User # {#user}
 ## Base Class
-- `llvm.core.Value`
+- [llvm.core.Value][]
 
 ## Properties
 
 ### `operands` \[read-only\]
 
-The list of operands (values, of type `llvm.core.Value`) that this
+The list of operands (values, of type [llvm.core.Value][]) that this
 value refers to.
 
 ### `operand_count` \[read-only\]
 
 The number of operands that this value referes to. Same as
 `len(uses.operands)` but faster if you just want the count.
+
+
+[llvm.core.Value]: llvm.core.Value.html
 

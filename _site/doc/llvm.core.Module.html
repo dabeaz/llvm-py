@@ -144,6 +144,14 @@
   
     
       
+    
+  
+    
+      
+    
+  
+    
+      
       	
       	<li><a href="/pages.html">Pages</a></li>
       	
@@ -207,28 +215,28 @@
 <p>Modules can be converted into their assembly representation by stringifying them (see below).</p>
 <hr />
 <h1 id='llvmcoremodule'>llvm.core.Module</h1>
-<div class='maruku_toc'><ul style='list-style: none;'><li><a href='#static_constructors'>Static Constructors</a><ul style='list-style: none;'><li><a href='#id133'><code>new(module_id)</code></a></li><li><a href='#id134'><code>from_bitcode(fileobj)</code></a></li><li><a href='#id135'><code>from_assembly(fileobj)</code></a></li></ul></li><li><a href='#properties'>Properties</a><ul style='list-style: none;'><li><a href='#id136'><code>data_layout</code></a></li><li><a href='#id137'><code>target</code></a></li><li><a href='#_readonly'><code>pointer_size</code> [read-only]</a></li><li><a href='#_readonly'><code>global_variables</code> [read-only]</a></li><li><a href='#_readonly'><code>functions</code> [read-only]</a></li></ul></li><li><a href='#methods'>Methods</a><ul style='list-style: none;'><li><a href='#id138'><code>get_type_named(name)</code></a></li><li><a href='#id139'><code>add_type_name(name, ty)</code></a></li><li><a href='#id140'><code>delete_type_name(name)</code></a></li><li><a href='#id141'><code>add_global_variable(ty, name)</code></a></li><li><a href='#id142'><code>get_global_variable_named(name)</code></a></li><li><a href='#id143'><code>add_function(ty, name)</code></a></li><li><a href='#id144'><code>get_function_named(name)</code></a></li><li><a href='#id145'><code>get_or_insert_function(ty, name)</code></a></li><li><a href='#id146'><code>verify()</code></a></li><li><a href='#id147'><code>to_bitcode(fileobj)</code></a></li><li><a href='#id148'><code>link_in(other)</code></a></li></ul></li><li><a href='#special_methods'>Special Methods</a><ul style='list-style: none;'><li><a href='#id149'><code>__str__</code></a></li><li><a href='#id150'><code>__eq__</code></a></li></ul></li></ul></div>
+<div class='maruku_toc'><ul style='list-style: none;'><li><a href='#static_constructors'>Static Constructors</a><ul style='list-style: none;'><li><a href='#id22943'><code>new(module_id)</code></a></li><li><a href='#id22944'><code>from_bitcode(fileobj)</code></a></li><li><a href='#id22945'><code>from_assembly(fileobj)</code></a></li></ul></li><li><a href='#properties'>Properties</a><ul style='list-style: none;'><li><a href='#id22946'><code>data_layout</code></a></li><li><a href='#id22947'><code>target</code></a></li><li><a href='#_readonly'><code>pointer_size</code> [read-only]</a></li><li><a href='#_readonly'><code>global_variables</code> [read-only]</a></li><li><a href='#_readonly'><code>functions</code> [read-only]</a></li></ul></li><li><a href='#methods'>Methods</a><ul style='list-style: none;'><li><a href='#id22948'><code>get_type_named(name)</code></a></li><li><a href='#id22949'><code>add_type_name(name, ty)</code></a></li><li><a href='#id22950'><code>delete_type_name(name)</code></a></li><li><a href='#id22951'><code>add_global_variable(ty, name)</code></a></li><li><a href='#id22952'><code>get_global_variable_named(name)</code></a></li><li><a href='#id22953'><code>add_function(ty, name)</code></a></li><li><a href='#id22954'><code>get_function_named(name)</code></a></li><li><a href='#id22955'><code>get_or_insert_function(ty, name)</code></a></li><li><a href='#id22956'><code>verify()</code></a></li><li><a href='#id22957'><code>to_bitcode(fileobj)</code></a></li><li><a href='#id22958'><code>link_in(other)</code></a></li></ul></li><li><a href='#special_methods'>Special Methods</a><ul style='list-style: none;'><li><a href='#id22959'><code>__str__</code></a></li><li><a href='#id22960'><code>__eq__</code></a></li></ul></li></ul></div>
 <h2 id='static_constructors'>Static Constructors</h2>
 
-<h3 id='id133'><code>new(module_id)</code></h3>
+<h3 id='id22943'><code>new(module_id)</code></h3>
 
 <p>Create a new <code>Module</code> instance with given <code>module_id</code>. The <code>module_id</code> should be a string.</p>
 
-<h3 id='id134'><code>from_bitcode(fileobj)</code></h3>
+<h3 id='id22944'><code>from_bitcode(fileobj)</code></h3>
 
 <p>Create a new <code>Module</code> instance by deserializing the bitcode file represented by the file-like object <code>fileobj</code>.</p>
 
-<h3 id='id135'><code>from_assembly(fileobj)</code></h3>
+<h3 id='id22945'><code>from_assembly(fileobj)</code></h3>
 
 <p>Create a new <code>Module</code> instance by parsing the LLVM assembly file represented by the file-like object <code>fileobj</code>.</p>
 
 <h2 id='properties'>Properties</h2>
 
-<h3 id='id136'><code>data_layout</code></h3>
+<h3 id='id22946'><code>data_layout</code></h3>
 
 <p>A string representing the ABI of the platform.</p>
 
-<h3 id='id137'><code>target</code></h3>
+<h3 id='id22947'><code>target</code></h3>
 
 <p>A string like <code>i386-pc-linux-gnu</code> or <code>i386-pc-solaris2.8</code>.</p>
 
@@ -238,65 +246,65 @@
 
 <h3 id='_readonly'><code>global_variables</code> [read-only]</h3>
 
-<p>An iterable that yields <code>GlobalVariable</code> objects, that represent the global variables of the module.</p>
+<p>An iterable that yields <a href='llvm.core.GlobalVariable.html'>GlobalVariable</a> objects, that represent the global variables of the module.</p>
 
 <h3 id='_readonly'><code>functions</code> [read-only]</h3>
 
-<p>An iterable that yields <code>Function</code> objects, that represent functions in the module.</p>
+<p>An iterable that yields <a href='llvm.core.Function.html'>Function</a> objects, that represent functions in the module.</p>
 
 <h2 id='methods'>Methods</h2>
 
-<h3 id='id138'><code>get_type_named(name)</code></h3>
+<h3 id='id22948'><code>get_type_named(name)</code></h3>
 
-<p>Return a <code>Type</code> object for the given alias name (typedef).</p>
+<p>Return a <a href='llvm.core.Type.html'>Type</a> object for the given alias name (typedef).</p>
 
-<h3 id='id139'><code>add_type_name(name, ty)</code></h3>
+<h3 id='id22949'><code>add_type_name(name, ty)</code></h3>
 
 <p>Add an alias (typedef) for the type <code>ty</code> with the name <code>name</code>.</p>
 
-<h3 id='id140'><code>delete_type_name(name)</code></h3>
+<h3 id='id22950'><code>delete_type_name(name)</code></h3>
 
 <p>Delete an alias with the name <code>name</code>.</p>
 
-<h3 id='id141'><code>add_global_variable(ty, name)</code></h3>
+<h3 id='id22951'><code>add_global_variable(ty, name)</code></h3>
 
-<p>Add a global variable of the type <code>ty</code> with the name <code>name</code>. Returns a <code>GlobalVariable</code> object.</p>
+<p>Add a global variable of the type <code>ty</code> with the name <code>name</code>. Returns a <a href='llvm.core.GlobalVariable.html'>GlobalVariable</a> object.</p>
 
-<h3 id='id142'><code>get_global_variable_named(name)</code></h3>
+<h3 id='id22952'><code>get_global_variable_named(name)</code></h3>
 
-<p>Get a <code>GlobalVariable</code> object corresponding to the global variable with the name <code>name</code>. Raises <code>LLVMException</code> if such a variable does not exist.</p>
+<p>Get a <a href='llvm.core.GlobalVariable.html'>GlobalVariable</a> object corresponding to the global variable with the name <code>name</code>. Raises <code>LLVMException</code> if such a variable does not exist.</p>
 
-<h3 id='id143'><code>add_function(ty, name)</code></h3>
+<h3 id='id22953'><code>add_function(ty, name)</code></h3>
 
-<p>Add a function named <code>name</code> with the function type <code>ty</code>. <code>ty</code> must of an object of type <code>FunctionType</code>.</p>
+<p>Add a function named <code>name</code> with the function type <code>ty</code>. <code>ty</code> must of an object of type <a href='llvm.core.FunctionType.html'>FunctionType</a>.</p>
 
-<h3 id='id144'><code>get_function_named(name)</code></h3>
+<h3 id='id22954'><code>get_function_named(name)</code></h3>
 
-<p>Get a <code>Function</code> object corresponding to the function with the name <code>name</code>. Raises <code>LLVMException</code> if such a function does not exist.</p>
+<p>Get a <a href='llvm.core.Function.html'>Function</a> object corresponding to the function with the name <code>name</code>. Raises <code>LLVMException</code> if such a function does not exist.</p>
 
-<h3 id='id145'><code>get_or_insert_function(ty, name)</code></h3>
+<h3 id='id22955'><code>get_or_insert_function(ty, name)</code></h3>
 
 <p>Like <code>get_function_named</code>, but adds the function first, if not present (like <code>add_function</code>).</p>
 
-<h3 id='id146'><code>verify()</code></h3>
+<h3 id='id22956'><code>verify()</code></h3>
 
 <p>Verify the correctness of the module. Raises <code>LLVMException</code> on errors.</p>
 
-<h3 id='id147'><code>to_bitcode(fileobj)</code></h3>
+<h3 id='id22957'><code>to_bitcode(fileobj)</code></h3>
 
 <p>Write the bitcode representation of the module to the file-like object <code>fileobj</code>.</p>
 
-<h3 id='id148'><code>link_in(other)</code></h3>
+<h3 id='id22958'><code>link_in(other)</code></h3>
 
 <p>Link in another module <code>other</code> into this module. Global variables, functions etc. are matched and resolved. The <code>other</code> module is no longer valid and should not be used after this operation. This API might be replaced with a full-fledged Linker class in the future.</p>
 
 <h2 id='special_methods'>Special Methods</h2>
 
-<h3 id='id149'><code>__str__</code></h3>
+<h3 id='id22959'><code>__str__</code></h3>
 
 <p><code>Module</code> objects can be stringified into it&#8217;s LLVM assembly language representation.</p>
 
-<h3 id='id150'><code>__eq__</code></h3>
+<h3 id='id22960'><code>__eq__</code></h3>
 
 <p><code>Module</code> objects can be compared for equality. Internally, this converts both arguments into their LLVM assembly representations and compares the resultant strings.</p>
 

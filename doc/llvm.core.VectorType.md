@@ -14,7 +14,8 @@ title: VectorType (llvm.core)
 
 ### `element` \[read-only\]
 
-A `Type` object representing the type of the element of the vector.
+A [Type](llvm.core.Type.html) object representing the type of the element of
+the vector.
 
 
 ### `count` \[read-only\]

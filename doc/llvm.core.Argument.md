@@ -23,7 +23,8 @@ Value| Equivalent LLVM Assembly Keyword |
 `ATTR_NO_CAPTURE`| `nocapture` |
 `ATTR_NEST`| `nest` |
 
-These method work exactly like the [corresponding methods](#fnattr)
+These method work exactly like the
+[corresponding methods](functions.html#fnattr)
 of the `Function` class above. Refer
 [LLVM docs](http://www.llvm.org/docs/LangRef.html#paramattrs)
 for information on what each attribute means.

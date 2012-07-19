@@ -18,10 +18,10 @@ Instructions are not created directly, but via a builder. The builder
 both creates instructions and adds them to a basic block at the same
 time. One way of getting instruction objects are from basic blocks.
 
-Being derived from [llvm.core.User](llvm.core.User.html), the instruction
+Being derived from [llvm.core.User][], the instruction
 is-a user, i.e., an instruction in turn uses other values. The values
 an instruction uses are its operands. These may be accessed using
-`operands` property from the `llvm.core.User` base.
+`operands` property from the [llvm.core.User][] base.
 
 The name of the instruction (like `add`, `mul` etc) can be got
 via the `opcode_name` property. The `basic_block` property gives
@@ -113,7 +113,7 @@ Add an attribute `attr` to the `idx`-th argument. See
 ### `remove_parameter_attribute(idx, attr)`
 
 Remove an attribute `attr` from the `idx`-th argument. See
-[above](llvm.core.Argument.html) for possible values of `attr`.
+[here](llvm.core.Argument.html) for possible values of `attr`.
 
 ### `set_parameter_alignment(idx, align)`
 
@@ -129,8 +129,8 @@ The `llvm.core.PHINode` is a subclass of
 created (using `Builder.phi`) the phi node contains no incoming
 blocks (nor their corresponding values). To add an incoming arc to
 the phi node, use the `add_incoming` method, which takes a source
-block (`llvm.core.BasicBlock` object) and a value (object of
-`llvm.core.Value` or of a class derived from it) that the phi node
+block ([llvm.core.BasicBlock][] object) and a value (object of
+[llvm.core.Value][] or of a class derived from it) that the phi node
 will take on if control branches in from that block.
 
 
@@ -146,9 +146,9 @@ will take on if control branches in from that block.
 
 ### `add_incoming(value, block)`
 
-Add an incoming arc, from the `llvm.core.BasicBlock` object
+Add an incoming arc, from the [llvm.core.BasicBlock][] object
 `block`, with the corresponding value `value`. `value` should
-be an object of `llvm.core.Value` (or of a descendent class).
+be an object of [llvm.core.Value][] (or of a descendent class).
 
 ### `get_incoming_value(idx)`
 
@@ -159,7 +159,7 @@ Returns the `idx`-th incoming arc's value.
 Returns the `idx`-th incoming arc's block.
 
 
-# llvm.core.SwitchInstruction
+# llvm.core.SwitchInstruction # {#switchinstr}
 
 (TODO describe)
 
@@ -172,7 +172,8 @@ Returns the `idx`-th incoming arc's block.
 ### `add_case(const, block)`
 Add another case to the switch statement. When the expression
 being evaluated equals `const`, then control branches to
-`block`. Here `const` must be of type `llvm.core.ConstantInt`.
+`block`. Here `const` must be of type
+[llvm.core.ConstantInt][llvm.core.Constant].
 
 * * *
 
@@ -190,4 +191,11 @@ being evaluated equals `const`, then control branches to
 
 The predicate of the compare instruction, one of the `ICMP_*` or
 `FCMP_*` constants.
+
+
+[llvm.core.User]: llvm.core.User.html
+[llvm.core.BasicBlock]: llvm.core.BasicBlock.html
+[llvm.core.Value]: llvm.core.Value.html
+[llvm.core.Constant]: llvm.core.Constant.html
+
 

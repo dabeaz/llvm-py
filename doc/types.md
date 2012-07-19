@@ -3,13 +3,13 @@ layout: page
 title: Types
 ---
 
-Types are what you think they are. A instance of `llvm.core.Type`, or
+Types are what you think they are. A instance of [llvm.core.Type][], or
 one of its derived classes, represent a type. llvm-py does not use as
 many classes to represent types as does LLVM itself. Some types are
-represented using `llvm.core.Type` itself and the rest are represented
-using derived classes of `llvm.core.Type`. As usual, an instance is created
-via one of the static methods of `Type`. These methods return an
-instance of either `llvm.core.Type` itself or one of its derived
+represented using [llvm.core.Type][] itself and the rest are represented
+using derived classes of [llvm.core.Type][]. As usual, an instance is created
+via one of the static methods of [Type][llvm.core.Type]. These methods return an
+instance of either [llvm.core.Type][] itself or one of its derived
 classes.
 
 The following table lists all the available types along with the static

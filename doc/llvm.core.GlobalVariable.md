@@ -4,10 +4,10 @@ title: GlobalVariable (llvm.core)
 ---
 
 Global variables (`llvm.core.GlobalVariable`) are subclasses of
-`llvm.core.GlobalValue` and represent module-level variables. These can
+[llvm.core.GlobalValue][] and represent module-level variables. These can
 have optional initializers and can be marked as constants. Global
 variables can be created either by using the `add_global_variable`
-method of the `Module` class (see above), or by using the static method
+method of the [Module][llvm.core.Module] class, or by using the static method
 `GlobalVariable.new`.
 
 {% highlight python %}
@@ -75,7 +75,7 @@ such a variable does not exist.
 
 ### `initializer`
 
-The intializer of the variable. Set to `llvm.core.Constant` (or
+The intializer of the variable. Set to [llvm.core.Constant][] (or
 derived). Gets the initializer constant, or `None` if none exists.
 `global_constant`
 `True` if the variable is a global constant, `False` otherwise.
@@ -83,6 +83,12 @@ derived). Gets the initializer constant, or `None` if none exists.
 ## Methods
 
 ### `delete()`
-Deletes the global variable from it's module. _Do not hold any
-references to this object after calling `delete` on it._
+Deletes the global variable from it's module.
+**Do not hold any references to this object after calling `delete` on it.**
+
+
+[llvm.core.Module]: llvm.core.Module.html
+[llvm.core.Constant]: llvm.core.Constant.html
+[llvm.core.GlobalValue]: llvm.core.GlobalValue.html
+
 

@@ -144,6 +144,14 @@
   
     
       
+    
+  
+    
+      
+    
+  
+    
+      
       	
       	<li><a href="/pages.html">Pages</a></li>
       	
@@ -180,7 +188,7 @@
 
 <h3 id='_readonly'><code>return_type</code> [read-only]</h3>
 
-<p>A <code>Type</code> object, representing the return type of the function.</p>
+<p>A <a href='llvm.core.Type.html'>Type</a> object, representing the return type of the function.</p>
 
 <h3 id='_readonly'><code>vararg</code> [read-only]</h3>
 
@@ -188,7 +196,7 @@
 
 <h3 id='_readonly'><code>args</code> [read-only]</h3>
 
-<p>Returns an iterable object that yields <code>Type</code> objects that represent, in order, the types of the arguments accepted by the function. Used like this:</p>
+<p>Returns an iterable object that yields <a href='llvm.core.Type.html'>Type</a> objects that represent, in order, the types of the arguments accepted by the function. Used like this:</p>
 <div class='highlight'><pre><code class='python'><span class='n'>func_type</span> <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>function</span><span class='p'>(</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(),</span> <span class='p'>[</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(),</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>()</span> <span class='p'>]</span> <span class='p'>)</span>
 <span class='k'>for</span> <span class='n'>arg</span> <span class='ow'>in</span> <span class='n'>func_type</span><span class='o'>.</span><span class='n'>args</span><span class='p'>:</span>
     <span class='k'>assert</span> <span class='n'>arg</span><span class='o'>.</span><span class='n'>kind</span> <span class='o'>==</span> <span class='n'>TYPE_INTEGER</span>

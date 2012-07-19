@@ -34,13 +34,14 @@ is added first, as though with `new`.
 ### `intrinsic(module_obj, intrinsic_id, types)`
 
 Create and return a `Function` object that refers to an intrinsic
-function, as described [above](#intrinsic).
+function, as described [here](functions.html#intrinsic).
 
 ## Properties
 
 ###  `calling_convention`
 
-The calling convention for the function, as listed [above](#callconv).
+The calling convention for the function,
+as listed [here](functions.html#callconv).
 
 ### `collector`
 
@@ -55,7 +56,7 @@ and `f.remove_attribute(ATTR_NO_UNWIND)`.
 
 ### `args` \[read-only\]
 
-List of `llvm.core.Argument` objects representing the formal
+List of [llvm.core.Argument][] objects representing the formal
 arguments of the function.
 
 ### `basic_block_count` \[read-only\]
@@ -65,13 +66,13 @@ Number of basic blocks belonging to this function. Same as
 
 ### `entry_basic_block` \[read-only\]
 
-The `llvm.core.BasicBlock` object representing the entry
+The [llvm.core.BasicBlock][] object representing the entry
 basic block for this function, or `None` if there are no
 basic blocks.
 
 ### `basic_blocks` \[read-only\]
 
-List of `llvm.core.BasicBlock` objects representing the
+List of [llvm.core.BasicBlock][] objects representing the
 basic blocks belonging to this function.
 
 ### `intrinsic_id` \[read-only\]
@@ -89,7 +90,7 @@ references to this object after calling `delete` on it.
 ### `append_basic_block(name)`
 
 Add a new basic block named `name`, and return a corresponding
-`llvm.core.BasicBlock` object. Note that if this is not the
+[llvm.core.BasicBlock][] object. Note that if this is not the
 entry basic block, you'll have to add appropriate branch
 instructions from other basic blocks yourself.
 
@@ -114,4 +115,5 @@ omitting function bodies.
 
 Verifies the function. See [LLVM docs](http://llvm.org/docs/Passes.html#verify).
 
-
+[llvm.core.Argument]: llvm.core.Argument.html
+[llvm.core.BasicBlock]: llvm.core.BasicBlock.html

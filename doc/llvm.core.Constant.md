@@ -167,12 +167,14 @@ Bitwise exclusive-or of `k` and `k2`.
 
 ### `k.icmp(icmp, k2)`
 
-Compare `k` with `k2` using the predicate `icmp`. See [here](values.html#icmp) for
+Compare `k` with `k2` using the predicate `icmp`.
+See [here](comparision.html#icmp) for
 list of predicates for integer operands.
 
 ### `k.fcmp(fcmp, k2)`
 
-Compare `k` with `k2` using the predicate `fcmp`. See [here](values.html#fcmp) for list
+Compare `k` with `k2` using the predicate `fcmp`.
+See [here](comparision.html#fcmp) for list
 of predicates for real operands.
 
 ### `k.shl(k2)`
@@ -262,7 +264,7 @@ Shuffle vector constant `k` based on vector constants `k2` and `mask`.
 
 * * *
 
-# Other Constant Classes (llvm.core)
+# Other Constant Classes
 
 The following subclasses of `Constant` do not provide additional
 methods, **they serve only to provide richer type information.**

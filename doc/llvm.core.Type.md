@@ -125,7 +125,7 @@ assert Type.void().kind == TYPE_VOID
 ### `refine`
 
 Used for constructing self-referencing types. See the documentation
-of `TypeHandle` objects.
+of [TypeHandle](llvm.core.TypeHandle.html) objects.
 
 ## Special Methods
 

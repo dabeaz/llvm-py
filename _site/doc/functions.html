@@ -144,6 +144,14 @@
   
     
       
+    
+  
+    
+      
+    
+  
+    
+      
       	
       	<li><a href="/pages.html">Pages</a></li>
       	
@@ -168,7 +176,7 @@
 
 <div class="row">
   <div class="span12">
-    <p>Functions are represented by <code>llvm.core.Function</code> objects. They are contained within modules, and can be created either with the method <code>module_obj.add_function</code> or the static constructor <code>Function.new</code>. References to functions already present in a module can be retrieved via <code>module.get_function_named</code> or by the static constructor method <code>Function.get</code>. All functions in a module can be enumerated by iterating over <code>module_obj.functions</code>.</p>
+    <p>Functions are represented by <a href='llvm.core.Function.html'>llvm.core.Function</a> objects. They are contained within modules, and can be created either with the method <code>module_obj.add_function</code> or the static constructor <code>Function.new</code>. References to functions already present in a module can be retrieved via <code>module.get_function_named</code> or by the static constructor method <code>Function.get</code>. All functions in a module can be enumerated by iterating over <code>module_obj.functions</code>.</p>
 <div class='highlight'><pre><code class='python'><span class='c'># create a type, representing functions that take an integer and return</span>
 <span class='c'># a floating point value.</span>
 <span class='n'>ft</span> <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>function</span><span class='p'>(</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>float</span><span class='p'>(),</span> <span class='p'>[</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>()</span> <span class='p'>]</span> <span class='p'>)</span>
@@ -255,7 +263,7 @@
 
 <p>Functions can be verified with the <code>verify</code> method. Note that this may not work properly (aborts on errors).</p>
 
-<h1 id='function_attributes'>Function Attributes</h1>
+<h1 id='fnattr'>Function Attributes</h1>
 
 <p>Function attributes, as documented <a href='http://www.llvm.org/docs/LangRef.html#fnattrs'>here</a>, can be set on functions using the methods <code>add_attribute</code> and <code>remove_attribute</code>. The following values may be used to refer to the LLVM attributes:</p>
 <table><thead><tr><th>Value</th><th>Equivalent LLVM Assembly Keyword</th></tr></thead><tbody><tr><td style='text-align: left;'><code>ATTR_ALWAYS_INLINE</code></td><td style='text-align: left;'><code>alwaysinline</code></td>
@@ -288,6 +296,9 @@
 <span class='c'>#   declare i32 @sum(i32, i32) nounwind readonly</span>
 </code></pre>
 </div>
+<p><strong>Related Links</strong></p>
+
+<p><a href='llvm.core.Function.html'>llvm.core.Function</a>, <a href='llvm.core.Argument.html'>llvm.core.Argument</a></p>
   </div>
 </div>
 

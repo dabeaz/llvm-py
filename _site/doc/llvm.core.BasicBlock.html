@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>StructType (llvm.core)</title>
+    <title>BasicBlock (llvm.core)</title>
     
     <meta name="author" content="">
 
@@ -171,38 +171,40 @@
       <div class="content">
         
 <div class="page-header">
-  <h1>StructType (llvm.core) </h1>
+  <h1>BasicBlock (llvm.core) </h1>
 </div>
 
 <div class="row">
   <div class="span12">
-    <h1 id='llvmcorestructtype'>llvm.core.StructType</h1>
+    <p>A basicblock is a list of instructions. A wellformed basicblock should end with a terminator. <code>Function.verify()</code> will verify that. A terminator is either a branch instruction or return instruction. It is not possible to have instructions after a branch or return instruction.</p>
+
+<h1 id='llvmcorebasicblock'>llvm.core.BasicBlock</h1>
 
 <h2 id='base_class'>Base Class</h2>
 
 <ul>
-<li><a href='llvm.core.Type.html'>llvm.core.Type</a></li>
+<li><a href='llvm.core.Value.html'>llvm.core.Value</a></li>
 </ul>
 
-<h2 id='properties'>Properties</h2>
+<h2 id='methods'>Methods</h2>
 
-<h3 id='_readonly'><code>packed</code> [read-only]</h3>
+<h3 id='id22961'><code>delete(self)</code></h3>
 
-<p><code>True</code> if the structure is packed (no padding between elements).</p>
+<p>Delete this basicblock from the function (<code>self.function</code>).</p>
 
-<h3 id='_readonly'><code>elements</code> [read-only]</h3>
+<h3 id='id22962'><code>insert_before(self, name)</code></h3>
 
-<p>Returns an iterable object that yields <a href='llvm.core.Type.html'>Type</a> objects that represent, in order, the types of the elements of the structure. Used like this:</p>
-<div class='highlight'><pre><code class='python'><span class='n'>struct_type</span> <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>struct</span><span class='p'>(</span> <span class='p'>[</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(),</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>()</span> <span class='p'>]</span> <span class='p'>)</span>
-<span class='k'>for</span> <span class='n'>elem</span> <span class='ow'>in</span> <span class='n'>struct_type</span><span class='o'>.</span><span class='n'>elements</span><span class='p'>:</span>
-    <span class='k'>assert</span> <span class='n'>elem</span><span class='o'>.</span><span class='n'>kind</span> <span class='o'>==</span> <span class='n'>TYPE_INTEGER</span>
-    <span class='k'>assert</span> <span class='n'>elem</span> <span class='o'>==</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>()</span>
-<span class='k'>assert</span> <span class='n'>struct_type</span><span class='o'>.</span><span class='n'>element_count</span> <span class='o'>==</span> <span class='nb'>len</span><span class='p'>(</span><span class='n'>struct_type</span><span class='o'>.</span><span class='n'>elements</span><span class='p'>)</span>
-</code></pre>
-</div>
-<h3 id='_readonly'><code>element_count</code> [read-only]</h3>
+<p>TODO</p>
 
-<p>The number of elements. Same as <code>len(obj.elements)</code>, but faster.</p>
+<h2 id='proporties'>Proporties</h2>
+
+<h3 id='id22963'><code>function</code></h3>
+
+<p>The parent function of this basicblock.</p>
+
+<h3 id='id22964'><code>instructions</code></h3>
+
+<p>A list of instructions in this basicblock.</p>
   </div>
 </div>
 

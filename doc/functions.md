@@ -3,8 +3,8 @@ layout: page
 title: Functions
 ---
 
-Functions are represented by `llvm.core.Function` objects. They are
-contained within modules, and can be created either with the method
+Functions are represented by [llvm.core.Function][] objects.
+They are contained within modules, and can be created either with the method
 `module_obj.add_function` or the static constructor `Function.new`.
 References to functions already present in a module can be retrieved via
 `module.get_function_named` or by the static constructor method
@@ -145,7 +145,7 @@ should be dropped after `delete` has been called.
 Functions can be verified with the `verify` method. Note that this may
 not work properly (aborts on errors).
 
-# Function Attributes
+# Function Attributes # {#fnattr}
 Function attributes, as documented
 [here](http://www.llvm.org/docs/LangRef.html#fnattrs), can be
 set on functions using the methods `add_attribute` and
@@ -188,4 +188,11 @@ print f
 #   declare i32 @sum(i32, i32) nounwind readonly
 {% endhighlight %}
 
+**Related Links**
+
+[llvm.core.Function][],
+[llvm.core.Argument][]
+
+[llvm.core.Function]: llvm.core.Function.html
+[llvm.core.Argument]: llvm.core.Argument.html
 

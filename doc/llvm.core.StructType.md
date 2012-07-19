@@ -19,7 +19,7 @@ title: StructType (llvm.core)
 
 ### `elements` \[read-only\]
 
-Returns an iterable object that yields `Type` objects that
+Returns an iterable object that yields [Type](llvm.core.Type.html) objects that
 represent, in order, the types of the elements of the structure.
 Used like this:
 

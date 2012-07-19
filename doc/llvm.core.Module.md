@@ -102,19 +102,19 @@ zero represents `llvm::Module::AnyPointerSize`.
 
 ### `global_variables` \[read-only\]
 
-An iterable that yields `GlobalVariable` objects, that represent
-the global variables of the module.
+An iterable that yields [GlobalVariable][llvm.core.GlobalVariable] objects,
+that represent the global variables of the module.
 
 ### `functions` \[read-only\]
 
-An iterable that yields `Function` objects, that represent functions
-in the module.
+An iterable that yields [Function][llvm.core.Function] objects,
+that represent functions in the module.
 
 ## Methods
 
 ### `get_type_named(name)`
 
-Return a `Type` object for the given alias name (typedef).
+Return a [Type][llvm.core.Type] object for the given alias name (typedef).
 
 ### `add_type_name(name, ty)`
 
@@ -128,23 +128,23 @@ Delete an alias with the name `name`.
 ### `add_global_variable(ty, name)`
 
 Add a global variable of the type `ty` with the name `name`.
-Returns a `GlobalVariable` object.
+Returns a [GlobalVariable][llvm.core.GlobalVariable] object.
 
 ### `get_global_variable_named(name)`
 
-Get a `GlobalVariable` object corresponding to the global
-variable with the name `name`. Raises `LLVMException` if such a
-variable does not exist.
+Get a [GlobalVariable][llvm.core.GlobalVariable] object corresponding to
+the global variable with the name `name`.
+Raises `LLVMException` if such a variable does not exist.
 
 ### `add_function(ty, name)`
 
 Add a function named `name` with the function type `ty`. `ty` must
-of an object of type `FunctionType`.
+of an object of type [FunctionType][llvm.core.FunctionType].
 
 ### `get_function_named(name)`
 
-Get a `Function` object corresponding to the function with the name
-`name`. Raises `LLVMException` if such a function does not exist.
+Get a [Function][llvm.core.Function] object corresponding to the function with
+the name `name`. Raises `LLVMException` if such a function does not exist.
 
 ### `get_or_insert_function(ty, name)`
 
@@ -191,4 +191,9 @@ compares the resultant strings.
 > Such objects, when compared for equality, internally compare these
 > string representations.
 
+[llvm.core.Function]: llvm.core.Function.html
+[llvm.core.FunctionType]: llvm.core.FunctionType.html
+[llvm.core.GlobalVariable]: llvm.core.GlobalVariable.html
+[llvm.core.BasicBlock]: llvm.core.BasicBlock.html
+[llvm.core.Type]: llvm.core.Type.html
 

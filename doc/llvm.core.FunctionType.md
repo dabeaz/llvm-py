@@ -13,7 +13,7 @@ title: FunctionType (llvm.core)
 
 ### `return_type` \[read-only\]
 
-A `Type` object, representing the return type of the function.
+A [Type][llvm.core.Type] object, representing the return type of the function.
 
 ### `vararg` \[read-only\]
 
@@ -22,7 +22,7 @@ A `Type` object, representing the return type of the function.
 
 ### `args` \[read-only\]
 
-Returns an iterable object that yields `Type` objects that
+Returns an iterable object that yields [Type][llvm.core.Type] objects that
 represent, in order, the types of the arguments accepted by the
 function. Used like this:
 
@@ -39,4 +39,4 @@ assert func_type.arg_count == len(func_type.args)
 
 The number of arguments. Same as `len(obj.args)`, but faster.
 
-
+[llvm.core.Type]: llvm.core.Type.html

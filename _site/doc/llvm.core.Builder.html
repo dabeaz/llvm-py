@@ -1,0 +1,470 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Builder (llvm.core)</title>
+    
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/stylesheets/pygment_trac.css" rel="stylesheet" type="text/css">
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">llvm-py Documentation</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        
+<div class="page-header">
+  <h1>Builder (llvm.core) </h1>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <p>The <code>Builder</code> class corresponds to the <a href='http://llvm.org/docs/doxygen/html/classllvm_1_1IRBuilder.html'>IRBuilder</a> in C++ llvm. It provides an uniform API to populating <a href='llvm.core.BasicBlock.html'>BasicBlocks</a>. Most of the methods in <code>Builder</code> correspond to the instructions in the LLVM IR. See <a href='http://llvm.org/docs/LangRef.html'>LLVM documentation</a> for detail. These methods have the <code>name</code> argument for overiding the name of the result variable. When it is an empty string (default value), LLVM will set a numeric ID for the result variable.</p>
+
+<h1 id='llvmcorebuilder'>llvm.core.Builder</h1>
+<div class='maruku_toc'><ul style='list-style: none;'><li><a href='#static_factor_method'>Static Factor Method</a><ul style='list-style: none;'><li><a href='#id22878'><code>new(basic_block)</code></a></li></ul></li><li><a href='#methods'>Methods</a><ul style='list-style: none;'><li><a href='#id22879'><code>add(self, lhs, rhs, name=&#39;&#39;)</code></a></li><li><a href='#id22880'><code>alloca(self, ty, name=&#39;&#39;)</code></a></li><li><a href='#id22881'><code>alloca_array(self, ty, size, name=&#39;&#39;)</code></a></li><li><a href='#id22882'><code>and_(self, lhs, rhs, name=&#39;&#39;)</code></a></li><li><a href='#id22883'><code>ashr(self, lhs, rhs, name=&#39;&#39;)</code></a></li><li><a href='#id22884'><code>bitcast(self, value, dest_ty, name=&#39;&#39;)</code></a></li><li><a href='#id22885'><code>branch(self, bblk)</code></a></li><li><a href='#id22886'><code>call(self, fn, args, name=&#39;&#39;)</code></a></li><li><a href='#id22887'><code>cbranch(self, if_value, then_blk, else_blk)</code></a></li><li><a href='#id22888'><code>extract_element(self, vec_val, idx_val, name=&#39;&#39;)</code></a></li><li><a href='#id22889'><code>extract_value(self, retval, idx, name=&#39;&#39;)</code></a></li><li><a href='#id22890'><code>fadd(self, lhs, rhs, name=&#39;&#39;)</code></a></li><li><a href='#id22891'><code>fcmp(self, rpred, lhs, rhs, name=&#39;&#39;)</code></a></li><li><a href='#id22892'><code>fdiv(self, lhs, rhs, name=&#39;&#39;)</code></a></li><li><a href='#id22893'><code>fmul(self, lhs, rhs, name=&#39;&#39;)</code></a></li><li><a href='#id22894'><code>fpext(self, value, dest_ty, name=&#39;&#39;)</code></a></li><li><a href='#id22895'><code>fptosi(self, value, dest_ty, name=&#39;&#39;)</code></a></li><li><a href='#id22896'><code>fptoui(self, value, dest_ty, name=&#39;&#39;)</code></a></li><li><a href='#id22897'><code>fptrunc(self, value, dest_ty, name=&#39;&#39;)</code></a></li><li><a href='#id22898'><code>free(self, ptr)</code></a></li><li><a href='#id22899'><code>frem(self, lhs, rhs, name=&#39;&#39;)</code></a></li><li><a href='#id22900'><code>fsub(self, lhs, rhs, name=&#39;&#39;)</code></a></li><li><a href='#id22901'><code>gep(self, ptr, indices, name=&#39;&#39;)</code></a></li><li><a href='#id22902'><code>getresult(self, retval, idx, name=&#39;&#39;)</code></a></li><li><a href='#id22903'><code>icmp(self, ipred, lhs, rhs, name=&#39;&#39;)</code></a></li><li><a href='#id22904'><code>insert_element(self, vec_val, elt_val, idx_val, name=&#39;&#39;)</code></a></li><li><a href='#id22905'><code>inttoptr(self, value, dest_ty, name=&#39;&#39;)</code></a></li><li><a href='#id22906'><code>invoke(self, func, args, then_blk, catch_blk, name=&#39;&#39;)</code></a></li><li><a href='#id22907'><code>load(self, ptr, name=&#39;&#39;)</code></a></li><li><a href='#id22908'><code>lshr(self, lhs, rhs, name=&#39;&#39;)</code></a></li><li><a href='#id22909'><code>malloc(self, ty, name=&#39;&#39;)</code></a></li><li><a href='#id22910'><code>malloc_array(self, ty, size, name=&#39;&#39;)</code></a></li><li><a href='#id22911'><code>mul(self, lhs, rhs, name=&#39;&#39;)</code></a></li><li><a href='#id22912'><code>neg(self, val, name=&#39;&#39;)</code></a></li><li><a href='#id22913'><code>not_(self, val, name=&#39;&#39;)</code></a></li><li><a href='#id22914'><code>or_(self, lhs, rhs, name=&#39;&#39;)</code></a></li><li><a href='#id22915'><code>phi(self, ty, name=&#39;&#39;)</code></a></li><li><a href='#id22916'><code>position_at_beginning(self, bblk)</code></a></li><li><a href='#id22917'><code>position_at_end(self, bblk)</code></a></li><li><a href='#id22918'><code>position_before(self, instr)</code></a></li><li><a href='#id22919'><code>ptrtoint(self, value, dest_ty, name=&#39;&#39;)</code></a></li><li><a href='#id22920'><code>ret(self, value)</code></a></li><li><a href='#id22921'><code>ret_many(self, values)</code></a></li><li><a href='#id22922'><code>ret_void(self)</code></a></li><li><a href='#id22923'><code>sdiv(self, lhs, rhs, name=&#39;&#39;)</code></a></li><li><a href='#id22924'><code>select(self, cond, then_value, else_value, name=&#39;&#39;)</code></a></li><li><a href='#id22925'><code>sext(self, value, dest_ty, name=&#39;&#39;)</code></a></li><li><a href='#id22926'><code>shl(self, lhs, rhs, name=&#39;&#39;)</code></a></li><li><a href='#id22927'><code>shuffle_vector(self, vecA, vecB, mask, name=&#39;&#39;)</code></a></li><li><a href='#id22928'><code>sitofp(self, value, dest_ty, name=&#39;&#39;)</code></a></li><li><a href='#id22929'><code>srem(self, lhs, rhs, name=&#39;&#39;)</code></a></li><li><a href='#id22930'><code>store(self, value, ptr)</code></a></li><li><a href='#id22931'><code>sub(self, lhs, rhs, name=&#39;&#39;)</code></a></li><li><a href='#id22932'><code>switch(self, value, else_blk, n=10)</code></a></li><li><a href='#id22933'><code>trunc(self, value, dest_ty, name=&#39;&#39;)</code></a></li><li><a href='#id22934'><code>udiv(self, lhs, rhs, name=&#39;&#39;)</code></a></li><li><a href='#id22935'><code>uitofp(self, value, dest_ty, name=&#39;&#39;)</code></a></li><li><a href='#id22936'><code>unreachable(self)</code></a></li><li><a href='#id22937'><code>urem(self, lhs, rhs, name=&#39;&#39;)</code></a></li><li><a href='#id22938'><code>vaarg(self, list_val, ty, name=&#39;&#39;)</code></a></li><li><a href='#id22939'><code>xor(self, lhs, rhs, name=&#39;&#39;)</code></a></li><li><a href='#id22940'><code>zext(self, value, dest_ty, name=&#39;&#39;)</code></a></li></ul></li><li><a href='#properties'>Properties</a><ul style='list-style: none;'><li><a href='#id22941'><code>basic_block</code></a></li><li><a href='#id22942'><code>block</code></a></li></ul></li></ul></div>
+<h2 id='static_factor_method'>Static Factor Method</h2>
+
+<h3 id='id22878'><code>new(basic_block)</code></h3>
+
+<p>Create an instance of <code>Builder</code> at <a href='llvm.core.BasicBlock.html'>BasicBlock</a>.</p>
+
+<h2 id='methods'>Methods</h2>
+
+<h3 id='id22879'><code>add(self, lhs, rhs, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes <code>lhs+rhs</code> for integer values only.</p>
+
+<h3 id='id22880'><code>alloca(self, ty, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that allocates stack memory for a value of type <code>ty</code>.</p>
+
+<h3 id='id22881'><code>alloca_array(self, ty, size, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that allocates stack memory for a <code>size</code> elements array of type <code>ty</code>.</p>
+
+<h3 id='id22882'><code>and_(self, lhs, rhs, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes <code>lhs &amp; rhs</code>.</p>
+
+<h3 id='id22883'><code>ashr(self, lhs, rhs, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes <code>lhs &gt;&gt; rhs</code> using arithmetic shift.</p>
+
+<h3 id='id22884'><code>bitcast(self, value, dest_ty, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that cast <code>value</code> to type <code>dest_ty</code>.</p>
+
+<h3 id='id22885'><code>branch(self, bblk)</code></h3>
+
+<p>Insert an instruction that branch to basicblock <code>bblk</code>.</p>
+
+<h3 id='id22886'><code>call(self, fn, args, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that call function <code>fn</code> with a iterable of arguments <code>args</code>.</p>
+
+<h3 id='id22887'><code>cbranch(self, if_value, then_blk, else_blk)</code></h3>
+
+<p>Insert an instruction that conditionally branch base on the predicate <code>if_value</code>. If <code>if_value</code> is <code>True</code>, branch to <code>then_blk</code>; Otherwise, branch to <code>else_blk</code>.</p>
+
+<h3 id='id22888'><code>extract_element(self, vec_val, idx_val, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that extracts an element from a value <code>vec_val</code> of <a href='llvm.core.VectorType.html'>llvm.core.VectorType</a> at index <code>idx_val</code>.</p>
+
+<h3 id='id22889'><code>extract_value(self, retval, idx, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that extracts an element from an aggregate value <code>retval</code> at index <code>idx</code>.</p>
+
+<h3 id='id22890'><code>fadd(self, lhs, rhs, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes <code>lhs + rhs</code> for floating-point values.</p>
+
+<h3 id='id22891'><code>fcmp(self, rpred, lhs, rhs, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that compares <code>lhs</code> and <code>rhs</code> using the comparision operation defined by <code>rpred</code>. See <a href='comparision.html#fcmp'>here</a> for a list of comparators.</p>
+
+<h3 id='id22892'><code>fdiv(self, lhs, rhs, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes <code>lhs / rhs</code> for floating-point values.</p>
+
+<h3 id='id22893'><code>fmul(self, lhs, rhs, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes <code>lhs * rhs</code> for floating-point values.</p>
+
+<h3 id='id22894'><code>fpext(self, value, dest_ty, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that extends <code>value</code> to a float type <code>dest_ty</code>.</p>
+
+<h3 id='id22895'><code>fptosi(self, value, dest_ty, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that converts a floating-point value <code>value</code> to a signed integer type <code>dest_ty</code>.</p>
+
+<h3 id='id22896'><code>fptoui(self, value, dest_ty, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that converts a floating-point value <code>value</code> to an unsigned integer type <code>dest_ty</code>.</p>
+
+<h3 id='id22897'><code>fptrunc(self, value, dest_ty, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that truncates a floating-point value <code>value</code> to a float type <code>dest_ty</code>.</p>
+
+<h3 id='id22898'><code>free(self, ptr)</code></h3>
+
+<p>Insert an instruction that call performs heap deallocation on pointer <code>ptr</code>.</p>
+
+<h3 id='id22899'><code>frem(self, lhs, rhs, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes <code>lhs % rhs</code> for floating-point values.</p>
+
+<h3 id='id22900'><code>fsub(self, lhs, rhs, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes <code>lhs - rhs</code> for floating-point values.</p>
+
+<h3 id='id22901'><code>gep(self, ptr, indices, name=&#39;&#39;)</code></h3>
+
+<p>See <a href='http://llvm.org/docs/LangRef.html#i_getelementptr'>GEP</a>.</p>
+
+<h3 id='id22902'><code>getresult(self, retval, idx, name=&#39;&#39;)</code></h3>
+
+<p>same as <code>extract_value</code>.</p>
+
+<h3 id='id22903'><code>icmp(self, ipred, lhs, rhs, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that compares <code>lhs</code> and <code>rhs</code> using the comparision operation defined by <code>ipred</code>. See <a href='comparision.html#icmp'>here</a> for a list of comparators.</p>
+
+<h3 id='id22904'><code>insert_element(self, vec_val, elt_val, idx_val, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that inserts a value <code>elt_val</code> into <code>vec_val</code> of <a href='llvm.core.VectorType.html'>llvm.core.VectorType</a> at index <code>idx_val</code>.</p>
+
+<h3 id='id22905'><code>inttoptr(self, value, dest_ty, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that converts an integer <code>value</code> to pointer <code>dest_ty</code>.</p>
+
+<h3 id='id22906'><code>invoke(self, func, args, then_blk, catch_blk, name=&#39;&#39;)</code></h3>
+
+<p>See <a href='http://llvm.org/docs/LangRef.html#i_invoke'>invoke</a></p>
+
+<h3 id='id22907'><code>load(self, ptr, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that loads a value at the memory pointed by <code>ptr</code>.</p>
+
+<h3 id='id22908'><code>lshr(self, lhs, rhs, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes <code>lhs &gt;&gt; rhs</code> using logical shift.</p>
+
+<h3 id='id22909'><code>malloc(self, ty, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that allocates heap memory of type <code>ty</code>. The instruction returns a pointer that points to a value of type <code>ty</code>.</p>
+
+<h3 id='id22910'><code>malloc_array(self, ty, size, name=&#39;&#39;)</code></h3>
+
+<p>Similar to <code>malloc</code> but allocates an array of <code>size</code> elements.</p>
+
+<h3 id='id22911'><code>mul(self, lhs, rhs, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes <code>lhs * rhs</code> for integer types.</p>
+
+<h3 id='id22912'><code>neg(self, val, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes <code>0 - val</code>.</p>
+
+<h3 id='id22913'><code>not_(self, val, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes an one&#8217;s complement of <code>val</code>.</p>
+
+<h3 id='id22914'><code>or_(self, lhs, rhs, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes <code>lhs | rhs</code>.</p>
+
+<h3 id='id22915'><code>phi(self, ty, name=&#39;&#39;)</code></h3>
+
+<p>Create a PHI node of type <code>ty</code>.</p>
+
+<h3 id='id22916'><code>position_at_beginning(self, bblk)</code></h3>
+
+<p>Position the builder at the beginning of the given block. Next instruction inserted will be first one in the block.</p>
+
+<h3 id='id22917'><code>position_at_end(self, bblk)</code></h3>
+
+<p>Position the builder at the end of the given block. Next instruction inserted will be last one in the block.</p>
+
+<h3 id='id22918'><code>position_before(self, instr)</code></h3>
+
+<p>Position the builder before the given instruction. The instruction can belong to a basic block other than the current one.</p>
+
+<h3 id='id22919'><code>ptrtoint(self, value, dest_ty, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that converts a pointer to an integer <code>value</code> of type <code>dest_ty</code>.</p>
+
+<h3 id='id22920'><code>ret(self, value)</code></h3>
+
+<p>Insert an instruction that returns <code>value</code>.</p>
+
+<h3 id='id22921'><code>ret_many(self, values)</code></h3>
+
+<p>Insert an instruction that returns <code>values</code> which is an iterable of <a href='llvm.core.Value.html'>llvm.core.Value</a>.</p>
+
+<h3 id='id22922'><code>ret_void(self)</code></h3>
+
+<p>Insert an instruction that returns nothing (void).</p>
+
+<h3 id='id22923'><code>sdiv(self, lhs, rhs, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes <code>lhs / rhs</code> for signed integers.</p>
+
+<h3 id='id22924'><code>select(self, cond, then_value, else_value, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes <code>cond ? then_value : else_value</code>.</p>
+
+<h3 id='id22925'><code>sext(self, value, dest_ty, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that sign extends an integer <code>value</code> to type <code>dest_ty</code>.</p>
+
+<h3 id='id22926'><code>shl(self, lhs, rhs, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes <code>lhs &lt;&lt; rhs</code>.</p>
+
+<h3 id='id22927'><code>shuffle_vector(self, vecA, vecB, mask, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that performs a vector shuffle base on the two vectors &#8211; <code>vecA</code> and <code>vecB</code>, base on a bit mask <code>mask</code>. The mask must be a constant.</p>
+
+<p>See <a href='http://llvm.org/docs/LangRef.html#i_shufflevector'>LLVM document</a> for detail.</p>
+
+<h3 id='id22928'><code>sitofp(self, value, dest_ty, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that converts a signed integer <code>value</code> to a floating-point type <code>dest_ty</code>.</p>
+
+<h3 id='id22929'><code>srem(self, lhs, rhs, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes <code>lhs % rhs</code> for signed integers.</p>
+
+<h3 id='id22930'><code>store(self, value, ptr)</code></h3>
+
+<p>Insert an instruction that stores <code>value</code> into the memory pointed by <code>ptr</code>.</p>
+
+<h3 id='id22931'><code>sub(self, lhs, rhs, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes <code>lhs - rhs</code>.</p>
+
+<h3 id='id22932'><code>switch(self, value, else_blk, n=10)</code></h3>
+
+<p>Insert an instruction that transfer control flow depending on the <code>value</code>. <code>else_blk</code> is the default case. <code>n</code> sets the number of additional cases.</p>
+
+<p>This method returns an instance of <a href='llvm.core.Instruction.html#switchinstr'>SwitchInstruction</a> for adding cases to the switch.</p>
+
+<h3 id='id22933'><code>trunc(self, value, dest_ty, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that truncates an integer <code>value</code> to the destination integer type <code>dest_ty</code>.</p>
+
+<h3 id='id22934'><code>udiv(self, lhs, rhs, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes <code>lhs / rhs</code> for unsigned integers.</p>
+
+<h3 id='id22935'><code>uitofp(self, value, dest_ty, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that converts an unsigned integer <code>value</code> to a floating-point type <code>dest_ty</code>.</p>
+
+<h3 id='id22936'><code>unreachable(self)</code></h3>
+
+<p>Insert an unreachabe instruction, which has no defined semantics. See <a href='http://llvm.org/docs/LangRef.html#i_unreachable'>LLVM document</a> for detail.</p>
+
+<h3 id='id22937'><code>urem(self, lhs, rhs, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes <code>lhs % rhs</code> for unsigned integers.</p>
+
+<h3 id='id22938'><code>vaarg(self, list_val, ty, name=&#39;&#39;)</code></h3>
+
+<p>This is used to access variable arguments given as <code>list_val</code> of type <code>ty</code>. see <a href='http://llvm.org/docs/LangRef.html#int_varargs'>LLVM document</a> about variable argument intrinsics.</p>
+
+<h3 id='id22939'><code>xor(self, lhs, rhs, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that computes <code>lhs xor rhs</code>.</p>
+
+<h3 id='id22940'><code>zext(self, value, dest_ty, name=&#39;&#39;)</code></h3>
+
+<p>Insert an instruction that zero extends <code>value</code> to type <code>dest_ty</code>.</p>
+
+<h2 id='properties'>Properties</h2>
+
+<h3 id='id22941'><code>basic_block</code></h3>
+
+<p>The <a href='llvm.core.BasicBlock.html'>BasicBlock</a> where the builder is positioned.</p>
+
+<h3 id='id22942'><code>block</code></h3>
+
+<p>Deprecated. Same as <code>basic_block</code></p>
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy;  2012
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+

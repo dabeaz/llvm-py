@@ -4,16 +4,6 @@ title: Todos
 ---
 
 
-# Basic Block (llvm.core)
-
-TODO
-
-
-# Builder (llvm.core)
-
-TODO
-
-
 # Target Data (llvm.ee)
 
 TODO
