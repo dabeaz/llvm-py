@@ -1,0 +1,347 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Type (llvm.core)</title>
+    
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/stylesheets/pygment_trac.css" rel="stylesheet" type="text/css">
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">llvm-py Documentation</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        
+<div class="page-header">
+  <h1>Type (llvm.core) </h1>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <h1 id='llvmcoretype'>llvm.core.Type</h1>
+<div class='maruku_toc'><ul style='list-style: none;'><li><a href='#static_constructors'>Static Constructors</a><ul style='list-style: none;'><li><a href='#id77'><code>int(n)</code></a></li><li><a href='#id78'><code>float()</code></a></li><li><a href='#id79'><code>double()</code></a></li><li><a href='#id80'><code>x86_fp80()</code></a></li><li><a href='#id81'><code>fp128()</code></a></li><li><a href='#id82'><code>ppc_fp128()</code></a></li><li><a href='#id83'><code>function(ret, params, vararg=False)</code></a></li><li><a href='#id84'><code>struct(eltys)</code></a></li><li><a href='#id85'><code>packed_struct(eltys)</code></a></li><li><a href='#id86'><code>array(elty, count)</code></a></li><li><a href='#id87'><code>pointer(pty, addrspc=0)</code></a></li><li><a href='#id88'><code>void()</code></a></li><li><a href='#id89'><code>label()</code></a></li><li><a href='#id90'><code>opaque()</code></a></li></ul></li><li><a href='#properties'>Properties</a><ul style='list-style: none;'><li><a href='#id91'><code>kind</code></a><ul style='list-style: none;'><li><a href='#example'>Example:</a></li></ul></li></ul></li><li><a href='#methods'>Methods</a><ul style='list-style: none;'><li><a href='#id92'><code>refine</code></a></li></ul></li><li><a href='#special_methods'>Special Methods</a><ul style='list-style: none;'><li><a href='#id93'><code>__str__</code></a></li><li><a href='#id94'><code>__eq__</code></a></li></ul></li></ul></div>
+<h2 id='static_constructors'>Static Constructors</h2>
+
+<h3 id='id77'><code>int(n)</code></h3>
+
+<p>Create an integer type of bit width <code>n</code>.</p>
+
+<h3 id='id78'><code>float()</code></h3>
+
+<p>Create a 32-bit floating point type.</p>
+
+<h3 id='id79'><code>double()</code></h3>
+
+<p>Create a 64-bit floating point type.</p>
+
+<h3 id='id80'><code>x86_fp80()</code></h3>
+
+<p>Create a 80-bit 80x87-style floating point type.</p>
+
+<h3 id='id81'><code>fp128()</code></h3>
+
+<p>Create a 128-bit floating point type (112-bit mantissa).</p>
+
+<h3 id='id82'><code>ppc_fp128()</code></h3>
+
+<p>Create a 128-bit float (two 64-bits).</p>
+
+<h3 id='id83'><code>function(ret, params, vararg=False)</code></h3>
+
+<p>Create a function type, having the return type <code>ret</code> (must be a <code>Type</code>), accepting the parameters <code>params</code>, where <code>params</code> is an iterable, that yields <code>Type</code> objects representing the type of each function argument in order. If <code>vararg</code> is <code>True</code>, function is variadic.</p>
+
+<h3 id='id84'><code>struct(eltys)</code></h3>
+
+<p>Create an unpacked structure. <code>eltys</code> is an iterable, that yields <code>Type</code> objects representing the type of each element in order.</p>
+
+<h3 id='id85'><code>packed_struct(eltys)</code></h3>
+
+<p>Like <code>struct(eltys)</code>, but creates a packed struct.</p>
+
+<h3 id='id86'><code>array(elty, count)</code></h3>
+
+<p>Creates an array type, holding <code>count</code> elements, each of type <code>elty</code> (which should be a <code>Type</code>).</p>
+
+<h3 id='id87'><code>pointer(pty, addrspc=0)</code></h3>
+
+<p>Create a pointer to type <code>pty</code> (which should be a <code>Type</code>). <code>addrspc</code> is an integer that represents the address space of the pointer (see LLVM docs or ask on llvm-dev for more info).</p>
+
+<h3 id='id88'><code>void()</code></h3>
+
+<p>Creates a void type. Used for function return types.</p>
+
+<h3 id='id89'><code>label()</code></h3>
+
+<p>Creates a label type.</p>
+
+<h3 id='id90'><code>opaque()</code></h3>
+
+<p>Opaque type, used for creating self-referencing types.</p>
+
+<h2 id='properties'>Properties</h2>
+
+<h3 id='id91'><code>kind</code></h3>
+
+<p>[read-only]</p>
+
+<p>A value (enum) representing the &#8220;type&#8221; of the object. It will be one of the following constants defined in <code>llvm.core</code>:</p>
+<div class='highlight'><pre><code class='python'><span class='c'># Warning: do not rely on actual numerical values!</span>
+<span class='n'>TYPE_VOID</span>       <span class='o'>=</span> <span class='mi'>0</span>
+<span class='n'>TYPE_FLOAT</span>      <span class='o'>=</span> <span class='mi'>1</span>
+<span class='n'>TYPE_DOUBLE</span>     <span class='o'>=</span> <span class='mi'>2</span>
+<span class='n'>TYPE_X86_FP80</span>   <span class='o'>=</span> <span class='mi'>3</span>
+<span class='n'>TYPE_FP128</span>      <span class='o'>=</span> <span class='mi'>4</span>
+<span class='n'>TYPE_PPC_FP128</span>  <span class='o'>=</span> <span class='mi'>5</span>
+<span class='n'>TYPE_LABEL</span>      <span class='o'>=</span> <span class='mi'>6</span>
+<span class='n'>TYPE_INTEGER</span>    <span class='o'>=</span> <span class='mi'>7</span>
+<span class='n'>TYPE_FUNCTION</span>   <span class='o'>=</span> <span class='mi'>8</span>
+<span class='n'>TYPE_STRUCT</span>     <span class='o'>=</span> <span class='mi'>9</span>
+<span class='n'>TYPE_ARRAY</span>      <span class='o'>=</span> <span class='mi'>10</span>
+<span class='n'>TYPE_POINTER</span>    <span class='o'>=</span> <span class='mi'>11</span>
+<span class='n'>TYPE_OPAQUE</span>     <span class='o'>=</span> <span class='mi'>12</span>
+<span class='n'>TYPE_VECTOR</span>     <span class='o'>=</span> <span class='mi'>13</span>
+<span class='n'>TYPE_METADATA</span>   <span class='o'>=</span> <span class='mi'>14</span>
+<span class='n'>TYPE_UNION</span>      <span class='o'>=</span> <span class='mi'>15</span>
+</code></pre>
+</div>
+<h4 id='example'>Example:</h4>
+<div class='highlight'><pre><code class='python'><span class='k'>assert</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>()</span><span class='o'>.</span><span class='n'>kind</span> <span class='o'>==</span> <span class='n'>TYPE_INTEGER</span>
+<span class='k'>assert</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>void</span><span class='p'>()</span><span class='o'>.</span><span class='n'>kind</span> <span class='o'>==</span> <span class='n'>TYPE_VOID</span>
+</code></pre>
+</div>
+<h2 id='methods'>Methods</h2>
+
+<h3 id='id92'><code>refine</code></h3>
+
+<p>Used for constructing self-referencing types. See the documentation of <a href='llvm.core.TypeHandle.html'>TypeHandle</a> objects.</p>
+
+<h2 id='special_methods'>Special Methods</h2>
+
+<h3 id='id93'><code>__str__</code></h3>
+
+<p><code>Type</code> objects can be stringified into it&#8217;s LLVM assembly language representation.</p>
+
+<h3 id='id94'><code>__eq__</code></h3>
+
+<p><code>Type</code> objects can be compared for equality. Internally, this converts both arguments into their LLVM assembly representations and compares the resultant strings.</p>
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy;  2012
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+

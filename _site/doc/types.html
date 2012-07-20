@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Types</title>
+    
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/stylesheets/pygment_trac.css" rel="stylesheet" type="text/css">
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">llvm-py Documentation</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        
+<div class="page-header">
+  <h1>Types </h1>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <p>Types are what you think they are. A instance of <a href='llvm.core.Type.html'>llvm.core.Type</a>, or one of its derived classes, represent a type. llvm-py does not use as many classes to represent types as does LLVM itself. Some types are represented using <a href='llvm.core.Type.html'>llvm.core.Type</a> itself and the rest are represented using derived classes of <a href='llvm.core.Type.html'>llvm.core.Type</a>. As usual, an instance is created via one of the static methods of <a href='llvm.core.Type.html'>Type</a>. These methods return an instance of either <a href='llvm.core.Type.html'>llvm.core.Type</a> itself or one of its derived classes.</p>
+
+<p>The following table lists all the available types along with the static method which has to be used to construct it and the name of the class whose object is actually returned by the static method.</p>
+<table><thead><tr><th>Name</th><th>Constructor Method</th><th>Class</th></tr></thead><tbody><tr><td style='text-align: left;'>integer of bitwidth <em>n</em></td><td style='text-align: center;'>Type.int(n)</td><td style='text-align: center;'><a href='llvm.core.IntegerType.html'>IntegerType</a></td>
+</tr><tr><td style='text-align: left;'>32-bit float</td><td style='text-align: center;'>Type.float()</td><td style='text-align: center;'><a href='llvm.core.Type.html'>Type</a></td>
+</tr><tr><td style='text-align: left;'>64-bit double</td><td style='text-align: center;'>Type.double()</td><td style='text-align: center;'><a href='llvm.core.Type.html'>Type</a></td>
+</tr><tr><td style='text-align: left;'>80-bit float</td><td style='text-align: center;'>Type.x86_fp80()</td><td style='text-align: center;'><a href='llvm.core.Type.html'>Type</a></td>
+</tr><tr><td style='text-align: left;'>128-bit float (112-bit mantissa)</td><td style='text-align: center;'>Type.fp128()</td><td style='text-align: center;'><a href='llvm.core.Type.html'>Type</a></td>
+</tr><tr><td style='text-align: left;'>128-bit float (two 64-bits)</td><td style='text-align: center;'>Type.ppc_fp128()</td><td style='text-align: center;'><a href='llvm.core.Type.html'>Type</a></td>
+</tr><tr><td style='text-align: left;'>function</td><td style='text-align: center;'>Type.function(r, p, v)</td><td style='text-align: center;'><a href='llvm.core.FunctionType.html'>FunctionType</a></td>
+</tr><tr><td style='text-align: left;'>unpacked struct</td><td style='text-align: center;'>Type.struct(eltys)</td><td style='text-align: center;'><a href='llvm.core.StructType.html'>StructType</a></td>
+</tr><tr><td style='text-align: left;'>packed struct</td><td style='text-align: center;'>Type.packed_struct(eltys)</td><td style='text-align: center;'><a href='llvm.core.StructType.html'>StructType</a></td>
+</tr><tr><td style='text-align: left;'>array</td><td style='text-align: center;'>Type.array(elty, count)</td><td style='text-align: center;'><a href='llvm.core.ArrayType.html'>ArrayType</a></td>
+</tr><tr><td style='text-align: left;'>pointer to value of type <em>pty</em></td><td style='text-align: center;'>Type.pointer(pty, addrspc)</td><td style='text-align: center;'><a href='llvm.core.PointerType.html'>PointerType</a></td>
+</tr><tr><td style='text-align: left;'>vector</td><td style='text-align: center;'>Type.vector(elty, count)</td><td style='text-align: center;'><a href='llvm.core.VectorType.html'>VectorType</a></td>
+</tr><tr><td style='text-align: left;'>void</td><td style='text-align: center;'>Type.void()</td><td style='text-align: center;'><a href='llvm.core.Type.html'>Type</a></td>
+</tr><tr><td style='text-align: left;'>label</td><td style='text-align: center;'>Type.label()</td><td style='text-align: center;'><a href='llvm.core.Type.html'>Type</a></td>
+</tr><tr><td style='text-align: left;'>opaque</td><td style='text-align: center;'>Type.opaque()</td><td style='text-align: center;'><a href='llvm.core.Type.html'>Type</a></td>
+</tr></tbody></table><br />
+<p>The class hierarchy is:</p>
+
+<pre><code>Type
+    IntegerType
+    FunctionType
+    StructType
+    ArrayType
+    PointerType
+    VectorType</code></pre>
+<hr />
+<h2 id='an_example'>An Example</h2>
+
+<p>Here is an example that demonstrates the creation of types:</p>
+<div class='highlight'><pre><code class='python'><span class='c'>#!/usr/bin/env python</span>
+
+<span class='c'># integers</span>
+<span class='n'>int_ty</span>      <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>()</span>
+<span class='n'>bool_ty</span>     <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(</span><span class='mi'>1</span><span class='p'>)</span>
+<span class='n'>int_64bit</span>   <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(</span><span class='mi'>64</span><span class='p'>)</span>
+
+<span class='c'># floats</span>
+<span class='n'>sprec_real</span>  <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>float</span><span class='p'>()</span>
+<span class='n'>dprec_real</span>  <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>double</span><span class='p'>()</span>
+
+<span class='c'># arrays and vectors</span>
+<span class='n'>intar_ty</span>    <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>array</span><span class='p'>(</span> <span class='n'>int_ty</span><span class='p'>,</span> <span class='mi'>10</span> <span class='p'>)</span>     <span class='c'># &quot;typedef int intar_ty[10];&quot;</span>
+<span class='n'>twodim</span>      <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>array</span><span class='p'>(</span> <span class='n'>intar_ty</span> <span class='p'>,</span> <span class='mi'>10</span> <span class='p'>)</span>  <span class='c'># &quot;typedef int twodim[10][10];&quot;</span>
+<span class='n'>vec</span>         <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>array</span><span class='p'>(</span> <span class='n'>int_ty</span><span class='p'>,</span> <span class='mi'>10</span> <span class='p'>)</span>
+
+<span class='c'># structures</span>
+<span class='n'>s1_ty</span>       <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>struct</span><span class='p'>(</span> <span class='p'>[</span> <span class='n'>int_ty</span><span class='p'>,</span> <span class='n'>sprec_real</span> <span class='p'>]</span> <span class='p'>)</span>
+    <span class='c'># &quot;struct s1_ty { int v1; float v2; };&quot;</span>
+
+<span class='c'># pointers</span>
+<span class='n'>intptr_ty</span>   <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>pointer</span><span class='p'>(</span><span class='n'>int_ty</span><span class='p'>)</span>         <span class='c'># &quot;typedef int *intptr_ty;&quot;</span>
+
+<span class='c'># functions</span>
+<span class='n'>f1</span> <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>function</span><span class='p'>(</span> <span class='n'>int_ty</span><span class='p'>,</span> <span class='p'>[</span> <span class='n'>int_ty</span> <span class='p'>]</span> <span class='p'>)</span>
+    <span class='c'># functions that take 1 int_ty and return 1 int_ty</span>
+
+<span class='n'>f2</span> <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>function</span><span class='p'>(</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>void</span><span class='p'>(),</span> <span class='p'>[</span> <span class='n'>int_ty</span><span class='p'>,</span> <span class='n'>int_ty</span> <span class='p'>]</span> <span class='p'>)</span>
+    <span class='c'># functions that take 2 int_tys and return nothing</span>
+
+<span class='n'>f3</span> <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>function</span><span class='p'>(</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>void</span><span class='p'>(),</span> <span class='p'>(</span> <span class='n'>int_ty</span><span class='p'>,</span> <span class='n'>int_ty</span> <span class='p'>)</span> <span class='p'>)</span>
+    <span class='c'># same as f2; any iterable can be used</span>
+
+<span class='n'>fnargs</span> <span class='o'>=</span> <span class='p'>[</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>pointer</span><span class='p'>(</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(</span><span class='mi'>8</span><span class='p'>)</span> <span class='p'>)</span> <span class='p'>]</span>
+<span class='n'>printf</span> <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>function</span><span class='p'>(</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(),</span> <span class='n'>fnargs</span><span class='p'>,</span> <span class='bp'>True</span> <span class='p'>)</span> <span class='c'># variadic function</span>
+</code></pre>
+</div><hr />
+<p><strong>Related Links</strong> <a href='llvm.core.Type.html'>llvm.core.Type</a>, <a href='llvm.core.IntegerType.html'>llvm.core.IntegerType</a>, <a href='llvm.core.FunctionType.html'>llvm.core.FunctionType</a>, <a href='llvm.core.StructType.html'>llvm.core.StructType</a>, <a href='llvm.core.ArrayType.html'>llvm.core.ArrayType</a>, <a href='llvm.core.PointerType.html'>llvm.core.PointerType</a>, <a href='llvm.core.VectorType.html'>llvm.core.VectorType</a>, <a href='llvm.core.TypeHandle.html'>llvm.core.TypeHandle</a></p>
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy;  2012
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+

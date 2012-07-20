@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>FunctionType (llvm.core)</title>
+    
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/stylesheets/pygment_trac.css" rel="stylesheet" type="text/css">
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">llvm-py Documentation</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        
+<div class="page-header">
+  <h1>FunctionType (llvm.core) </h1>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <h1 id='llvmcorefunctiontype'>llvm.core.FunctionType</h1>
+
+<h2 id='base_class'>Base Class</h2>
+
+<ul>
+<li><a href='llvm.core.Type.html'>llvm.core.Type</a></li>
+</ul>
+
+<h2 id='properties'>Properties</h2>
+
+<h3 id='id73'><code>return_type</code></h3>
+
+<p>[read-only]</p>
+
+<p>A <a href='llvm.core.Type.html'>Type</a> object, representing the return type of the function.</p>
+
+<h3 id='id74'><code>vararg</code></h3>
+
+<p>[read-only]</p>
+
+<p><code>True</code> if the function is variadic.</p>
+
+<h3 id='id75'><code>args</code></h3>
+
+<p>[read-only]</p>
+
+<p>Returns an iterable object that yields <a href='llvm.core.Type.html'>Type</a> objects that represent, in order, the types of the arguments accepted by the function. Used like this:</p>
+<div class='highlight'><pre><code class='python'><span class='n'>func_type</span> <span class='o'>=</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>function</span><span class='p'>(</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(),</span> <span class='p'>[</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>(),</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>()</span> <span class='p'>]</span> <span class='p'>)</span>
+<span class='k'>for</span> <span class='n'>arg</span> <span class='ow'>in</span> <span class='n'>func_type</span><span class='o'>.</span><span class='n'>args</span><span class='p'>:</span>
+    <span class='k'>assert</span> <span class='n'>arg</span><span class='o'>.</span><span class='n'>kind</span> <span class='o'>==</span> <span class='n'>TYPE_INTEGER</span>
+    <span class='k'>assert</span> <span class='n'>arg</span> <span class='o'>==</span> <span class='n'>Type</span><span class='o'>.</span><span class='n'>int</span><span class='p'>()</span>
+<span class='k'>assert</span> <span class='n'>func_type</span><span class='o'>.</span><span class='n'>arg_count</span> <span class='o'>==</span> <span class='nb'>len</span><span class='p'>(</span><span class='n'>func_type</span><span class='o'>.</span><span class='n'>args</span><span class='p'>)</span>
+</code></pre>
+</div>
+<h3 id='id76'><code>arg_count</code></h3>
+
+<p>[read-only]</p>
+
+<p>The number of arguments. Same as <code>len(obj.args)</code>, but faster.</p>
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy;  2012
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+

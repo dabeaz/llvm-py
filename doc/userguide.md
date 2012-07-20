@@ -28,7 +28,7 @@ a llvm-py based Python script.
 Both LLVM and llvm-py are distributed under (different) permissive
 open source licenses. llvm-py uses the
 [new BSD license](http://opensource.org/licenses/bsd-license.php). More
-information is available [here FIXME](./license.html).
+information is available [here](https://github.com/numba/llvm-py/blob/master/LICENSE).
 
 ## Platforms
 llvm-py has been built/tested/reported to work on various GNU/Linux
@@ -36,7 +36,7 @@ flavours, BSD, Mac OS X; on i386 and amd64 architectures. Windows is not
 supported, for a variety of reasons.
 
 ## Versions
-llvm-py 0.7(?FIXME) requires verion 3.1 of LLVM. It may not work with previous
+llvm-py 0.8.2 requires verion 3.1 of LLVM. It may not work with previous
 versions.
 
 llvm-py has been built and tested with Python 2.7. It should work with
@@ -90,33 +90,27 @@ needs to be done. If you've built LLVM yourself, or for any reason
 of `llvm-config` to the build script.
 
 You'll need to be 'root' to install llvm-py. Remember that your `PATH`
-is different from that of 'root', so even if +llvm-config+ is in your
+is different from that of 'root', so even if `llvm-config` is in your
 `PATH`, it may not be available when you do `sudo`.
 
 
 
 ## Steps
 
-The commands illustrated below assume that the LLVM source is available
-under `/home/mdevan/llvm`. If you've a previous version of llvm-py
-installed, it is recommended to remove it first, as described
-[below](#uninstall).
+Get 3.1 version of LLVM, build it. Make sure '--enable-pic' is passed to LLVM's 'configure'.
 
-If you have `llvm-config` in your path, you can build and install
-llvm-py this way:
+Get llvm-py and install it:
 
 {% highlight bash %}
-$ tar jxvf llvm-py-0.6.tar.bz2
-$ cd llvm-py-0.6
-$ python setup.py install --user
+$ git clone git@github.com:numba/llvm-py.git
+$ cd llvm-py
+$ python setup.py install
 {% endhighlight %}
 
 If you need to tell the build script where `llvm-config` is, do it this
 way:
 
 {% highlight bash %}
-$ tar jxvf llvm-py-0.6.tar.bz2
-$ cd llvm-py-0.6
 $ python setup.py install --user --llvm-config=/home/mdevan/llvm/Release/bin/llvm-config
 {% endhighlight %}
 
@@ -124,8 +118,6 @@ To build a debug version of llvm-py, that links against the debug
 libraries of LLVM, use this:
 
 {% highlight bash %}
-$ tar jxvf llvm-py-0.6.tar.bz2
-$ cd llvm-py-0.6
 $ python setup.py build -g --llvm-config=/home/mdevan/llvm/Debug/bin/llvm-config
 $ python setup.py install --user --llvm-config=/home/mdevan/llvm/Debug/bin/llvm-config
 {% endhighlight %}
@@ -136,23 +128,24 @@ only if you need to debug into LLVM also.
 `setup.py` is a standard Python distutils script. See the Python
 documentation regarding
 [Installing Python Modules](http://docs.python.org/inst/inst.html) and
-[Distributing Python Modules](http://docs.python.org/dist/dist.html) for more information on such scripts.
+[Distributing Python Modules](http://docs.python.org/dist/dist.html)
+for more information on such scripts.
 
 * * *
 
 # Uninstall # {#uninstall}
 
 If you'd installed llvm-py with the `--user` option, then llvm-py
-would be present under `~/.local/lib/python2.6/site-packages`.
-Otherwise, it might be under `/usr/lib/python2.6/site-packages`
-or `/usr/local/lib/python2.6/site-packages`. The directory would
+would be present under `~/.local/lib/python2.7/site-packages`.
+Otherwise, it might be under `/usr/lib/python2.7/site-packages`
+or `/usr/local/lib/python2.7/site-packages`. The directory would
 vary with your Python version and OS flavour. Look around.
 
 Once you've located the site-packages directory, the modules and
 the "egg" can be removed like so:
 
 {% highlight bash %}
-$ rm -rf <site-packages>/llvm <site-packages>/llvm_py-0.6-py2.6.egg-info
+$ rm -rf <site-packages>/llvm <site-packages>/llvm_py-<version-specific>.egg-info
 {% endhighlight %}
 
 

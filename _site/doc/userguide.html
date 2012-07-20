@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>User Guide</title>
+    
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/stylesheets/pygment_trac.css" rel="stylesheet" type="text/css">
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">llvm-py Documentation</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        
+<div class="page-header">
+  <h1>User Guide </h1>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <p>llvm-py provides Python bindings for LLVM. This document explains how you can setup and use it. A working knowledge of Python and a basic idea of LLVM is assumed.</p>
+
+<h1 id='introduction'>Introduction</h1>
+
+<p><a href='http://www.llvm.org/'>LLVM</a> (Low-Level Virtual Machine) provides enough infrastructure to use it as the backend for your compiled, or JIT-compiled language. It provides extensive optimization support, and static and dynamic (JIT) backends for many platforms. See the website at <a href='http://www.llvm.org/'>http://www.llvm.org/</a> to discover more.</p>
+
+<p>Python bindings for LLVM provides a gentler learning curve for working with the LLVM APIs. It should also be easier to create working prototypes and experimental languages using this medium.</p>
+
+<p>Together with <a href='http://clang.llvm.org/'>clang</a> or <a href='http://llvm.org/cmds/llvmgcc.html'>llvm-gcc</a> it also a provides a means to quickly instrument C and C++ sources. For e.g., llvm-gcc can be used to generate the LLVM assembly for a given C source file, which can then be loaded and manipulated (adding profiling code to every function, say) using a llvm-py based Python script.</p>
+
+<h2 id='license'>License</h2>
+
+<p>Both LLVM and llvm-py are distributed under (different) permissive open source licenses. llvm-py uses the <a href='http://opensource.org/licenses/bsd-license.php'>new BSD license</a>. More information is available <a href='https://github.com/numba/llvm-py/blob/master/LICENSE'>here</a>.</p>
+
+<h2 id='platforms'>Platforms</h2>
+
+<p>llvm-py has been built/tested/reported to work on various GNU/Linux flavours, BSD, Mac OS X; on i386 and amd64 architectures. Windows is not supported, for a variety of reasons.</p>
+
+<h2 id='versions'>Versions</h2>
+
+<p>llvm-py 0.8.2 requires verion 3.1 of LLVM. It may not work with previous versions.</p>
+
+<p>llvm-py has been built and tested with Python 2.7. It should work with earlier versions. It has not been tried with Python 3.x (patches welcome).</p>
+<hr />
+<h1 id='installation'>Installation</h1>
+
+<p>The Git repo of llvm-py is at <a href='https://github.com/numba/llvm-py.git'>https://github.com/numba/llvm-py.git</a>. You&#8217;ll need to build and install it before it can be used. At least the following will be required for this:</p>
+
+<ul>
+<li>C and C++ compilers (gcc/g++)</li>
+
+<li>Python itself</li>
+
+<li>Python development files (headers and libraries)</li>
+
+<li>LLVM, either installed or built</li>
+</ul>
+
+<p>On debian-based systems, the first three can be installed with the command <code>sudo apt-get install gcc g++ python python-dev</code>. Ensure that your distro&#8217;s respository has the appropriate version of LLVM!</p>
+
+<p>It does not matter which compiler LLVM itself was built with (<code>g++</code>, <code>llvm-g++</code> or any other); llvm-py can be built with any compiler. It has been tried only with gcc/g++ though.</p>
+
+<h2 id='llvm_and_'>LLVM and <code>--enable-pic</code></h2>
+
+<p>The result of an LLVM build is a set of static libraries and object files. The llvm-py contains an extension package that is built into a shared object (_core.so) which links to these static libraries and object files. It is therefore required that the LLVM libraries and object files be built with the <code>-fPIC</code> option (generate position independent code). Be sure to use the <code>--enable-pic</code> option while configuring LLVM (default is no PIC), like this:</p>
+<div class='highlight'><pre><code class='bash'>~/llvm<span class='nv'>$ </span>./configure --enable-pic --enable-optimized
+</code></pre>
+</div>
+<h2 id='llvmconfig'>llvm-config</h2>
+
+<p>Inorder to build llvm-py, it&#8217;s build script needs to know from where it can invoke the llvm helper program, <code>llvm-config</code>. If you&#8217;ve installed LLVM, then this will be available in your <code>PATH</code>, and nothing further needs to be done. If you&#8217;ve built LLVM yourself, or for any reason <code>llvm-config</code> is not in your <code>PATH</code>, you&#8217;ll need to pass the full path of <code>llvm-config</code> to the build script.</p>
+
+<p>You&#8217;ll need to be &#8216;root&#8217; to install llvm-py. Remember that your <code>PATH</code> is different from that of &#8216;root&#8217;, so even if <code>llvm-config</code> is in your <code>PATH</code>, it may not be available when you do <code>sudo</code>.</p>
+
+<h2 id='steps'>Steps</h2>
+
+<p>Get 3.1 version of LLVM, build it. Make sure &#8217;&#8211;enable-pic&#8217; is passed to LLVM&#8217;s &#8216;configure&#8217;.</p>
+
+<p>Get llvm-py and install it:</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>git clone git@github.com:numba/llvm-py.git
+<span class='nv'>$ </span><span class='nb'>cd </span>llvm-py
+<span class='nv'>$ </span>python setup.py install
+</code></pre>
+</div>
+<p>If you need to tell the build script where <code>llvm-config</code> is, do it this way:</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>python setup.py install --user --llvm-config<span class='o'>=</span>/home/mdevan/llvm/Release/bin/llvm-config
+</code></pre>
+</div>
+<p>To build a debug version of llvm-py, that links against the debug libraries of LLVM, use this:</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>python setup.py build -g --llvm-config<span class='o'>=</span>/home/mdevan/llvm/Debug/bin/llvm-config
+<span class='nv'>$ </span>python setup.py install --user --llvm-config<span class='o'>=</span>/home/mdevan/llvm/Debug/bin/llvm-config
+</code></pre>
+</div>
+<p>Be warned that debug binaries will be huge (100MB+) ! They are required only if you need to debug into LLVM also.</p>
+
+<p><code>setup.py</code> is a standard Python distutils script. See the Python documentation regarding <a href='http://docs.python.org/inst/inst.html'>Installing Python Modules</a> and <a href='http://docs.python.org/dist/dist.html'>Distributing Python Modules</a> for more information on such scripts.</p>
+<hr />
+<h1 id='uninstall'>Uninstall</h1>
+
+<p>If you&#8217;d installed llvm-py with the <code>--user</code> option, then llvm-py would be present under <code>~/.local/lib/python2.7/site-packages</code>. Otherwise, it might be under <code>/usr/lib/python2.7/site-packages</code> or <code>/usr/local/lib/python2.7/site-packages</code>. The directory would vary with your Python version and OS flavour. Look around.</p>
+
+<p>Once you&#8217;ve located the site-packages directory, the modules and the &#8220;egg&#8221; can be removed like so:</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>rm -rf &lt;site-packages&gt;/llvm &lt;site-packages&gt;/llvm_py-&lt;version-specific&gt;.egg-info
+</code></pre>
+</div>
+<p>See the <a href='http://docs.python.org/install/index.html'>Python documentation</a> for more information.</p>
+<hr />
+<p><strong>Next</strong> &#8211; <a href='./llvm_concepts.html'>LLVM concepts</a></p>
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy;  2012
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+
