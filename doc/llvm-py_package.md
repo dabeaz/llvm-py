@@ -53,14 +53,18 @@ Here is a quick overview of the contents of each package:
 - constants *ATTR_\** that represent function parameter attributes
 
 ## llvm.ee
-- ExecutionEngine -- represents an execution engine (which can be an
+- [ExecutionEngine](llvm.ee.ExecutionEngine.html)
+  -- represents an execution engine (which can be an
   either an interpreter or a JIT)
-- TargetData -- represents the ABI of the target platform (details like
+- [TargetData](llvm.ee.TargetData.html)
+  -- represents the ABI of the target platform (details like
   sizes and alignment of primitive types, endinanness etc)
 
 ## llvm.passes
-- PassManager -- represents an LLVM pass manager
-- FunctionPassManager -- represents an LLVM function pass manager
+- [PassManager](llvm.passes.PassManager.html)
+  -- represents an LLVM pass manager
+- [FunctionPassManager](llvm.passes.FunctionPassManager.html)
+  -- represents an LLVM function pass manager
 - constants *PASS_\** that represent various passes
 
 ## A note on the importing of these modules

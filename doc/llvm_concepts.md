@@ -200,20 +200,40 @@ correct objects to run them on (for example, a pass may work only
 on functions, individually) and actually runs them. `opt` is a
 command-line wrapper for the pass manager.
 
+LLVM defines two kinds of pass managers:
+
+* The [FunctionPassManager](http://llvm.org/docs/doxygen/html/classllvm_1_1FunctionPassManager.html)
+  manages function or basic-block passes. These lighter weight passes
+  can be used immediately after each generated funtion to reduce memory
+  footprint.
+
+* The [PassManager](http://llvm.org/docs/doxygen/html/classllvm_1_1PassManager.html)
+  manages module passes for optimizing the entire module.
 
 * * *
 
 
-# Bit code
+# Bitcode
 
-TODO
+LLVM IR can be represented as a bitcode format for disk storage. It is [suitable for fast loading by JIT compiler](http://llvm.org/docs/LangRef.html#introduction).
+See [LLVM documentation](http://llvm.org/docs/BitCodeFormat.html)
+for detail about the bitcode format.
 
 
 * * *
 
 # Execution Engine, JIT and Interpreter
 
-TODO
+The *execution engine* implements execution of LLVM IR through an
+interpreter or a JIT dynamic compiler. An *execution engine* can
+contain multiple modules.
+
+> **Note**
+>
+>
+> Inter-module reference is not possible.  That is module `A`
+> cannot call a function in module `B`, directly.
+
 
 * * *
 
