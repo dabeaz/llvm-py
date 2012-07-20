@@ -39,7 +39,7 @@ for f in module_obj.functions:
 References to intrinsic functions can be got via the static constructor
 `intrinsic`. This returns a `Function` object, calling which is
 equivalent to invoking the intrinsic. The `intrinsic` method has to be
-called with a module object, an instrinic ID (which is a numeric
+called with a module object, an intrinsic ID (which is a numeric
 constant) and a list of the types of arguments (which LLVM uses to
 resolve overloaded intrinsic functions).
 

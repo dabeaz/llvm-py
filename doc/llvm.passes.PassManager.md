@@ -1,6 +1,6 @@
 ---
 layout: page
-title: PassManager (llvm.pass)
+title: PassManager (llvm.passes)
 ---
 
 # llvm.passes.PassManager

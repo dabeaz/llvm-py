@@ -36,7 +36,7 @@ flavours, BSD, Mac OS X; on i386 and amd64 architectures. Windows is not
 supported, for a variety of reasons.
 
 ## Versions
-llvm-py 0.8.2 requires verion 3.1 of LLVM. It may not work with previous
+llvm-py 0.8.2 requires version 3.1 of LLVM. It may not work with previous
 versions.
 
 llvm-py has been built and tested with Python 2.7. It should work with
@@ -59,7 +59,7 @@ At least the following will be required for this:
 
 On debian-based systems, the first three can be installed with the
 command `sudo apt-get install gcc g++ python python-dev`. Ensure that your
-distro's respository has the appropriate version of LLVM!
+distro's repository has the appropriate version of LLVM!
 
 It does not matter which compiler LLVM itself was built with (`g++`,
 `llvm-g++` or any other); llvm-py can be built with any compiler. It has
@@ -82,7 +82,7 @@ configuring LLVM (default is no PIC), like this:
 
 ## llvm-config
 
-Inorder to build llvm-py, it's build script needs to know from where it
+In order to build llvm-py, it's build script needs to know from where it
 can invoke the llvm helper program, `llvm-config`. If you've installed
 LLVM, then this will be available in your `PATH`, and nothing further
 needs to be done. If you've built LLVM yourself, or for any reason

@@ -177,7 +177,7 @@ LLVM provides quite a few optimization algorithms that work on the IR.
 These algorithms are organized as _passes_. Each pass does something
 specific, like combining redundant instructions. Passes need not always
 optimize the IR, it can also do other operations like inserting
-instrumentation code, or analysing the IR (the result of which can be
+instrumentation code, or analyzing the IR (the result of which can be
 used by passes that do optimizations) or even printing call graphs.
 
 This LLVM [documentation page](http://www.llvm.org/docs/Passes.html)
@@ -204,7 +204,7 @@ LLVM defines two kinds of pass managers:
 
 * The [FunctionPassManager](http://llvm.org/docs/doxygen/html/classllvm_1_1FunctionPassManager.html)
   manages function or basic-block passes. These lighter weight passes
-  can be used immediately after each generated funtion to reduce memory
+  can be used immediately after each generated function to reduce memory
   footprint.
 
 * The [PassManager](http://llvm.org/docs/doxygen/html/classllvm_1_1PassManager.html)
