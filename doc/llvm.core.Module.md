@@ -95,23 +95,27 @@ A string representing the ABI of the platform.
 
 A string like `i386-pc-linux-gnu` or `i386-pc-solaris2.8`.
 
-### `pointer_size` 
+### `pointer_size`
 \[read-only\]
 
 The size in bits of pointers, of the target platform. A value of
 zero represents `llvm::Module::AnyPointerSize`.
 
-### `global_variables` 
+### `global_variables`
 \[read-only\]
 
 An iterable that yields [GlobalVariable][llvm.core.GlobalVariable] objects,
 that represent the global variables of the module.
 
-### `functions` 
+### `functions`
 \[read-only\]
 
 An iterable that yields [Function][llvm.core.Function] objects,
 that represent functions in the module.
+
+### `id`
+
+A string that represents the module identifier (name).
 
 ## Methods
 
