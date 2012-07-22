@@ -121,16 +121,23 @@ A string that represents the module identifier (name).
 
 ### `get_type_named(name)`
 
-Return a [Type][llvm.core.Type] object for the given alias name (typedef).
+Return a [StructType][llvm.core.StructType] object for the given name.
 
+The definition of this method was changed to work with LLVM 3.0+, in which
+the type system was rewritten.
+See [LLVM Blog](http://blog.llvm.org/2011/11/llvm-30-type-system-rewrite.html).
+
+{% comment %}
+++++++++REMOVED+++++++++++
 ### `add_type_name(name, ty)`
 
 Add an alias (typedef) for the type `ty` with the name `name`.
 
-
 ### `delete_type_name(name)`
 
 Delete an alias with the name `name`.
+++++++++END-REMOVED+++++++++++
+{% endcomment %}
 
 ### `add_global_variable(ty, name)`
 
@@ -142,6 +149,11 @@ Returns a [GlobalVariable][llvm.core.GlobalVariable] object.
 Get a [GlobalVariable][llvm.core.GlobalVariable] object corresponding to
 the global variable with the name `name`.
 Raises `LLVMException` if such a variable does not exist.
+
+### `add_library(name)`
+
+Add a dependent library to the Module. This only adds a name to a list of
+dependent library. **No linking is performed**.
 
 ### `add_function(ty, name)`
 
@@ -203,4 +215,5 @@ compares the resultant strings.
 [llvm.core.GlobalVariable]: llvm.core.GlobalVariable.html
 [llvm.core.BasicBlock]: llvm.core.BasicBlock.html
 [llvm.core.Type]: llvm.core.Type.html
+[llvm.core.StructType]: llvm.core.StructType.html
 
