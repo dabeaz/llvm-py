@@ -48,13 +48,17 @@ each function argument in order. If `vararg` is `True`, function is
 variadic.
 
 
-### `struct(eltys)`
+### `struct(eltys, name='')`
 
 Create an unpacked structure. `eltys` is an iterable, that yields
 `Type` objects representing the type of each element in order.
 
+If `name` is evaulates `True` (not empty), create
+an *identified structure*; otherwise, create a *literal structure*
+by default.
 
-### `packed_struct(eltys)`
+
+### `packed_struct(eltys, name='')`
 
 Like `struct(eltys)`, but creates a packed struct.
 
@@ -82,14 +86,14 @@ Creates a void type. Used for function return types.
 Creates a label type.
 
 
-### `opaque()`
+### `opaque(name)`
 
-Opaque type, used for creating self-referencing types.
+Opaque [StructType](llvm.core.StructType.html), used for creating self-referencing types.
 
 ## Properties
 
 
-### `kind` 
+### `kind`
 \[read-only\]
 
 A value (enum) representing the "type" of the object. It will be

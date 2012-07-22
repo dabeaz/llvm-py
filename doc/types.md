@@ -26,14 +26,15 @@ integer of bitwidth *n* | Type.int(n) | [IntegerType][llvm.core.IntegerType] |
 128-bit float (112-bit mantissa) | Type.fp128() | [Type][llvm.core.Type] |
 128-bit float (two 64-bits) | Type.ppc_fp128() | [Type][llvm.core.Type] |
 function | Type.function(r, p, v) | [FunctionType][llvm.core.FunctionType] |
-unpacked struct | Type.struct(eltys) | [StructType][llvm.core.StructType] |
-packed struct | Type.packed_struct(eltys) | [StructType][llvm.core.StructType] |
+unpacked struct | Type.struct(eltys, name) | [StructType][llvm.core.StructType] |
+packed struct | Type.packed_struct(eltys, name) | [StructType][llvm.core.StructType] |
+opaque struct | Type.opaque(name) | [StructType][llvm.core.StructType] |
 array | Type.array(elty, count) | [ArrayType][llvm.core.ArrayType] |
 pointer to value of type *pty* | Type.pointer(pty, addrspc) | [PointerType][llvm.core.PointerType] |
 vector | Type.vector(elty, count) | [VectorType][llvm.core.VectorType] |
 void | Type.void() | [Type][llvm.core.Type] |
 label | Type.label() | [Type][llvm.core.Type] |
-opaque | Type.opaque() | [Type][llvm.core.Type] |
+
 
 <br/>
 
@@ -93,6 +94,29 @@ f3 = Type.function( Type.void(), ( int_ty, int_ty ) )
 
 fnargs = [ Type.pointer( Type.int(8) ) ]
 printf = Type.function( Type.int(), fnargs, True ) # variadic function
+{% endhighlight %}
+
+* * *
+
+## Another Example: Recursive Type
+
+The type system was rewritten in LLVM 3.0.
+The old opaque type was removed.
+Instead, identified `StructType` can now be defined without a body.
+Doing so creates a opaque structure.
+One can then set the body after the construction of a structure.
+
+
+(See [LLVM Blog](http://blog.llvm.org/2011/11/llvm-30-type-system-rewrite.html)
+for detail about the new type system.)
+
+The following code defines a opaque structure, named "mystruct".
+The body is defined after the construction using `StructType.set_body`.
+The second subtype is a pointer to a "mystruct" type.
+
+{% highlight python %}
+ts = Type.opaque('mystruct')
+ts.set_body([Type.int(), Type.pointer(ts)])
 {% endhighlight %}
 
 * * *
