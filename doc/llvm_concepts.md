@@ -160,7 +160,7 @@ file (.c file). A module contains:
 
 - functions (declarations and definitions)
 - global variables and constants
-- global type aliases (typedef-s)
+- global type aliases for structures
 
 Modules are top-level containers; all executable code representation is
 contained within modules. Modules may be combined (linked) together to
